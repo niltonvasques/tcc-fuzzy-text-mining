@@ -1,0 +1,182 @@
+%% Template para dissertação/tese na classe UFBAthesis
+%% versao 1.0
+%% (c) 2005 Paulo G. S. Fonseca
+%% (c) 2012 Antonio Terceiro
+%% (c) 2014 Christina von Flach
+%% www.dcc.ufba.br/~flach/ufbathesis
+
+%% Carrega a classe ufbathesis
+%% Opcoes: * Idiomas
+%%           pt   - portugues (padrao)
+%%           en   - ingles
+%%         * Tipo do Texto
+%%           bsc  - para monografias de graduacao
+%%           msc  - para dissertacoes de mestrado (padrao)
+%%           qual - exame de qualificacao de mestrado
+%%           prop - exame de qualificacao de doutorado
+%%           phd  - para teses de doutorado
+%%         * Mídia
+%%           scr  - para versão eletrônica (PDF) / consulte o guia do usuario
+%%         * Estilo
+%%           classic - estilo original a la TAOCP (deprecated)
+%%           std     - novo estilo a la CUP (padrao)
+%%         * Paginacao
+%%           oneside - para impressao em face unica
+%%           twoside - para impressao em frente e verso (padrao)
+\documentclass[prop, classic, a4paper]{ufbathesis}
+\usepackage[utf8]{inputenc}
+
+%% Preambulo:
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{lipsum}
+
+% Universidade
+\university{UNIVERSIDADE FEDERAL DA BAHIA}
+
+% Endereco (cidade)
+\address{Salvador}
+
+% Instituto ou Centro Academico
+\institute{INSTITUTO DE MATEM\'{A}TICA}
+
+% Nome da biblioteca - usado na ficha catalografica
+\library{BIBLIOTECA REITOR MAC\^{E}DO COSTA}
+
+% Programa de pos-graduacao
+\program{PROGRAMA DE P\'{O}S-GRADUA\c{C}\~{A}O EM CI\^{E}NCIA DA COMPUTA\c{C}\~{A}O}
+
+% �rea de titulacao
+\majorfield{CI\^{E}NCIA DA COMPUTA\c{C}\~{A}O}
+
+% Titulo da tese
+\title{TITULO}
+
+% Data da defesa
+% e.g. \date{19 de fevereiro de 2003}
+\date{DATA DA DEFESA}
+
+% Autor
+% e.g. \author{Jose da Silva}
+\author{NOME DO AUTOR}
+
+% Orientador(a)
+% Opcao: [f] - para orientador do sexo feminino
+% e.g. \adviser[f]{Profa. Dra. Maria Santos}
+\adviser{NOME DO(DA) ORIENTADOR(A)}
+
+% Orientador(a)
+% Opcao: [f] - para orientador do sexo feminino
+% e.g. \coadviser{Prof. Dr. Pedro Pedreira}
+% Comente se nao se aplicar
+\coadviser{NOME DO(DA) CO-ORIENTADOR(A)}
+
+%% Inicio do documento
+\begin{document}
+
+\frontpage
+
+%% Parte pre-textual
+\frontmatter
+
+\presentationpage
+
+% Resumo em Portugues
+\resumo
+COLOQUE O RESUMO. Se preferir, crie um arquivo separado e o inclua via comando include.
+% Palavras-chave do resumo em Portugues
+\begin{keywords}
+PALAVRAS-CHAVE.
+\end{keywords}
+
+% Resumo em Ingles
+\abstract
+COLOQUE O RESUMO EM INGLES. Se preferir, crie um arquivo separado e o inclua via comando include.
+% Palavras-chave do resumo em Ingles
+\begin{keywords}
+PALAVRAS-CHAVE EM INGLES.
+\end{keywords}
+
+% Sumario / Indice
+% Comente para ocultar
+\tableofcontents
+
+% Lista de figuras
+\listoffigures
+
+% Lista de tabelas
+\listoftables
+
+%% Parte textual
+\mainmatter
+
+% Eh aconselhavel criar cada capitulo em um arquivo separado, digamos
+% "capitulo1.tex", "capitulo2.tex", ... "capituloN.tex" e depois
+% inclui-los com:
+% \include{capitulo1}
+% \include{capitulo2}
+% ...
+% \include{capituloN}
+%
+% Importante: Use \xchapter ao inves de \chapter, se quiser colocar texto antes do inicio do capitulo.
+
+\xchapter{Introdu\c{c}\~{a}o}{Este eh o primeiro cap\'{\i}tulo, onde eu conto toda a historia deste trabalho, o problema, a solu\c{c}\~{a}o, etc.}
+
+\lipsum
+
+\xchapter{Revis\~{a}o Bibliogr\'{a}fica}{Neste cap\'{\i}tulo eu apresento todo o material que eu estudei durante a elabora\c{c}\~{a}o do trabalho.}
+
+\lipsum
+
+Livro \cite{demeyer2008} e  livro \cite{raymond1999}.
+
+\chapter{Exemplos}
+
+Figura \ref{default-regular} e tabela \ref{default-table}.
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[scale=0.5]{ufba.eps}[0.5]
+\caption{Figura UFBA}
+\label{default-regular}
+\end{center}
+\end{figure}
+
+\begin{table}[htdp]
+\caption{Tabela Exemplo}
+\begin{center}
+\begin{tabular}{|c|c|} 
+\hline
+elemento 11 & elemento 12 \\ \hline
+elemento 21 & elemento 22 \\ \hline
+elemento 31 & elemento 32 \\
+\hline
+\end{tabular}
+\end{center}
+\label{default-table}
+\end{table}%
+
+%% Parte pos-textual
+\backmatter
+
+% Apendices
+% Comente se naoo houver apendices
+\appendix
+
+% Eh aconselhavel criar cada apendice em um arquivo separado, digamos
+% "apendice1.tex", "apendice.tex", ... "apendiceM.tex" e depois
+% inclui--los com:
+% \include{apendice1}
+% \include{apendice2}
+% ...
+% \include{apendiceM}
+
+% Bibliografia
+% É aconselhável utilizar o BibTeX a partir de um arquivo, digamos "biblio.bib".
+% Para ajuda na criação do arquivo .bib e utilização do BibTeX, recorra ao
+% BibTeXpress em www.cin.ufpe.br/~paguso/bibtexpress
+\bibliographystyle{abntex2-alf}
+\bibliography{biblio}
+
+%% Fim do documento
+\end{document}
+%------------------------------------------------------------------------------------------%
