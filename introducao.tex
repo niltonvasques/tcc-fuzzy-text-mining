@@ -24,23 +24,48 @@ Diante desse cenário, instituições públicas e privadas estão sobrecarregada
 processar essa imensa quantidade de informação em bases de dados com documentos não estruturados e
 em diversos formatos \cite{Kobayashi2008}. Estes documentos usualmente são de diversos tipos,
 como por exemplo, textos, áudios, imagens, vídeos, documentos HTML, assim como também podem estar 
-em diferentes idiomas.
+em diferentes idiomas. 
 
 Nesse contexto, diversas pesquisas tem objetivado a proposição ou refinamento de técnicas para
 automatização do processo de análise e aquisição de conhecimento útil desse montante de informações
-armazenadas. Essa extração pode então ser obtida através da Mineração de Dados, a qual permite a
-realização de uma exploração e estruturação automática dos dados, possibilitando a identificação dos
-padrões, o que por sua vez auxilia no processo de descoberta de conhecimento \cite{Nogueira2013}.
+armazenadas. Porém, devido a multi disciplinaridade inerente desse campo de estudo, o mesmo tem
+sido estudado pelas comunidades de mineração de dados, aprendizado de máquina e recuperação de
+informação.
 
-Dentre esses dados, temos uma imensa quantidade de dados textuais, que por sua vez são não
-estruturados. Com isso é notória a importância, de organizar de maneira automatizada, esses
-documentos pelos assuntos ao qual se tratam. Em particular temos um conjunto de técnicas
-pertencentes ao campo de estudo da mineração de textos, que visam realizar a tarefa de extrair
-informações relevantes de documentos textuais. Esta tarefa de análise e extração de informações é
-comumente segmentada nas tarefas de coleta, pré-processamento dos documentos, agrupamento dos dados
-e por fim a extração de descritores dos grupos obtidos na etapa de agrupamento. Os métodos de
-agrupamento podem ser separados então pela lógica matemática utilizada, que pode ser a lógica
-clássica ou a lógica fuzzy. Na lógica clássica, após o agrupamento, cada documento só poderá
+A mineração de dados é um campo de estudo que vem obtendo rápidos avanços nos últimos anos, e
+segundo \citeonline{Aggarwal2012}, isto se deve aos avanços das tecnologias de $hardware$ e
+$software$, o qual possibilitou o massivo armazenamento de diferentes tipos de dados, inclusive os
+dados textuais. Portanto, como resultado desse aumento na quantidade de documentos disponíveis na
+forma textual, existe uma demanda crescente no desenvolvimento e aprimoramento de métodos e
+algoritmos que possam efetivamente processar e extrair padrões dos dados de maneira dinâmica e
+escalável. 
+
+Por outro lado, enquanto os dados estruturados já possuem mecanismos bem eficientes de armazenamento
+e recuperação, os dados textuais são geralmente gerenciados através de mecanismos de buscas para
+suprir essa falta de estruturação. Esses mecanismos de busca possibilitam aos usuários uma
+coveniente maneira para recuperar informações em coleções textuais através de consultas com palavras
+chaves. Desse modo, compete ao campos de estudo da Recuperação de Informação (RI) a tarefa de
+explorar, investigar e propor métodos para otimização da eficiência e efetividade de
+sistemas de buscas \cite{Baeza2011}. 
+
+Mas segundo \citeonline{Baeza2011}, as pesquisas de recuperação de informação tem focado
+tradicionalmente, mais em facilitar o acesso a informação, do que realizar a descoberta de novos
+padrões em documentos textuais, o qual se destaca como sendo o objetivo principal da mineração de
+textos. A mineração de textos é uma especialização da mineração de dados, que se busca incorporar
+atividades de estruturação dos documentos em formatos apropriados, facilitando a aplicação dos
+tradicionais métodos de extração de padrões da MD, minimizando as perdas durante a conversão do
+formato original não estruturado \cite{Nogueira2013}.
+
+%estruturados. Com isso é notória a importância, de organizar de maneira automatizada, esses
+%documentos pelos assuntos ao qual se tratam.
+
+Para cumprir a tarefa de extrair informações relevantes de documentos textuais e identificar as
+estruturas inerentes aos dados. A mineração de textos emprega uma variedade de técnicas, as quais se
+destacam as tarefas de coleta, pré-processamento, agrupamento textual e seleção de termos
+descritores para o agrupamento. 
+
+Os métodos de agrupamento podem ser separados então pela lógica matemática utilizada, que pode ser a
+lógica clássica ou a lógica fuzzy. Na lógica clássica, após o agrupamento, cada documento só poderá
 pertencer a um grupo, enquanto na lógica fuzzy, a pertinência do documento será distribuída entre os
 grupos.  Se analisarmos a diversidade de conteúdo em documentos textuais, é trivial notar que
 frequentemente um texto aborda um ou mais temas. Com isso é evidente a necessidade de desenvolver-se
