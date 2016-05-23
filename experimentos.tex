@@ -492,25 +492,19 @@ compatibilidade com o grupo no qual o descritor está sendo extraído.
 Para realizar a extração dos descritores, inicialmente todos os termos que permanecem na coleção
 após a etapa de pré-processamento são considerados como candidatos a descritores. Posteriormente o
 método realiza uma avaliação quantitativa da relevância de cada termo $t_k$ para um grupo $g_j$,
-utilizando a medida $f1$ apresentada na equação \ref{eq:fmeasure}, que é a média harmônica da
-precisão (equação \ref{eq:precision}) e da revocação (equação \ref{eq:recall}).
-A medida de precisão checa a quantidade de documentos significantes entre os documentos
-recuperados. Enquanto a medida de revocação calcula a proporção de documentos relevantes recuperados
-entre todos os documentos relevantes da coleção. Tanto a medida de precisão e de revocação, tomam
-como base as informações obtidas a partir da matriz de contingência apresentada na Tabela
+utilizando a medida $f1$ apresentada na Equação \ref{eq:fmeasure}, que é a média harmônica da
+precisão (Equação \ref{eq:precision}) e da revocação (Equação \ref{eq:recall}).  A medida de
+precisão checa a quantidade de documentos significantes entre os documentos recuperados. Enquanto a
+medida de revocação calcula a proporção de documentos relevantes recuperados entre todos os
+documentos relevantes da coleção. Tanto a medida de precisão quanto a de revocação, tomam como base
+as informações obtidas a partir da matriz de contingência apresentada na Tabela
 \ref{table:softmatrix}. Adicionalmente tem-se que um documento $d_i$ é considerado como parte do
 grupo $g_j$, caso $\mu(d_j,g_j) \geq \delta$ para valores de pertinências ou $\lambda(d_i,g_j) \geq
-\delta$ para partição possibilística, onde seja $\delta = \frac{1}{c}$ e $c$ a quantidade de
-grupos. O limiar $\delta$ é uma parte relevante do método SoftO-FDCL, pois ele possibilita se
-considerar como candidatos a descritores, os termos presentes em documentos que pertençam a mais de
-um grupo, ao mesmo tempo que também penaliza os termos presentes em documentos com baixa
-compatibilidade em um grupo.
-
-Portanto, para efetuar a seleção dos termos descritores, é construído um $ranking$ dos termos
-candidatos de cada grupo, ordenados pela pontuação obtida com a medida $f1$ (equação
-\ref{eq:fmeasure}). A partir dessa pontuação, é selecionado os termos com as maiores
-pontuações em cada grupo. \citeonline{Nogueira2013} destaca, que a quantidade de descritores a ser
-selecionada fica a critério do usuário.
+\delta$ para partição possibilística, onde $\delta = \frac{1}{c}$ e $c$ a quantidade de grupos. O
+limiar $\delta$ é uma parte relevante do método SoftO-FDCL, pois ele possibilita considerar como
+candidatos a descritores, os termos presentes em documentos que pertençam a mais de um grupo, ao
+mesmo tempo que também penaliza os termos presentes em documentos com baixa compatibilidade em um
+grupo.
 
 \begin{table}[!htp]
   \centering
@@ -546,47 +540,47 @@ selecionada fica a critério do usuário.
   \label{eq:fmeasure}
 \end{equation}
 
-Em síntese o método SoftO-FDCL, cria uma tabela de pontuação dos termos candidatos aos grupos,
-e seleciona os que obtiverem a maior quantidade de pontos. Bem como a promoção a termo candidato é
-feita considerando os termos que ocorrem em documentos com grau de compatibilidade maior que o
-limiar $\delta = \frac{1}{c}$. Ao se considerar esse limiar em em partições com graus de
-pertinência, como a partição fuzzy do FCM, esse limiar $\delta$ se mostra adequado, pois como foi
-definido no capitulo 2, o grau de compatibilidade do FCM é restrito a equação \ref{eq:fcmrestri1}.
-Portanto ao filtrar os documentos em uma partição de pertinências utilizando $\delta$ como critério
-de corte, na maioria das vezes será descartado algum documento no processo. 
+Para efetuar a seleção dos termos descritores, é construído um $ranking$ dos termos candidatos de
+cada grupo, ordenados pela pontuação obtida com a medida $f1$ (Equação \ref{eq:fmeasure}). A partir
+dessa pontuação, os termos com as maiores pontuações em cada grupo são selecionados.
+\citeonline{Nogueira2013} destaca que a quantidade de descritores a ser selecionada fica a critério
+do usuário.
+
+Em síntese, o método SoftO-FDCL cria uma tabela de pontuação dos termos candidatos aos grupos,
+e seleciona os que obtiverem melhores valores de $f1$.  
 
 Formalizando essa
-percepção, podemos então definir as duas propriedades  que derivam dessa discussão, as quais são as
-equações (\ref{eq:limiarp1}) e (\ref{eq:limiarp2}), onde seja $c$ a quantidade de grupos. A primeira
-propriedade (equação \ref{eq:limiarp1}) expressa que se um documento possuir pertinência maior do
+percepção, é possível definir as duas propriedades que derivam dessa discussão, as quais são as
+Equações (\ref{eq:limiarp1}) e (\ref{eq:limiarp2}). A primeira
+propriedade  apresentada na Equação (\ref{eq:limiarp1}) expressa que se um documento possuir pertinência maior do
 que o limiar $\delta$ em um grupo $g_1$ qualquer, obrigatoriamente existirá ao menos um outro grupo
 $g_2$ no qual esse mesmo documento terá pertinência inferior ao limiar $\delta$. Portanto, essa
 propriedade nos indica que na maioria das vezes um ou mais documentos serão descartados na análise
 dos termos candidatos do grupo, o que reforça a adequação desse limiar para a partição de
 pertinências. Por outro lado, a segunda
-propriedade (equação \ref{eq:limiarp2}) denota o único caso particular, no qual um documento $d_i$
-não será descartado em nenhum grupo. Isto ocorre apenas se $d_i$ possuir pertinência igual em todos
+propriedade apresentada na Equação (\ref{eq:limiarp2}) denota o único caso particular, no qual um documento $d_i$
+não será descartado em nenhum grupo. Isto ocorre apenas se $d_i$ possuir pertinência igual ao limiar em todos
 os grupos, o que só acontece em dados ruidosos, que apresentam o problema do elemento equidistante
-detalhado na Figura \ref{fig:fcm_problem} do capítulo 2.
+detalhado na Figura \ref{fig:fcm_problem} do Capítulo 2.
 
 \begin{equation}
-  \mu(d_1,g_j) > \delta \rightarrow \exists \mu(d_i, g_2) < \delta
+  \mu(d_1,g_1) > \delta \rightarrow \exists \mu(d_i, g_2) < \delta
   \label{eq:limiarp1}
 \end{equation}
 \begin{equation}
-  ( \mu(d_1,g_1) = \delta ) \wedge ( \mu(d_i,g_2) = \delta ) \wedge ... \wedge ( \mu(d_i,g_{c_1}) =
+  ( \mu(d_1,g_1) = \delta ) \wedge ( \mu(d_i,g_2) = \delta ) \wedge ... \wedge ( \mu(d_i,g_{c-1}) =
   \delta ) \rightarrow ( \mu(d_i, g_c) = \delta  )
   \label{eq:limiarp2}
 \end{equation}
 
-Contudo, para a partição possibilística, essas duas propriedades não são satisfeitas. Isso se deve,
-por conta da remoção da restrição da equação (\ref{eq:fcmrestri1}), o que possibilita 
-o grau de compatibilidade da partição possibilística variar de maneira independente entre o intervalo
-de $[0,1]$, sem ser influenciado pelo grau de compatibilidade do documento nos demais grupos.
+Contudo, para a partição possibilística, essas duas propriedades não são satisfeitas. Isso ocorre
+devido a remoção da restrição da Equação (\ref{eq:fcmrestri1}), o que permite o grau de
+compatibilidade da partição possibilística variar de maneira independente entre o intervalo de
+$[0,1]$, sem ser influenciado pelo grau de compatibilidade do documento nos demais grupos.
 
-Para tornar claro essas análises, vamos considerar uma situação onde temos uma coleção de textos com
+Para tornar claro essas análises, considere uma situação onde tem-se uma coleção de textos com
 3 documentos (Tabela \ref{table:sampledocuments}), onde cada documento possui 3 termos. Essa coleção
-de documentos foi então agrupada, usando o método PFCM, o qual produziu 2 grupos, com as suas
+de documentos foi agrupada, usando o método PFCM, o qual produziu 2 grupos, com as suas
 respectivas partições de pertinência (Tabela
 \ref{table:samplefcmclusters}) e possibilística (Tabela \ref{table:samplepcmclusters}).
 
@@ -642,37 +636,39 @@ respectivas partições de pertinência (Tabela
   \end{minipage}\hfill 
 \end{table}
 
-A partir desse agrupamento podemos então aplicar a extração de descritores, utilizando as partições
+A partir desse agrupamento é possível aplicar a extração de descritores, utilizando as partições
 apresentadas nas Tabelas \ref{table:samplefcmclusters} e \ref{table:samplepcmclusters}. Seguindo
-então o procedimento do método SoftO-FDCL, inicialmente devemos considerar todos os descritores
-presentes na Tabela \ref{table:sampledocuments}, como candidatos a descritores. Então para
-promovermos os descritores candidatos do grupo $g_1$ utilizando a partição de pertinências, devemos 
-observar os documentos que possuem pertinência maior ou igual ao limiar, onde no nosso exemplo é
-igual a $\delta = \frac{1}{2} = 0.5$. Portanto o único documento que se enquadra no filtro do limiar
-é o documento $d_1$, portanto o termo $t_3$, que é o único presente no documento $d_1$, é promovido
+o procedimento do método SoftO-FDCL, inicialmente devemos considerar todos os descritores
+presentes na Tabela \ref{table:sampledocuments}, como candidatos a descritores. Então, para
+promover os descritores candidatos do grupo $g_1$ utilizando os graus de pertinências, deve-se 
+observar os documentos que possuem pertinência maior ou igual ao limiar, onde no exemplo é
+igual a $\delta = \frac{1}{2} = 0.5$. Portanto, o único documento que se enquadra no filtro do limiar
+é o documento $d_1$ e o termo $t_3$, que é o único presente no documento $d_1$, é promovido
 a descritor candidato e consequentemente a descritor do grupo $g_1$. Já o grupo $g_2$ possui 3
 documentos com pertinência maior ou igual ao limiar $\delta$. Sendo assim, os termos de $d_1,d_2$ e
-$d_3$ são promovidas a descritores candidatos do grupo $g_2$. Ao calcularmos a medida $f1$ para cada
-um deles temos: $f1(t_1,g_2) = 0,8$, $f1(t_2,g_2) = 0,8$, $f1(t_3,g_2) = 0,5$. Logo os descritores
+$d_3$ são promovidas a descritores candidatos do grupo $g_2$. Ao calcular-se a medida $f1$ para cada
+um deles temos: $f1(t_1,g_2) = 0,8$, $f1(t_2,g_2) = 0,8$, $f1(t_3,g_2) = 0,5$. Logo, os descritores
 selecionados para cada grupo foram $g_1 =\{t_3\}$ e $g_2 = \{t_1, t_2\}$.
 
-Agora ao aplicarmos novamente a extração de descritores sobre a partição possibilística, temos agora
-os documentos $d_1, d_2$ e $d_3$ sendo considerados parte do grupo $g_1$, de acordo com a regra do
-limiar. Logo devemos considerar os termos dos 3 documentos como descritores candidatos. Portanto,
-seguem os valores de $f1$ para os 3 termos candidatos do grupo $g_1$: $f1(t_1,g_1) = 0,8$,
-$f1(t_2,g_1) = 0,8$, $f1(t_3,g_1) = 0,5$. Para o grupo $g_2$ vamos obter os mesmos termos
+Ao aplicar a extração de descritores sobre a partição possibilística, tem-se agora
+os documentos $d_1, d_2$ e $d_3$ considerados parte do grupo $g_1$, de acordo com a regra do
+limiar. Logo, deve-se considerar os termos dos 3 documentos como descritores candidatos. Os valores
+de $f1$ para os 3 termos candidatos do grupo $g_1$ são: $f1(t_1,g_1) = 0,8$,
+$f1(t_2,g_1) = 0,8$, $f1(t_3,g_1) = 0,5$. Para o grupo $g_2$ obtém-se os mesmos termos
 candidatos, pois $d_1, d_2$ e $d_3$ também possuem valores de tipicidade maiores ou igual ao limiar
 $\delta$, portanto os valores de $f1$ para o grupo $g_2$ são:  $g_1$: $f1(t_1,g_1) = 0,8$,
-$f1(t_2,g_1) = 0,8$, $f1(t_3,g_2) = 0,5$. Foi obtido então a mesma pontuação para os mesmos termos
+$f1(t_2,g_1) = 0,8$, $f1(t_3,g_2) = 0,5$. Foi obtido a mesma pontuação para os mesmos termos
 candidatos nos dois grupos. Com isso, fica claro as causas que levaram a extração dos descritores
-confusos apresentados na Tabela \ref{table:pfcmdescriptors}. 
+confusos apresentados na Tabela \ref{table:pfcmdescriptors}.  Ao se utilizar a mesma intepretação
+dos graus de pertinência do FCM, nas tipicidades, o critério chave de descarte dos documentos de
+baixa relevância em um grupo deixou de fazer efeito.
 
-E ainda ressalta-se que esta situação
-se agrava ainda mais, com o aumento do número de grupos produzidos pelo agrupamento. Pois quanto
-maior for a quantidade de grupos, menor será o valor do limiar $\delta$. Esta noção fica explicita
-na terceira propriedade do limiar apresentada na equação (\ref{eq:limiarp3}). Ou seja, mais
-facilmente os graus de compatibilidade possibilísticos irão passar no filtro do limiar. E
-consequentemente todos os documentos serão considerados relevantes para todos os grupos. 
+É importante ressaltar que esta situação se agrava ainda mais com o aumento do número de grupos
+produzidos pelo agrupamento, pois quanto maior for a quantidade de grupos, menor será o valor do
+limiar $\delta$. Esta noção fica explícita na terceira propriedade do limiar apresentada na Equação
+(\ref{eq:limiarp3}). Ou seja, mais facilmente os graus de compatibilidade possibilísticos irão
+passar no filtro do limiar, e, consequentemente todos os documentos serão considerados relevantes
+para todos os grupos. 
 
 \begin{equation}
   \lim_{c \rightarrow \infty} \delta = 0
@@ -680,8 +676,8 @@ consequentemente todos os documentos serão considerados relevantes para todos o
 \end{equation}
 
 
-Na próxima sessão será descrito uma possível proposta para interpretação dos graus de
-compatibilidade das partições possibilística.
+Na próxima seção será descrito uma possível proposta para interpretação dos graus de compatibilidade
+das partições possibilística.
 
 \subsection{Interpretando os graus de compatibilidade das partições possibilísticas}
 
@@ -690,7 +686,7 @@ extração de descritores, conforme ficou demonstrado na sessão anterior. Com i
 seguinte pergunta: Como interpretar corretamente os graus de compatibilidade possibilísticos, para
 corretamente identificar os documentos relevantes de um dado grupo? Conforme sabemos, o valor de
 tipicidade pode variar livremente entre o intervalo $[0,1]$, sem a restrição probabilística
-(equação \ref{eq:fcmrestri1}) do FCM. Essa é uma
+(Equação \ref{eq:fcmrestri1}) do FCM. Essa é uma
 característica positiva introduzida em \citeonline{Krishnapuram1993}, a qual atribui valores de
 pertinência mais justos aos grupos fuzzy, em consonância com a teoria de conjuntos fuzzy proposta em
 \citeonline{Zadeh1965} e brevemente contextualizada no capítulo 2. Para melhor compreendermos esse
@@ -718,12 +714,12 @@ ruídos da tipicidade.
 
 Nesse contexto, propõe-se realizar essa interpretação em duas etapas. A primeira será constituída de
 uma conversão da tipicidade oriunda do PCM para a pertinência do FCM, de maneira a se satisfazer a
-restrição probabilística do FCM (equação \ref{eq:fcmrestri1}). No entanto, ao apenas realizar a
+restrição probabilística do FCM (Equação \ref{eq:fcmrestri1}). No entanto, ao apenas realizar a
 conversão iremos perder a robustez contra ruídos do PCM. Por isso, vamos adicionar uma penalidade ao
 cálculo da pontuação dos termos.
 
 A conversão proposta dos valores de tipicidade para pertinência, dar-se a como apresentado na
-equação (\ref{eq:tip2pert}), a qual satisfaz a condição necessária (equação
+Equação (\ref{eq:tip2pert}), a qual satisfaz a condição necessária (Equação
 \ref{eq:tiplinharestri1}) para que o limiar $\delta$ seja aplicado, sem sofrer do problema de se
 considerar um documento como relevante em todos os grupos.
 
@@ -774,7 +770,7 @@ grupo e aumentar a contribuição de documentos com alta tipicidade no grupo. Re
 pontuação mais justa e mais coerente dos termos extraídos dos grupos. Os ajustes necessários nas
 medidas de precisão e recuperação estão detalhados nas equações (\ref{eq:precision2}) e
 (\ref{eq:recall2}), enquanto o cálculo da medida $f1(t_k,g_j)$ permanece como definido na
-equação (\ref{eq:fmeasure}).
+Equação (\ref{eq:fmeasure}).
 
 \begin{equation}
   ganhos(t_i,g_j) = 
@@ -828,9 +824,9 @@ A agora que a proposta de interpretação da partição possibilística está co
 todos esses passos em um método para extração de descritores para a partição possibilística, a qual
 será denominado aqui de PDCL ({\it Possibilistic Descriptor Comes Last\/}). Para realizar a extração
 de descritores o método PDCL, considera inicialmente todos os termos como candidatos, em seguida
-para cada grupo $g_j$ é calculado a precisão (equação \ref{eq:precision2}) e recuperação (equação
+para cada grupo $g_j$ é calculado a precisão (Equação \ref{eq:precision2}) e recuperação (Equação
 \ref{eq:recall2}) de todos os termos $t_k$. A partir então destes valores é calculada a
-pontuação de cada termo $t_k$ no grupo $g_j$, com a medida $f1(t_k,g_j)$ (equação
+pontuação de cada termo $t_k$ no grupo $g_j$, com a medida $f1(t_k,g_j)$ (Equação
 \ref{eq:fmeasure}). Obtido então essa pontuação por grupo dos termos candidatos, deve-se selecionar
 os $m$ descritores de maior pontuação em cada grupo. No qual a quantidade $m$ de descritores é
 definida pelo usuário. A síntese do método PDCL está apresentado no Algoritmo \ref{alg:pdcl}.
@@ -847,7 +843,7 @@ reguladores da influência do FCM e do PCM no agrupamento obtido. Portanto há d
 importância de se considerar tais parâmetros no processo de extração de descritores, objetivando
 assim mais coerência com o algoritmo.
 
-Nesse contexto, é apresentado a equação (\ref{eq:pfcmmix}), a qual combina os valores de pertinência
+Nesse contexto, é apresentado a Equação (\ref{eq:pfcmmix}), a qual combina os valores de pertinência
 e de tipicidade convertidos, em um único grau de compatibilidade. Essa combinação nada mais é do que
 a média ponderada pelos parâmetros $a$ e $b$ dos valores de pertinência e tipicidade convertido
 respectivamente.
@@ -907,11 +903,11 @@ apresentado no Algoritmo \ref{alg:pdcl}.
       candidatos $\gets [t_1,t_2,...,t_k]$\;
       ranking $\gets \emptyset$\;
       \ForEach{$t \in$ candidatos}{
-        precisao $\gets$ equação (\ref{eq:precision}) para o PDCL ou (\ref{eq:precision2}) para o
+        precisao $\gets$ Equação (\ref{eq:precision}) para o PDCL ou (\ref{eq:precision2}) para o
         Mixed-PFDCL\;
-        recuperacao $\gets$ equação (\ref{eq:recall}) para o PDCL ou (\ref{eq:recall2}) para o
+        recuperacao $\gets$ Equação (\ref{eq:recall}) para o PDCL ou (\ref{eq:recall2}) para o
         Mixed-PFDCL\;
-        pontuacao $\gets$ equação (\ref{eq:fmeasure})\;
+        pontuacao $\gets$ Equação (\ref{eq:fmeasure})\;
         ranking[t] $\gets$ pontuacao\;
       }
       descritores[g] $\gets$ $m$ termos do ranking com maior pontuacao\;
@@ -920,8 +916,8 @@ apresentado no Algoritmo \ref{alg:pdcl}.
   }
   \caption{Pseudo código da extração de descritores com os métodos PDCL e Mixed-PFDCL. Onde
     considere U a
-  partição de pertinências fuzzy (equação \ref{eq:part_fuzzy}), P a partição
-  possibilística (equação \ref{eq:pcmpart}), D a coleção de documentos da coleção, G os grupos
+  partição de pertinências fuzzy (Equação \ref{eq:part_fuzzy}), P a partição
+  possibilística (Equação \ref{eq:pcmpart}), D a coleção de documentos da coleção, G os grupos
 produzidos pelo método de agrupamento e $m$ a quantidade descritores desejada por grupo.}
 \label{alg:pdcl} 
 \end{algorithm}
@@ -948,7 +944,7 @@ estavam produzindo grupos coincidentes mais facilmente, quando os valores de $m$
 que $1.5$. Por sua vez os parâmetros $a$ e $b$ do algoritmo PFCM, o qual define a influência das
 pertinências fuzzy do FCM e os graus de compatibilidade possibilísticos do PCM respectivamente,
 foram definidos como sendo $a = 1,0$ e $b = 1,2$. Essa escolha deriva das conclusões apresentadas
-em \citeonline{Pal2005}, o qual nos informa que de acordo com a função objetivo (equação
+em \citeonline{Pal2005}, o qual nos informa que de acordo com a função objetivo (Equação
 \ref{eq:pfcmobj}) do PFCM, se utilizarmos valores de $a$ maiores que $b$, os protótipos dos grupos
 são mais influenciados pelas pertinências. Contudo, como em coleções textuais 
 naturalmente esparsas, é mais comum haver documentos ruidosos, o qual não se encaixe totalmente em
@@ -995,9 +991,9 @@ produzidos, foi feita, utilizando a mesma estratégia de avaliação preditiva,
 com os 5 algoritmos de classificação do experimento anterior. No entanto, como a proposta de
 interpretação das duas partições produzidas pelo algoritmo PFCM, contempla um grau de
 compatibilidade misto entre as duas partições, foi pertinente generalizar essa interpretação
-também para função de defuzificação dos grupos, apresentada na equação
-(\ref{eq:class}). Essa adaptação está apresentada na equação (\ref{eq:class2}), onde 
-foi adicionado, o grau de compatibilidade híbrido proposto na equação (\ref{eq:pfcmmix}).
+também para função de defuzificação dos grupos, apresentada na Equação
+(\ref{eq:class}). Essa adaptação está apresentada na Equação (\ref{eq:class2}), onde 
+foi adicionado, o grau de compatibilidade híbrido proposto na Equação (\ref{eq:pfcmmix}).
 
 \begin{equation}
   crisp(d_i) = \begin{cases}
@@ -1013,7 +1009,7 @@ duas partições}
 
 Sendo assim, é realizada uma redução na matrix documentos x termos original para a matriz documentos
 x descritores, conforme descrito na seção \ref{sec:exppfcm}, onde a pertinência de cada documento é
-submetida a uma defuzificação com a equação (\ref{eq:class2}). Posteriormente, essa matriz de
+submetida a uma defuzificação com a Equação (\ref{eq:class2}). Posteriormente, essa matriz de
 dimensionalidade reduzida é submetida aos mesmos classificadores do experimento anterior, com os
 mesmos parâmetros. Os resultados dessa classificação estão apresentados nas Figuras
 \ref{fig:pdclopinosis}, \ref{fig:pdcl20news}, \ref{fig:pdclhitech}, \ref{fig:pdclnsf},
@@ -1114,7 +1110,7 @@ Ao se analisar os resultados, comparando as taxas de acerto obtidas entre os mé
 é possível se observar uma relevante tendência do PCM superar o PFCM. Entretanto, as taxas de acerto
 próximas de 100\% no PCM, desperta atenção. Nesse sentido, vamos analisar na Tabela
 \ref{table:pdclmajority}, os grupos majoritários da matriz documentos x descritores, obtidos após a
-defuzificação do agrupamento com a equação (\ref{eq:class2}), para entender o por que de taxas tão
+defuzificação do agrupamento com a Equação (\ref{eq:class2}), para entender o por que de taxas tão
 elevadas. 
 
 \begin{table}[!htp]
@@ -1139,7 +1135,7 @@ elevadas.
     \hline
   \end{tabular}
   \caption{Informações das classes majoritárias obtidas através da defuzificação dos grupos fuzzy,
-  com a equação (\ref{eq:class2})}
+  com a Equação (\ref{eq:class2})}
   \label{table:pdclmajority}
 \end{table}
 
