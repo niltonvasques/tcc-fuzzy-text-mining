@@ -236,7 +236,6 @@ quantidade de grupos.
   \label{eq:silhuette}
 \end{equation}
 
-
 \begin{equation} 
   FS = \frac{\sum_{i=1}^n{(\mu_1(d_i) - \mu_2(d_i))}S(d_i)}{\sum_{i=1}^n{(\mu_1(d_i) - \mu_2(d_i))}}
   \label{eq:fs}
@@ -292,18 +291,26 @@ pertinência $\mu(d_i,g_k)$ de cada documento na coleção, é definida por
 \end{equation}
 e está sujeita as restrições definidas nas equações (\ref{eq:fcmrestri1}) e (\ref{eq:fcmrestri2}).
 
+Considera-se $m$ o fator de fuzificação, que regula o quão fuzzy será as partições finais. De modo
+que para $m = 1$ a partição resultante é totalmente $crisp$ (Figura \ref{fig:cluster_crisp}) e para
+$m \rightarrow \infty$ a interseção entre os grupos tende a aumentar (Figura
+\ref{fig:cluster_fuzzy})\cite{Pal2005}. 
 
-Considera-se $m$ o fator de fuzificação, que regula o quão fuzzy será as partições finais. De modo que para $m = 1$ a partição resultante é totalmente $crisp$ (Figura \ref{fig:cluster_crisp}) e para $m \rightarrow \infty$ a interseção entre os grupos tende a aumentar (Figura \ref{fig:cluster_fuzzy})\cite{Pal2005}. 
-
-Segundo \citeonline{Bezdek1984} nenhuma teoria ou evidência computacional aponta para um valor ótimo de $m$, contudo o autor aponta que a faixa de valores ideais aparenta ser $[1,30]$. Sendo assim, se existir um conjunto de dados para teste, uma boa estratégia para a escolha de $m$ é a realização de testes experimentais. Caso contrário, o intervalo de $[1.5, 3.0]$ aparenta trazer bons resultados para a maior parte dos dados.
+Segundo \citeonline{Bezdek1984} nenhuma teoria ou evidência computacional aponta para um valor ótimo
+de $m$, contudo o autor aponta que a faixa de valores ideais aparenta ser $[1,30]$. Sendo assim, se
+existir um conjunto de dados para teste, uma boa estratégia para a escolha de $m$ é a realização de
+testes experimentais. Caso contrário, o intervalo de $[1.5, 3.0]$ aparenta trazer bons resultados
+para a maior parte dos dados.
 
 \begin{figure}[!htp] \centering 
    \begin{minipage}{0.45\textwidth} 
      \centering
     \includegraphics[width=0.6\columnwidth]{assets/clusters_crisp.pdf} 
     \caption{Ilustração denotando os
-grupos $g_1,g_2,g_3$ organizados sem sobreposição, para $m = 1$.} \label{fig:cluster_crisp}
+grupos $g_1,g_2,g_3$ organizados sem sobreposição, para $m = 1$.} 
+  \label{fig:cluster_crisp}
   \end{minipage}\hfill 
+
   \begin{minipage}{0.45\textwidth} \centering
     \includegraphics[width=0.6\columnwidth]{assets/clusters_fuzzy.pdf} 
     \caption{Ilustração denotando os
@@ -318,13 +325,15 @@ Adicionalmente, o algoritmo FCM estabelece algumas restrições: deve-se evitar 
 grupos vazios (Equação (\ref{eq:fcmrestri1})) e deve-se impor que a soma das pertinências seja
 sempre igual a um (Equação (\ref{eq:fcmrestri2})).
 
+\leavevmode\\
 \begin{equation} \sum_{k=1}^c
-\mu(d_i,g_k) = 1 \label{eq:fcmrestri1} 
+  \mu(d_i,g_k) = 1 \label{eq:fcmrestri1} 
 \end{equation}
 
 \begin{equation} 0 < \sum_{i=1}^n
-\mu(d_i,g_k) < n \label{eq:fcmrestri2} 
+  \mu(d_i,g_k) < n \label{eq:fcmrestri2} 
 \end{equation}. 
+\leavevmode\\
 
 A restrição imposta pela Equação (\ref{eq:fcmrestri2}), no entanto, produz um problema em elementos
 equidistantes aos grupos. Ou seja, quando temos o caso $\mu(d_i, g_1) = \mu(d_i, g_2) = ... =
@@ -350,33 +359,36 @@ agrupamento foram propostas, sendo a minimização da função objetivo $J(U_{c 
 definida na Equação (\ref{eq:fcm_obj}) a mais popular. Onde considere $U_{c \times n}$ como os graus
 de pertinência fuzzy, $V$ os protótipos dos grupos $G$ e $D$ o conjunto de documentos.  
 
+\leavevmode\\
 \begin{equation} min\{(J(U_{c \times
 n},G,V,D) = \sum_{i=1}^n \sum_{j=1}^c [\mu(d_i, g_j)]^m dist(d_i, v_j)\} 
 \label{eq:fcm_obj}
 \end{equation} 
+\leavevmode\\
 
 O algoritmo mais comumente utilizado para prover soluções aproximadas dessa minimização
 (\ref{eq:fcm_obj}), é a através da iteração de Picard\footnotemark \cite{Pal2005} entre as equações
 (\ref{eq:prototipos}) e (\ref{eq:part_fuzzy}). 
 \footnotetext{Método iterativo para construção de soluções aproximadas, atribuído ao matemático
 francês Charles Emile Picard (1856-1941).
-\url{http://mathfaculty.fullerton.edu/mathews/n2003/PicardIterationMod.html}}
-O ciclo de aproximações se dá por
-$V_{t-1} \Rightarrow  U_t \Rightarrow  V_t$, onde, ao final de cada iteração, é verificado se
-$\parallel V_{t-1} - V_t\parallel < \varepsilon$.  A literatura também expressa que os ciclos podem
-começar pela partição fuzzy, fazendo então $U_{t-1} \Rightarrow  V_t \Rightarrow  U_t$, e, ao final
-do ciclo, checando o erro mínimo com $\parallel U_{t-1} - U_t\parallel < \varepsilon$, sendo $t$ o
-contador de iterações.  Contudo, existem benefícios em termos de processamento e memória ao utilizar
-a iteração iniciando e finalizando com $V$\cite{Pal2005}. Por outro lado, \citeonline{Bezdek1984} e
-\citeonline{Pal2005} afirmam que a convergência desse modelo iterativo ocorre em ambos os tipos de
-ciclo. Geralmente, a partição fuzzy inicial $U_0$ é comumente inicializada com valores aleatórios ou
-com o resultado de um agrupamento previamente executado \cite{Pal2005,Krishnapuram1993}. Nas demais
-iterações a atualização dos protótipos é realizada a partir da Equação (\ref{eq:prototipos}).  
+\url{http://mathfaculty.fullerton.edu/mathews/n2003/PicardIterationMod.html}} 
+O ciclo de aproximações se dá por $V_{t-1} \Rightarrow  U_t \Rightarrow  V_t$, onde, ao final de
+cada iteração, é verificado se $\parallel V_{t-1} - V_t\parallel < \varepsilon$.  A literatura
+também expressa que os ciclos podem começar pela partição fuzzy, fazendo então $U_{t-1} \Rightarrow
+V_t \Rightarrow U_t$, e, ao final do ciclo, checando o erro mínimo com $\parallel U_{t-1} -
+U_t\parallel < \varepsilon$, sendo $t$ o contador de iterações.  Contudo, existem benefícios em
+termos de processamento e memória ao utilizar a iteração iniciando e finalizando com
+$V$\cite{Pal2005}. Por outro lado, \citeonline{Bezdek1984} e \citeonline{Pal2005} afirmam que a
+convergência desse modelo iterativo ocorre em ambos os tipos de ciclo. Geralmente, a partição fuzzy
+inicial $U_0$ é comumente inicializada com valores aleatórios ou com o resultado de um agrupamento
+previamente executado \cite{Pal2005,Krishnapuram1993}. Nas demais iterações a atualização dos
+protótipos é realizada a partir da Equação (\ref{eq:prototipos}).  
 
 O pseudo código utilizando a abordagem iterativa descrita a cima, está listado no Algoritmo
 \ref{alg:fcm}, no qual a função $\textbf{{\color{blue}inicializa-particao-fuzzy}(D,G)}$, pode ser
-uma das duas formas de inicialização descritas anteriormente. \\
+uma das duas formas de inicialização descritas anteriormente.
 
+\leavevmode\\
 \begin{algorithm}[H] 
   \SetAlgoLined 
   \textbf{{\color{blue}fcm}(D, c, m, $\varepsilon$)}\\
@@ -392,11 +404,13 @@ uma das duas formas de inicialização descritas anteriormente. \\
   \caption{Pseudo código da implementação iterativa do método FCM}
 \label{alg:fcm} 
 \end{algorithm} 
+\leavevmode\\
 
 Por fim, está ilustrado na Figura \ref{fig:samples_fcm}, os resultados produzidos pelo algoritmo
 FCM, em dois conjuntos de coordenadas no $R^2$. Na figura, os pontos foram pintados com a cor
 correspondente ao grupo em que o mesmo obteve o maior valor de pertinência.
 
+\leavevmode\\
 \begin{figure}[!htp] 
   \centering 
   \includegraphics[width=0.8\columnwidth]{assets/samples_fcm.png}
@@ -404,15 +418,16 @@ correspondente ao grupo em que o mesmo obteve o maior valor de pertinência.
   FCM\protect\footnotemark.} 
   \label{fig:samples_fcm} 
 \end{figure}
+\leavevmode\\
 
 \subsection{Algoritmo Possibilistic C Means (PCM)}
 
 A restrição probabilística do FCM, apresentada na Equação (\ref{eq:fcmrestri2}), que obriga a soma
 das pertinências de um elemento ser igual a um, nem sempre resulta em pertinências que representam
 bem a realidade dos dados, conforme exemplificado na Figura \ref{fig:fcm_problem}.  Esse problema se
-agrava ainda mais, em bases com muitos dados ruidosos ($outliers$).  Visando contornar esses
-problemas do FCM, foi proposto em \citeonline{Krishnapuram1993} o algoritmo $Possiblistic\ C\ Means$
-(PCM). 
+agrava ainda mais, em bases com muitos dados ruidosos ($outliers$). Portanto, com o objetivo de
+contornar esses problemas do FCM, foi proposto em \citeonline{Krishnapuram1993} o algoritmo
+$Possiblistic\ C\ Means$ (PCM). 
 
 Ao contrário do FCM, o PCM não atribui pertinências dos documentos aos grupos, mas sim tipicidades,
 as quais podem ser interpretadas como graus de possibilidade de um elemento pertencer a um
@@ -429,8 +444,9 @@ um agrupamento com dois grupos. Nesse contexto \citeonline{Krishnapuram1993} sug
 restrição, permitindo assim, que a pertinência dependa unicamente da distância do elemento ao grupo.
 Logo, as restrições apresentadas nas Equações (\ref{eq:fcmrestri1}) e (\ref{eq:fcmrestri2}), são
 redefinidas nas Equações (\ref{eq:pcmrestri1}) e (\ref{eq:pcmrestri2}), nas quais $\lambda(d_i,g_j)$
-representa a tipicidade do documento $d_i$ em relação ao grupo $g_j$. \\
+representa a tipicidade do documento $d_i$ em relação ao grupo $g_j$.
 
+\leavevmode\\
 \begin{equation}
   \lambda(d_i, g_j) \in [0,1], \forall i,j
   \label{eq:pcmrestri1}
@@ -440,48 +456,62 @@ representa a tipicidade do documento $d_i$ em relação ao grupo $g_j$. \\
   0 < \sum_{j=1}^n \lambda(d_i, g_j) \leq n, \forall j
   \label{eq:pcmrestri2}
 \end{equation}
+\leavevmode\\
 
 Com isso, se mantiver-se a função objetivo do FCM (Equação \ref{eq:fcm_obj}), seria possível obter
-uma solução trivial, bastando atribuir $0$ à todas as pertinências para minimizar $J(U_{c \times
-n},G,V,D)$ \cite{Krishnapuram1993}.  Portanto, buscando evitar essa solução trivial, e manter a
-característica de se atribuir pertinências elevadas aos elementos representativos e penalizar os
-elementos não representativos, a função objetivo do FCM é reformulada na Equação \ref{eq:pcmobj}, no
-qual os parâmetros $\gamma_j$ definem o limiar da distância, que resulta na tipicidade média de 0,5,
-de um elemento ao grupo.  \\
+uma solução trivial, bastando atribuir $0$ à todas as pertinências para minimizar se a função
+objetivo $J(U_{c \times n},G,V,D)$ \cite{Krishnapuram1993}.  Portanto, para evitar essa solução, e
+manter a característica de se atribuir pertinências elevadas aos elementos representativos e
+penalizar os elementos não representativos, os autores reformularam a função objetivo do FCM
+conforme está apresentado na Equação \ref{eq:pcmobj}. No qual o parâmetro $\gamma_j$ regula o limiar
+da distância dos documentos ao grupo $g_j$, de modo que se um documento tiver distância maior do que
+$\gamma_j$ a sua tipicidade em relação ao $grupo_j$ será menor do que 0,5, e se a distância for
+menor do que $\gamma_j$, o seu grau de compatibilidade no $grupo_j$ será maior do que 0,5.
 
+\leavevmode\\
 \begin{equation}
   K_m(P_{c \times n},G,V,D) = \sum_{j=1}^c \sum_{i=1}^n [\lambda(d_i, g_j)]^m dist(d_i, v_j) +
   \sum_{j=1}^c \gamma_j \sum_{i=1}^n [1 - \lambda(d_i, g_j)]^m
   \label{eq:pcmobj}
 \end{equation}
+\leavevmode\\
 
 De acordo com \citeonline{Krishnapuram1993}, o valor de $\gamma_j$ deve ser escolhido a depender da
 faixa de possibilidades (tipicidades) desejada para um grupo. Por exemplo, $\gamma_j$ pode ser igual
 para todos os grupos, quando se deseja que o formato dos grupos seja similar.  Contudo, na maioria
 dos casos, se espera que $\gamma_j$ reflita o formato e tamanho particular de cada grupo. Assim
 sendo, os autores indicam que a definição apresentada na Equação (\ref{eq:pcmgamma}) tem se mostrado
-adequada para maior parte dos dados, onde $L$ é usualmente 1.
+adequada para maior parte dos dados, onde $L$ é usualmente 1. 
 
+\leavevmode\\
 \begin{equation}
   \gamma_j = L \frac{\sum_{i=1}^n \lambda(d_i,g_j)^m dist(d_i,v_j)}{\sum_{i=1}^n \lambda(d_i,g_j)^m}
   \label{eq:pcmgamma}
 \end{equation}
+\leavevmode\\
 
-A partição de pertinências possibilísticas produzidas pelo PCM é então definida como sendo
+A partição de graus de compatibilidade possibilísticos do PCM está definida na Equação
+(\ref{eq:pcmpart}), a qual $\lambda(d_i, g_k)$ é sujeita as restrições apresentadas nas Equações
+(\ref{eq:pcmrestri1}) e (\ref{eq:pcmrestri2}). 
 
+\leavevmode\\
 \begin{equation} 
-  P_{c \times n} = \{\lambda(d_i, g_k) |\lambda(d_i, g_k) \in [0,1], 1 < i \leq n, 1 < k \leq c, eqs
-  (\ref{eq:pcmrestri1})(\ref{eq:pcmrestri2})\}
+  P_{c \times n} = \{\lambda(d_i, g_k) |\lambda(d_i, g_k) \in [0,1], 1 < i \leq n, 1 < k \leq c\}
   \label{eq:pcmpart} 
 \end{equation} 
+
 \begin{equation}
   \lambda(d_i,g_j) = \frac{1}{1+\left(\frac{dist(d_i,g_j)}{\gamma_j}\right)^{\frac{1}{m-1}}}
   \label{eq:lambda}
 \end{equation}
-, enquanto a atualização de protótipos ocorre de maneira similar a Equação (\ref{eq:prototipos}) do
-FCM, apenas alterando a pertinência $\mu(d_i,g_j)$ por $\lambda(d_i,g_j)$. A síntese do 
-algoritmo PCM está apresentada em forma de pseudo código no algoritmo (\ref{alg:pcm}). 
+\leavevmode\\
 
+Por sua vez, a atualização de protótipos do PCM, ocorre de maneira similar a Equação
+(\ref{eq:prototipos}) do FCM, apenas alterando a pertinência $\mu(d_i,g_j)$ por $\lambda(d_i,g_j)$.
+
+A síntese do algoritmo PCM está apresentada em forma de pseudo código no Algoritmo \ref{alg:pcm}. \\
+
+\leavevmode\\
 \begin{algorithm}[H] 
   \SetAlgoLined 
   \textbf{{\color{blue}pcm}(D,c,m,$\varepsilon$)}\\
@@ -500,9 +530,11 @@ algoritmo PCM está apresentada em forma de pseudo código no algoritmo (\ref{al
   \caption{Pseudo código da implementação iterativa do método PCM}
   \label{alg:pcm} 
 \end{algorithm}
-Por fim está ilustrado na Figura (\ref{fig:samples_pcm_fcm}) (a), o resultado do agrupamento
-obtido pelo método FCM, e em (b) o agrupamento gerado pelo algoritmo PCM em um conjunto de 
-coordenadas no $R^2$. Na figura os pontos foram pintados com a cor correspondente ao grupo em que o 
+\leavevmode\\
+
+Por fim, está ilustrado na Figura (\ref{fig:samples_pcm_fcm}) (a), o resultado do agrupamento
+obtido pelo método FCM; e, em (b), o agrupamento gerado pelo algoritmo PCM em um conjunto de 
+coordenadas no $R^2$. Na figura, os pontos foram pintados com a cor correspondente ao grupo em que o 
 mesmo obteve o maior valor de pertinência. Observa-se nessa comparação simplificada que o algoritmo 
 PCM tentou maximizar a pertinência dos pontos aos grupos maiores, ocasionando uma maior quantidade
 de pontos com pertinência elevada em dois grupos, ao contrário do FCM que distribuiu de maneira
@@ -516,32 +548,38 @@ uniforme os pontos em 4 grupos.
   .} 
   \label{fig:samples_pcm_fcm} 
 \end{figure}
+\footnotetext{Resultados obtidos baseados na implementação dos algoritmo FCM e PCM, produzida como
+parte deste trabalho disponível em: \url{https://github.com/niltonvasques/fcm}}
 
 \subsection{Algoritmo Possibilistic Fuzzy C Means (PFCM)} 
-De acordo com \cite{Pal2005} o algoritmo PCM pode levar os resultados do agrupamento 
-a conter grupos coincidentes, ou seja quando o protótipo $v_i$ está muito próximo de outro protótipo
+
+De acordo com \citeonline{Pal2005} o algoritmo PCM pode levar os resultados do agrupamento 
+a conter grupos coincidentes. Ou seja, quando o protótipo $v_i$ está muito próximo de outro protótipo
 $v_j$. Segundo os autores, isto ocorre quando a inicialização da partição inicial não possui 
 protótipos
 suficientemente separados. Esse problema não é causado por uma escolha ruim da penalidade presente
 na função objetivo do PCM, o que ocorre é uma falta de restrições para evitar que isso aconteça.
 
-\cite{Carvalho2016} cita que as pertinências do FCM e as tipicidades do PCM são ambas importantes
-para a correta interpretação das sub estruturas dos dados. Pois quando se tem dados que precisam
-ser rotulados de maneira $hard$, as pertinências se mostram como uma escolha adequada, de modo que é
-intuitivo atribuir o elemento ao grupo em que o mesmo possua a menor distância. Por outro lado,
-durante a atualização dos protótipos, as tipicidades desempenham um papel fundamental para 
-aliviar os efeitos indesejados dos dados ruidosos.
+\citeonline{Carvalho2016} cita que as pertinências do FCM e as tipicidades do PCM são ambas
+importantes para a correta interpretação das sub estruturas dos dados. Quando se tem dados que
+precisam ser agrupados de maneira $hard$, as pertinências se mostram como uma escolha adequada, de
+modo que é intuitivo atribuir o elemento ao grupo em que o mesmo possua a maior pertinência. Por
+outro lado, durante a atualização dos protótipos, as tipicidades desempenham um papel fundamental
+para aliviar os efeitos indesejados dos dados ruidosos.
 
-Com o propósito de aproveitar então os benefícios de ambas as abordagens, \cite{Pal2005} propôs o
+Com o propósito de aproveitar os benefícios de ambas as abordagens, \cite{Pal2005} propôs o
 algoritmo PFCM, que utiliza as pertinências $\mu(d_i,g_j)$ do FCM e as tipicidades
-$\lambda(d_i,g_j)$ do PCM. Deixando o usuário definir a proporção de cada uma das contribuições com
-parâmetros que ponderam o peso de ambos. Portanto é realizado uma mistura entre as funções objetivo
-(\ref{eq:fcm_obj}) e (\ref{eq:pcmobj}) resultando na minimização da função objetivo
-(\ref{eq:pfcmobj}), que está sujeita as condições de (\ref{eq:pfcmrestri}), onde 
-$a,b > 0$ e $m,n > 1$. Os parâmetros $a,b$ representam a importância
-relativa dos valores de pertinência e tipicidades e devem ser definidos pelo usuário de acordo com o
-problema. Os autores sugerem que $b$ seja maior que $a$, porém não muito maior, para não eliminar
-completamente os benefícios do FCM. 
+$\lambda(d_i,g_j)$ do PCM. Cabe ao usuário definir a proporção de cada uma das contribuições com
+parâmetros que ponderam o peso de ambos. Para tanto, é realizada uma mistura entre as funções
+objetivo apresentadas nas Equações (\ref{eq:fcm_obj}) e (\ref{eq:pcmobj}) resultando na minimização
+da função objetivo apresentada na Equação (\ref{eq:pfcmobj}), a qual está sujeita as condições
+impostas pela Equação (\ref{eq:pfcmrestri}), onde $a,b > 0$ e $m,n > 1$. Por sua vez, os parâmetros
+$a$ e $b$, representam a importância relativa dos valores de pertinência e tipicidades, os quais
+ficam a critério do usuário a sua definição de acordo com o contexto dos dados. De maneira geral, os
+autores sugerem que $b$ seja maior que $a$, porém não muito maior, para não eliminar completamente
+os benefícios do FCM. 
+
+\leavevmode\\
 \begin{equation}
   L_m(U_{c \times n},P_{c \times n},G,V,D) = \sum_{j=1}^c 
   \sum_{i=1}^n [a\mu(d_i,g_j)^n + b\lambda(d_i, g_j)^m] dist(d_i, v_j) +
@@ -595,6 +633,9 @@ na Figura (\ref{fig:samples_pcm_fcm}).
     PFCM\protect\footnotemark em um conjunto de coordenadas de pontos no $R^2$.} 
   \label{fig:samples_pfcm} 
 \end{figure}
+\footnotetext{Resultados obtidos baseados na implementação
+  dos algoritmo FCM e PCM, produzida como parte este trabalho disponível em: 
+\url{https://github.com/niltonvasques/fcm}}
 
 \subsection{Algoritmo Hierarchic Fuzzy C Means (HFCM)}
 
@@ -747,9 +788,6 @@ representado com o parâmetro $lmax$.
 \end{algorithm}
 
 \section{Extração de descritores} 
-\footnotetext{Resultados obtidos baseados na implementação
-  dos algoritmo FCM e PCM, produzida como parte este trabalho disponível em: 
-\url{https://github.com/niltonvasques/fcm}}
 
 A tarefa de rotular grupos é um dos problemas chaves do agrupamento de textos, pois ao final do
 processo de agrupamento, os grupos precisam apresentar alguma relevância para o
