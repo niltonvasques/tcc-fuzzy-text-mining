@@ -868,7 +868,7 @@ relação de pertinência de um documento a um grupo, devido a remoção da rest
 (Equação \ref{eq:fcmrestri1}) do
 FCM. As demais medidas de precisão, recuperação e $f1$, permanecem com a mesma
 definição apresentada anteriormente. Para uma melhor compreensão do método proposto, um pseudo
-código do método Mixed-PFDCL está apresentado no Algoritmo \ref{alg:pdcl}.
+código do método Mixed-PFDCL está apresentado no Algoritmo \ref{alg:mixedpfdcl}.
 
 \begin{equation}
   ganhos(t_i,g_j) = 
@@ -903,17 +903,15 @@ código do método Mixed-PFDCL está apresentado no Algoritmo \ref{alg:pdcl}.
 
 \begin{algorithm}[H] 
   \SetAlgoLined 
-  \textbf{{\color{blue}extrair-descritores}(U, P, D, G, m)}\\
+  \textbf{{\color{blue}pdcl}(P, D, G, m)}\\
   \Begin{
     descritores $\gets \emptyset$\;
     \ForEach{$g \in G$}{
       candidatos $\gets [t_1,t_2,...,t_k]$\;
       ranking $\gets \emptyset$\;
       \ForEach{$t \in$ candidatos}{
-        precisao $\gets$ Equação (\ref{eq:precision}) para o PDCL ou (\ref{eq:precision2}) para o
-        Mixed-PFDCL\;
-        recuperacao $\gets$ Equação (\ref{eq:recall}) para o PDCL ou (\ref{eq:recall2}) para o
-        Mixed-PFDCL\;
+        precisao $\gets$ Equação (\ref{eq:precision})\;
+        recuperacao $\gets$ Equação (\ref{eq:recall})\;
         pontuacao $\gets$ Equação (\ref{eq:fmeasure})\;
         ranking[t] $\gets$ pontuacao\;
       }
@@ -921,12 +919,38 @@ código do método Mixed-PFDCL está apresentado no Algoritmo \ref{alg:pdcl}.
     }
     $\textbf{retorne}$ (descritores)\; 
   }
-  \caption{Pseudo código da extração de descritores com os métodos PDCL e Mixed-PFDCL. Onde
-    considere U a
-  partição de pertinências fuzzy (Equação \ref{eq:part_fuzzy}), P a partição
+  \caption{Pseudo código do método de extração de descritores PDCL. Onde
+    considere P a partição
   possibilística (Equação \ref{eq:pcmpart}), D a coleção de documentos da coleção, G os grupos
 produzidos pelo método de agrupamento e $m$ a quantidade descritores desejada por grupo.}
 \label{alg:pdcl} 
+\end{algorithm}
+
+\begin{algorithm}[H] 
+  \SetAlgoLined 
+  \textbf{{\color{blue}mixed-pfdcl}(U, P, D, G, m, a, b)}\\
+  \Begin{
+    descritores $\gets \emptyset$\;
+    \ForEach{$g \in G$}{
+      candidatos $\gets [t_1,t_2,...,t_k]$\;
+      ranking $\gets \emptyset$\;
+      \ForEach{$t \in$ candidatos}{
+        precisao $\gets$ Equação (\ref{eq:precision2})\;
+        recuperacao $\gets$ Equação (\ref{eq:recall2}) \;
+        pontuacao $\gets$ Equação (\ref{eq:fmeasure})\;
+        ranking[t] $\gets$ pontuacao\;
+      }
+      descritores[g] $\gets$ $m$ termos do ranking com maior pontuacao\;
+    }
+    $\textbf{retorne}$ (descritores)\; 
+  }
+  \caption{Pseudo código do método de extração de descritores Mixed-PFDCL. Onde
+    considere U a
+  partição de pertinências fuzzy (Equação \ref{eq:part_fuzzy}), P a partição
+  possibilística (Equação \ref{eq:pcmpart}), D a coleção de documentos da coleção, G os grupos
+produzidos pelo método de agrupamento, $m$ a quantidade descritores desejada por grupo e $a,b$ os
+parâmetros do PFCM.}
+\label{alg:mixedpfdcl} 
 \end{algorithm}
 
 \subsection{Resultados}
