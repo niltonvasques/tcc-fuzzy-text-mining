@@ -685,27 +685,11 @@ gerados, onde $[1]$ representa o primeiro nível da hierarquia.
 A expansão ocorre sempre nas folhas da hierarquia, e a decisão de expandir um determinado grupo, se
 dá pela avaliação do agrupamento, que é realizado através do índice de desempenho $Q$ apresentados
 nas Equações (\ref{eq:qindex1}) e (\ref{eq:qindex2}), onde $Q$ representa a qualidade dos protótipos
-gerados pelo agrupamento. De maneira que quanto melhor for um grupo mais próximo de zero será o
-resultado da medida de desempenho $Q$, e quanto maior for o desempenho pior será o grupo. Portanto o
-grupo que obtiver o maior valor de $Q$, será escolhido para a expansão condicional através do CFCM.
-Considere então $j$ o grupo com maior valor de $Q$ do nível $l$ da hierarquia e
+gerados pelo agrupamento. Quanto melhor for um grupo, mais próximo de zero será o resultado da
+medida de desempenho $Q$. E quanto maior for o desempenho, pior será o grupo. Portanto, o grupo que
+obtiver o maior valor de $Q$, será escolhido para a expansão condicional através do CFCM. 
 
 \leavevmode\\
-\begin{equation}
-  D_j[l] = \left\{d_{k} | \mu(d_{k}, g_j[l]) \leq \frac{1/l}{c}\right\}
-  \label{eq:cfcmfilter}
-\end{equation}
-\leavevmode\\
-
-a coleção de documentos selecionados do grupo $j$ com
-pertinência maior que a pertinência média. O agrupamento com o algoritmo CFCM é então executado
-sobre a coleção $D_j[l]$ produzindo $c$ novos grupos para o nível $l+1$ da hierarquia. Todo o
-processo se repete então para o nível $l+1$ da hierarquia, e assim sucessivamente. Segundo os
-autores o ponto de parada da expansão hierárquica pode ser uma profundidade predefinida pelo usuário
-, com a estabilização das medidas de desempenho dos grupos ou supervisionada, de modo que o usuário
-observa a hierarquia que está sendo produzida e interrompe o processo quando
-desejar\cite{PedryczR2006}.
-
 \begin{equation}
   Q_j[1] = \sum_{d_i \in g_j} dist(d'_i,d_i)^2
   \label{eq:qindex1}
@@ -714,6 +698,27 @@ desejar\cite{PedryczR2006}.
   Q'_j[2] = \sum_{d_i \in g_j} dist(d'_i,d_i)^2
   \label{eq:qindex2}
 \end{equation}
+\leavevmode\\
+
+Considere então $j$ o grupo com maior valor de $Q$ do nível $l$ da hierarquia e $D_j[l]$ (Equação
+\ref{eq:cfcmfilter}) a coleção de documentos selecionados do grupo $j$ com pertinência maior que a
+pertinência média.  
+
+\leavevmode\\
+\begin{equation}
+  D_j[l] = \left\{d_{k} | \mu(d_{k}, g_j[l]) \leq \frac{1/l}{c}\right\}
+  \label{eq:cfcmfilter}
+\end{equation}
+\leavevmode\\
+
+O agrupamento com o algoritmo CFCM é então executado sobre a coleção $D_j[l]$ produzindo $c$ novos
+grupos para o nível $l+1$ da hierarquia. Todo o processo se repete então para o nível $l+1$ da
+hierarquia, e assim sucessivamente. Segundo os autores, o ponto de parada da expansão hierárquica
+pode ser uma profundidade predefinida pelo usuário , com a estabilização das medidas de desempenho
+dos grupos ou supervisionada, de modo que o usuário observa a hierarquia que está sendo produzida e
+interrompe o processo quando desejar \cite{PedryczR2006}.
+
+\leavevmode\\
 \begin{equation}
   d'_i = \sum_{h=1}^c \mu(d_i,g_h)[1]v_h[1] 
   \label{eq:dlinha1}
@@ -722,16 +727,15 @@ desejar\cite{PedryczR2006}.
   d'_i = \sum_{h=1}^c \mu'(d_i,g_h)[j,2]v_h[2] 
   \label{eq:dlinha2}
 \end{equation}
+\leavevmode\\
 
-Segundo \cite{Nogueira2013},
-os protótipos dos grupos representam uma versão condensada dos documentos agrupados, portanto
-$d_i$ também pode ser representado pela combinação linear das pertinências de $d_i$ com os
-protótipos, resultando em $d'_i$. Logo é esperado que $d'_i$ seja o mais próximo possível do 
-documento
-original $d_i$. Consequentemente, é utilizado essa noção para estimar a qualidade de um grupo
-através das equações \ref{eq:qindex1} para o nível inicial da hierarquia e \ref{eq:qindex2} nos
-demais níveis, onde $Q$ calcula a soma total das distâncias dos documentos $d_i$ de um grupo com
-$d'_j$.
+Segundo \citeonline{Nogueira2013}, os protótipos dos grupos representam uma versão condensada dos
+documentos agrupados, portanto $d_i$ também pode ser representado pela combinação linear das
+pertinências de $d_i$ com os protótipos, resultando em $d'_i$. Logo é esperado que $d'_i$ seja o
+mais próximo possível do documento original $d_i$. Consequentemente, é utilizado essa noção para
+estimar a qualidade de um grupo através das equações \ref{eq:qindex1} para o nível inicial da
+hierarquia e \ref{eq:qindex2} nos demais níveis, onde $Q$ calcula a soma total das distâncias dos
+documentos $d_i$ de um grupo com $d'_j$.
 
 A atualização dos protótipos no algoritmo CFCM ocorre da mesma maneira que o a Equação
 (\ref{eq:prototipos}) do FCM, contudo a função de pertinência é redefinida como sendo
