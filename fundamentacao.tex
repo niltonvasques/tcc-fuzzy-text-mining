@@ -677,26 +677,26 @@ do FCM. O primeiro nível da hierarquia é o resultado direto do algoritmo FCM, 
 demais níveis são agrupamentos obtidos com o CFCM, sobre a coleção de documentos filtrada no grupo a
 ser expandido. 
 
-Seja então $D = \{d_1,d_2,...,d_n\}$ um conjunto com $n$ documentos, então o HFCM executa sobre $D$
-o algoritmo FCM produzindo o primeiro nível da hierarquia o método. Como resultado é gerada uma 
-partição fuzzy $U_{c \times n}[1]$ e os protótipos 
-$V[1] = \{v_1[1],v_2[1],...,v_c[1]\}$, onde $[1]$ representa o nível da 
-hierarquia.
+O HFCM é executado sobre um conjunto de $n$ documentos, $D = \{d_1,d_2,...,d_n\}$, no qual
+inicialmente é aplicado o algoritmo FCM para produzir o primeiro nível da hierarquia. Como resultado
+é gerada a partição $U_{c \times n}[1]$ e os protótipos $V[1] = \{v_1[1],v_2[1],...,v_c[1]\}$ são
+gerados, onde $[1]$ representa o primeiro nível da hierarquia.
 
-A expansão ocorre sempre nas folhas da hierarquia, e a decisão de expandir um determinado grupo, 
-se dá pela avaliação do
-agrupamento, que é realizado através do índice de desempenho $Q$ (\ref{eq:qindex1})(\ref{eq:qindex2})
-, onde $Q$ representa a qualidade dos protótipos gerados pelo agrupamento. De maneira que quanto 
-melhor for um 
-grupo mais próximo de zero
-será o resultado da medida de desempenho $Q$, e quanto maior for o desempenho pior será o
-grupo. Portanto o grupo que obtiver o maior valor de $Q$, será escolhido para a
-expansão condicional através do CFCM. Considere então $j$ o grupo com maior valor de $Q$ do nível
-$l$ da hierarquia e
+A expansão ocorre sempre nas folhas da hierarquia, e a decisão de expandir um determinado grupo, se
+dá pela avaliação do agrupamento, que é realizado através do índice de desempenho $Q$ apresentados
+nas Equações (\ref{eq:qindex1}) e (\ref{eq:qindex2}), onde $Q$ representa a qualidade dos protótipos
+gerados pelo agrupamento. De maneira que quanto melhor for um grupo mais próximo de zero será o
+resultado da medida de desempenho $Q$, e quanto maior for o desempenho pior será o grupo. Portanto o
+grupo que obtiver o maior valor de $Q$, será escolhido para a expansão condicional através do CFCM.
+Considere então $j$ o grupo com maior valor de $Q$ do nível $l$ da hierarquia e
+
+\leavevmode\\
 \begin{equation}
   D_j[l] = \left\{d_{k} | \mu(d_{k}, g_j[l]) \leq \frac{1/l}{c}\right\}
   \label{eq:cfcmfilter}
 \end{equation}
+\leavevmode\\
+
 a coleção de documentos selecionados do grupo $j$ com
 pertinência maior que a pertinência média. O agrupamento com o algoritmo CFCM é então executado
 sobre a coleção $D_j[l]$ produzindo $c$ novos grupos para o nível $l+1$ da hierarquia. Todo o
