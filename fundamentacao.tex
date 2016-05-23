@@ -342,7 +342,7 @@ média, ou seja $\mu(d_i, g_1) = \mu(d_i, g_2) = ... = \mu(d_i, g_c) = \frac{1}{
 segundo documento $d_2$, que seja mais distante do que $d_1$, porém assim como $d_2$, também
 equidistante aos grupos, temos que $\mu(d_2, g_j) = \mu(d_1, g_j) = \frac{1}{c}$, para $1 < j \leq
 c$. Nesse contexto, a pertinência de $d_2$ e $d_1$, não expressa a distância relativa desses
-documentos aos grupos. Esse problema está ilustrado na Figura (\ref{fig:fcm_problem}).
+documentos aos grupos. Esse problema está ilustrado na Figura \ref{fig:fcm_problem}.
 
 \begin{figure}[!htp] \centering
   \includegraphics[width=0.4\columnwidth]{assets/fcm_problem.pdf} 
@@ -392,15 +392,17 @@ uma das duas formas de inicialização descritas anteriormente.
 \begin{algorithm}[H] 
   \SetAlgoLined 
   \textbf{{\color{blue}fcm}(D, c, m, $\varepsilon$)}\\
-  G $\gets$ $[g_1,g_2,...,g_c]$\; 
-  $U_0$ $\gets$ \textbf{{\color{blue}inicializa-particao-fuzzy}(D,G)}\; 
-  $t \gets 0$\; 
-  \Do{ $\parallel U_{t-1} - U_t\parallel > \varepsilon$ }{ 
-    $V_t$ $\gets$ calcula usando (\ref{eq:prototipos})\; 
-    $t \gets t + 1$\; 
-    $U_t$ $\gets$ calcula usando (\ref{eq:part_fuzzy})\; 
+  \Begin{
+    G $\gets$ $[g_1,g_2,...,g_c]$\; 
+    $U_0$ $\gets$ \textbf{{\color{blue}inicializa-particao-fuzzy}(D,G)}\; 
+    $t \gets 0$\; 
+    \Do{ $\parallel U_{t-1} - U_t\parallel > \varepsilon$ }{ 
+      $V_t$ $\gets$ calcula usando (\ref{eq:prototipos})\; 
+      $t \gets t + 1$\; 
+      $U_t$ $\gets$ calcula usando (\ref{eq:part_fuzzy})\; 
+    }
+    $\textbf{retorne} (U_t, V_t)$\; 
   }
-  $\textbf{retorne} (U_t, V_t)$\; 
   \caption{Pseudo código da implementação iterativa do método FCM}
 \label{alg:fcm} 
 \end{algorithm} 
@@ -532,7 +534,7 @@ A síntese do algoritmo PCM está apresentada em forma de pseudo código no Algo
 \end{algorithm}
 \leavevmode\\
 
-Por fim, está ilustrado na Figura (\ref{fig:samples_pcm_fcm}) (a), o resultado do agrupamento
+Por fim, está ilustrado na Figura \ref{fig:samples_pcm_fcm} (a), o resultado do agrupamento
 obtido pelo método FCM; e, em (b), o agrupamento gerado pelo algoritmo PCM em um conjunto de 
 coordenadas no $R^2$. Na figura, os pontos foram pintados com a cor correspondente ao grupo em que o 
 mesmo obteve o maior valor de pertinência. Observa-se nessa comparação simplificada que o algoritmo 
@@ -567,7 +569,7 @@ modo que é intuitivo atribuir o elemento ao grupo em que o mesmo possua a maior
 outro lado, durante a atualização dos protótipos, as tipicidades desempenham um papel fundamental
 para aliviar os efeitos indesejados dos dados ruidosos.
 
-Com o propósito de aproveitar os benefícios de ambas as abordagens, \cite{Pal2005} propôs o
+Com o propósito de aproveitar os benefícios de ambas as abordagens, \citeonline{Pal2005} propôs o
 algoritmo PFCM, que utiliza as pertinências $\mu(d_i,g_j)$ do FCM e as tipicidades
 $\lambda(d_i,g_j)$ do PCM. Cabe ao usuário definir a proporção de cada uma das contribuições com
 parâmetros que ponderam o peso de ambos. Para tanto, é realizada uma mistura entre as funções
@@ -590,41 +592,23 @@ os benefícios do FCM.
   \sum_{j=i}^c \mu(d_i,g_j) = 1, \forall i, 0 < \mu(d_i,g_j),\lambda(d_i,g_j) \leq 1
   \label{eq:pfcmrestri}
 \end{equation}
+\leavevmode\\
+
 A mistura e as ponderações adicionados no algoritmo PFCM também são agregadas a função de
-atualização dos protótipos (\ref{eq:pfcmproto}), a qual passa a se beneficiar das características de
-ambos os algoritmos.
-De maneira a reduzir os efeitos dos dados ruidosos, minimizar o problema dos protótipos coincidentes
-e evitar a singularidade do FCM. O pseudo código do PFCM é apresentado no Algoritmo \ref{alg:pfcm}, 
-onde a
-função $\textbf{\color{blue}inicializa-prototipos}(D,G)$ gera os protótipos iniciais da partição
-$V_0$. Como resultado demonstrativo desse algoritmo está ilustrado na Figura
-(\ref{fig:samples_pfcm}), onde é possível observar que os grupos produzidos são em certa perspectiva
-um intermédio entre o agrupamento produzido pelo FCM e PCM no mesmo conjunto de dados, apresentados
-na Figura (\ref{fig:samples_pcm_fcm}).
+atualização dos protótipos apresentada na Equação (\ref{eq:pfcmproto}), a qual passa a se beneficiar
+das características de ambos os algoritmos.  
+
+\leavevmode\\
 \begin{equation}
   V = \left\{ v_j | v_j = \frac{\sum_{i=1}^n[a\mu(d_i,g_j)^n + b\lambda(d_i, g_j)^m] d_i}
     {\sum_{i=1}^n[a\mu(d_i,g_j)^n + b\lambda(d_i, g_j)^m]}, 
   1 < j \leq c \right\} 
   \label{eq:pfcmproto}
 \end{equation}
+\leavevmode\\
 
-\begin{algorithm}[H] 
-  \SetAlgoLined \KwData{D, c, m, $\varepsilon$} 
-  \KwResult{V, P} 
-  G $\gets$ $[g_1,g_2,...,g_c]$\; 
-  $V_0$ $\gets$ \textbf{{\color{blue}inicializa-prototipos}(D,G)}\; 
-  $\gamma_j \gets$ calcula utilizando (\ref{eq:pcmgamma})\;
-  $t \gets 0$\; 
-  \Do{ $\parallel V_{t-1} - V_t\parallel > \varepsilon$ }{ 
-    $U_t$ $\gets$ calcula com (\ref{eq:part_fuzzy}) usando $V_{t-1}$\; 
-    $P_t$ $\gets$ calcula com (\ref{eq:pcmpart}) usando $V_{t-1}$\; 
-    $V_t$ $\gets$ calcula com (\ref{eq:pfcmproto})\; 
-    $t \gets t + 1$\; 
-  }
-  $\textbf{retorne} (U_t,P_t,V_t)$\; 
-  \caption{Pseudo código da implementação iterativa do método PFCM}
-  \label{alg:pfcm} 
-\end{algorithm}
+Desta maneira, é minimizado os efeitos dos dados ruidosos do FCM, assim como também o problema
+dos protótipos coincidentes do PCM e a singularidade do FCM é evitada. 
 
 \begin{figure}[!htp] 
   \centering 
@@ -637,16 +621,46 @@ na Figura (\ref{fig:samples_pcm_fcm}).
   dos algoritmo FCM e PCM, produzida como parte este trabalho disponível em: 
 \url{https://github.com/niltonvasques/fcm}}
 
+O pseudo código do PFCM é apresentado no Algoritmo \ref{alg:pfcm}, onde a função \\
+$\textbf{\color{blue}inicializa-prototipos}(D,G)$ é responsável por gerar os protótipos iniciais
+da partição $V_0$.
+
+Como resultado demonstrativo desse algoritmo, é possível observar na Figura \ref{fig:samples_pfcm},
+que os grupos produzidos são em certa perspectiva um intermédio entre o agrupamento produzido pelo
+FCM e PCM no mesmo conjunto de dados, apresentados na Figura \ref{fig:samples_pcm_fcm}.
+
+\leavevmode\\
+\begin{algorithm}[H] 
+  \SetAlgoLined
+  \textbf{{\color{blue}pfcm}(D, c, m, $\varepsilon$)}\\
+  \Begin{
+    G $\gets$ $[g_1,g_2,...,g_c]$\; 
+    $V_0$ $\gets$ \textbf{{\color{blue}inicializa-prototipos}(D,G)}\; 
+    $\gamma_j \gets$ calcula utilizando a Equação (\ref{eq:pcmgamma})\;
+    $t \gets 0$\; 
+    \Do{ $\parallel V_{t-1} - V_t\parallel > \varepsilon$ }{ 
+      $U_t$ $\gets$ calcula com Equação (\ref{eq:part_fuzzy}) usando $V_{t-1}$\; 
+      $P_t$ $\gets$ calcula com Equação (\ref{eq:pcmpart}) usando $V_{t-1}$\; 
+      $V_t$ $\gets$ calcula com Equação (\ref{eq:pfcmproto})\; 
+      $t \gets t + 1$\; 
+    }
+    $\textbf{retorne} (U_t,P_t,V_t)$\; 
+  }
+  \caption{Pseudo código da implementação iterativa do método PFCM}
+  \label{alg:pfcm} 
+\end{algorithm}
+\leavevmode\\
+
 \subsection{Algoritmo Hierarchic Fuzzy C Means (HFCM)}
 
 Documentos de texto tratam de vários temas, como política, esporte, tecnologia e etc.
 E os métodos de agrupamento $soft$, como FCM e PCM, quando aplicados a coleções textuais, buscam
-encontrar semelhanças entre os documentos e agrupar por tópicos. Porém acontece, que um
-tópico pode se dividir em sub temas, como por exemplo esporte, que pode se dividir em futebol,
-vôlei, tênis e etc. Deste modo os temas presentes em uma coleção textual podem ser organizados 
-em uma hierarquia de tópicos conforme a Figura \ref{fig:hierarquia}. Portanto construir hierarquias
-utilizando métodos de agrupamento fuzzy é o propósito principal do algoritmo HFCM proposto em
-\cite{PedryczR2006}.
+encontrar semelhanças entre os documentos e agrupar por temas relacionados. Adicionalmente um
+tema pode se dividir em sub temas, como por exemplo esporte, que pode se dividir em futebol,
+vôlei, tênis e etc. Deste modo, os temas presentes em uma coleção textual podem ser organizados em
+uma hierarquia de tópicos conforme a Figura \ref{fig:hierarquia}. Neste contexto, construir
+hierarquias utilizando métodos de agrupamento fuzzy é o propósito principal do algoritmo HFCM
+proposto em \citeonline{PedryczR2006}.
 
 \begin{figure}[!ht] 
   \centering 
@@ -656,11 +670,12 @@ utilizando métodos de agrupamento fuzzy é o propósito principal do algoritmo 
   \label{fig:hierarquia}
 \end{figure}
 
-O HFCM consegue realizar essa tarefa, expandindo sucessivamente as folhas presentes na hierarquia em
-subgrupos mais detalhados\cite{PedryczR2006}. Onde a expansão é realizada através de novos
-agrupamentos com o algoritmo CFCM, que é uma versão condicional do FCM. No entanto o primeiro nível
-da hierarquia é o resultado direto do algoritmo FCM, enquanto os demais níveis são agrupamentos
-obtidos com o CFCM, sobre a coleção de documentos filtrada grupo a ser expandido. 
+O HFCM consegue realizar essa tarefa expandindo sucessivamente as folhas presentes na hierarquia em
+subgrupos mais detalhados \cite{PedryczR2006}. Essa expansão é realizada através de novos
+agrupamentos com o algoritmo {\it Conditional Fuzzy C-Means\/} (CFCM), que é uma versão condicional
+do FCM. O primeiro nível da hierarquia é o resultado direto do algoritmo FCM, enquanto os
+demais níveis são agrupamentos obtidos com o CFCM, sobre a coleção de documentos filtrada no grupo a
+ser expandido. 
 
 Seja então $D = \{d_1,d_2,...,d_n\}$ um conjunto com $n$ documentos, então o HFCM executa sobre $D$
 o algoritmo FCM produzindo o primeiro nível da hierarquia o método. Como resultado é gerada uma 
@@ -747,42 +762,46 @@ hierarquia de tópicos. Onde o critério de parada adotado foi a profundidade m�
 representado com o parâmetro $lmax$.
 
 \begin{algorithm}[!htp] 
-  \SetAlgoLined \KwData{$D_j[l]$, U[l-1], l, c, m, $\varepsilon$} 
-  \KwResult{V[l], U[l]} 
-  G[l] $\gets$ $[g_1,g_2,...,g_c]$\; 
-  $V_0[l]$ $\gets$ \textbf{{\color{blue}inicializa-prototipos}(D,G)}\; 
-  $t \gets 0$\; 
-  \Do{ $\parallel V_{t-1}[l] - V_t[l]\parallel > \varepsilon$ }{ 
-    $U_t[l]$ $\gets$ calcula com (\ref{eq:pertcfcm}) usando $V_{t-1}$\; 
-    $V_t[l]$ $\gets$ calcula com (\ref{eq:prototipos})\; 
-    $t \gets t + 1$\; 
+  \SetAlgoLined 
+  \textbf{{\color{blue}cfcm}($D_j[l]$, U[l-1], l, c, m, $\varepsilon$)}\\
+  \Begin{
+    G[l] $\gets$ $[g_1,g_2,...,g_c]$\; 
+    $V_0[l]$ $\gets$ \textbf{{\color{blue}inicializa-prototipos}(D,G)}\; 
+    $t \gets 0$\; 
+    \Do{ $\parallel V_{t-1}[l] - V_t[l]\parallel > \varepsilon$ }{ 
+      $U_t[l]$ $\gets$ calcula com Equação (\ref{eq:pertcfcm}) usando $V_{t-1}$\; 
+      $V_t[l]$ $\gets$ calcula com Equação (\ref{eq:prototipos})\; 
+      $t \gets t + 1$\; 
+    }
+    $\textbf{retorne} (U_t[l],V_t[l])$\; 
   }
-  $\textbf{retorne} (U_t[l],V_t[l])$\; 
   \caption{Pseudo código do método CFCM}
   \label{alg:cfcm} 
 \end{algorithm}
 
 \begin{algorithm}[!htp]
-  \SetAlgoLined \KwData{D, c, m, $\varepsilon$, lmax} 
-  \KwResult{Hierarquia} 
-  $l \gets 0$\; 
-  Hierarquia $\gets \empty$
-  G[l],V[l],U[l] $\gets \textbf{{\color{blue}fcm}}$(D,c,m,$\varepsilon$); Algoritmo \ref{alg:fcm}\; 
-  Hierarquia $\gets Hierarquia + \{U[l],V[l]\}$\;
-  Q[l] $\gets$ calcula desempenho dos grupos com a Equação (\ref{eq:qindex1})\;
-  $g_{max}$ $\gets$ escolhe o grupo $g_j$ com maior valor de Q\;
-  $D_{max}$ $\gets$ seleciona documentos de $g_{max}$ com Equação (\ref{eq:cfcmfilter})\;
-  $l \gets l + 1$\; 
-  \Do{ $l \leq lmax$ }{ 
-    Q[l] $\gets$ calcula desempenho dos grupos com a Equação (\ref{eq:qindex2})\;
+  \SetAlgoLined 
+  \textbf{{\color{blue}hfcm}(D, c, m, $\varepsilon$, lmax)}\\
+  \Begin{
+    $l \gets 0$\; 
+    Hierarquia $\gets \empty$
+    G[l],V[l],U[l] $\gets \textbf{{\color{blue}fcm}}$(D,c,m,$\varepsilon$); Algoritmo \ref{alg:fcm}\; 
+    Hierarquia $\gets Hierarquia + \{U[l],V[l]\}$\;
+    Q[l] $\gets$ calcula desempenho dos grupos com a Equação (\ref{eq:qindex1})\;
     $g_{max}$ $\gets$ escolhe o grupo $g_j$ com maior valor de Q\;
     $D_{max}$ $\gets$ seleciona documentos de $g_{max}$ com Equação (\ref{eq:cfcmfilter})\;
-    G[l],V[l],U[l] $\gets \textbf{{\color{blue}cfcm}}$$(D_{max},U[l-1],l,c,m,\varepsilon)$; 
-    Algoritmo \ref{alg:cfcm}\; 
-    Hierarquia $\gets Hierarquia + \{U[l],V[l]\}$\;
     $l \gets l + 1$\; 
+    \Do{ $l \leq lmax$ }{ 
+      Q[l] $\gets$ calcula desempenho dos grupos com a Equação (\ref{eq:qindex2})\;
+      $g_{max}$ $\gets$ escolhe o grupo $g_j$ com maior valor de Q\;
+      $D_{max}$ $\gets$ seleciona documentos de $g_{max}$ com Equação (\ref{eq:cfcmfilter})\;
+      G[l],V[l],U[l] $\gets \textbf{{\color{blue}cfcm}}$$(D_{max},U[l-1],l,c,m,\varepsilon)$; 
+      Algoritmo \ref{alg:cfcm}\; 
+      Hierarquia $\gets Hierarquia + \{U[l],V[l]\}$\;
+      $l \gets l + 1$\; 
+    }
+    $\textbf{retorne} (Hierarquia)$\; 
   }
-  $\textbf{retorne} (Hierarquia)$\; 
   \caption{Pseudo código do método HFCM}
   \label{alg:hfcm} 
 \end{algorithm}
