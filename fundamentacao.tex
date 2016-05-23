@@ -310,7 +310,6 @@ para a maior parte dos dados.
 grupos $g_1,g_2,g_3$ organizados sem sobreposição, para $m = 1$.} 
   \label{fig:cluster_crisp}
   \end{minipage}\hfill 
-
   \begin{minipage}{0.45\textwidth} \centering
     \includegraphics[width=0.6\columnwidth]{assets/clusters_fuzzy.pdf} 
     \caption{Ilustração denotando os
@@ -770,7 +769,6 @@ grupo $g_j[l-1]$ que foi expandido no nível anterior($l-1$).
 O pseudo código do método CFCM é apresentado no Algoritmo \ref{alg:cfcm}, de modo a deixar uma
 representação mais objetiva de como estruturar esses elementos. 
 
-\leavevmode\\
 \begin{algorithm}[!htp] 
   \SetAlgoLined 
   \textbf{{\color{blue}cfcm}($D_j[l]$, U[l-1], l, c, m, $\varepsilon$)}\\
@@ -788,13 +786,11 @@ representação mais objetiva de como estruturar esses elementos.
   \caption{Pseudo código do método CFCM}
   \label{alg:cfcm} 
 \end{algorithm}
-\leavevmode\\
 
 No Algoritmo \ref{alg:hfcm} está apresentado o pseudo código do método HFCM, exemplificando como o
 mesmo reúne o FCM e o CFCM para produzir uma hierarquia de tópicos. Onde o critério de parada
 adotado foi a profundidade máxima da hierarquia, representado com o parâmetro $lmax$.
 
-\leavevmode\\
 \begin{algorithm}[!htp]
   \SetAlgoLined 
   \textbf{{\color{blue}hfcm}(D, c, m, $\varepsilon$, lmax)}\\
@@ -821,17 +817,21 @@ adotado foi a profundidade máxima da hierarquia, representado com o parâmetro 
   \label{alg:hfcm} 
 \end{algorithm}
 
+Na seção a seguir, tem-se uma breve descrição da extração dos descritores dos grupos, possibilitando
+assim a interpretação dos seus significados.
+
 \section{Extração de descritores} 
 
-A tarefa de rotular grupos é um dos problemas chaves do agrupamento de textos, pois ao final do
-processo de agrupamento, os grupos precisam apresentar alguma relevância para o
-usuário\cite{Zhang2008}. Assim como pretende-se que os descritores escolhidos também sejam
-significativos para os documentos presentes no grupo a ser rotulado. 
+A tarefa de atribuir significados à grupos é um dos problemas chave do agrupamento de textos, pois
+ao final do processo de agrupamento, os grupos precisam apresentar alguma relevância para o
+usuário\cite{Zhang2008}. Portanto, é imprescindível que sejam extraídos descritores significativos
+para representar os documentos que compõem os grupos.
 
-Essa etapa pode ser realizada manualmente, com o usuário guiando o processo, ou de forma
-automatizada, que por sua vez é mais interessante para a proposta de organização flexível de
-documentos. Uma vez que para grandes bases de dados textuais, a tarefa de rotular todos os grupos
-encontrados durante o agrupamento, pode ser bastante exaustiva para o usuário.
+A etapa de extração de descritores etapa pode ser realizada manualmente, com o usuário guiando o
+processo, ou de forma automatizada, que por sua vez é mais interessante para a proposta de
+organização flexível de documentos, visto que, para grandes bases de dados textuais, a tarefa de
+extrair descritores para todos os grupos encontrados durante o agrupamento, pode ser bastante
+exaustiva para o usuário.
 
 Dentre os métodos automatizados, é encontrado na literatura dois tipos de abordagens, uma baseada em
 conhecimento interno e a outra baseada em conhecimento externo\cite{Nogueira2013}.  A primeira se
