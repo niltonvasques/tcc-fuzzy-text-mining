@@ -756,7 +756,9 @@ Ao observar-se o numerador da Equação (\ref{eq:pertcfcm}), percebe-se que a pe
 de um documento $d_i$ em um grupo $g_h[l]$, será no máximo a pertinência de $d_i$ ao grupo
 imediatamente superior na hierarquia. Essa, noção está explicitamente definida na Equação
 (\ref{eq:cfcmrestri1}), a qual é uma adaptação da restrição probabilística do FCM (Equação
-\ref{eq:fcmrestri2}).
+\ref{eq:fcmrestri2}). A Equação (\ref{eq:cfcmrestri1}), estabelece, que a soma das pertinências de
+um documento $d_i$ no nível $l$ da hierarquia terá que ser igual a pertinência desse documento no
+grupo $g_j[l-1]$ que foi expandido no nível anterior($l-1$).
 
 \leavevmode\\
 \begin{equation}
@@ -765,16 +767,10 @@ imediatamente superior na hierarquia. Essa, noção está explicitamente definid
 \end{equation}
 \leavevmode\\
 
-De modo que, a soma das pertinências de um documento $d_i$ no nível $l$ da hierarquia terá que ser
-igual a pertinência desse documento no grupo $g_j[l-1]$ que foi expandido no nível anterior($l-1$).
-
 O pseudo código do método CFCM é apresentado no Algoritmo \ref{alg:cfcm}, de modo a deixar uma
-representação mais objetiva de como estruturar esses elementos. Enquanto no 
-Algoritmo \ref{alg:hfcm} consta o
-pseudo código do método HFCM, exemplificando como o mesmo reúne o FCM e o CFCM para produzir uma
-hierarquia de tópicos. Onde o critério de parada adotado foi a profundidade máxima da hierarquia,
-representado com o parâmetro $lmax$.
+representação mais objetiva de como estruturar esses elementos. 
 
+\leavevmode\\
 \begin{algorithm}[!htp] 
   \SetAlgoLined 
   \textbf{{\color{blue}cfcm}($D_j[l]$, U[l-1], l, c, m, $\varepsilon$)}\\
@@ -783,8 +779,8 @@ representado com o parâmetro $lmax$.
     $V_0[l]$ $\gets$ \textbf{{\color{blue}inicializa-prototipos}(D,G)}\; 
     $t \gets 0$\; 
     \Do{ $\parallel V_{t-1}[l] - V_t[l]\parallel > \varepsilon$ }{ 
-      $U_t[l]$ $\gets$ calcula com Equação (\ref{eq:pertcfcm}) usando $V_{t-1}$\; 
-      $V_t[l]$ $\gets$ calcula com Equação (\ref{eq:prototipos})\; 
+      $U_t[l]$ $\gets$ (Equação \ref{eq:pertcfcm}) usando $V_{t-1}$\; 
+      $V_t[l]$ $\gets$ (Equação \ref{eq:prototipos})\; 
       $t \gets t + 1$\; 
     }
     $\textbf{retorne} (U_t[l],V_t[l])$\; 
@@ -792,25 +788,30 @@ representado com o parâmetro $lmax$.
   \caption{Pseudo código do método CFCM}
   \label{alg:cfcm} 
 \end{algorithm}
+\leavevmode\\
 
+No Algoritmo \ref{alg:hfcm} está apresentado o pseudo código do método HFCM, exemplificando como o
+mesmo reúne o FCM e o CFCM para produzir uma hierarquia de tópicos. Onde o critério de parada
+adotado foi a profundidade máxima da hierarquia, representado com o parâmetro $lmax$.
+
+\leavevmode\\
 \begin{algorithm}[!htp]
   \SetAlgoLined 
   \textbf{{\color{blue}hfcm}(D, c, m, $\varepsilon$, lmax)}\\
   \Begin{
     $l \gets 0$\; 
-    Hierarquia $\gets \empty$
-    G[l],V[l],U[l] $\gets \textbf{{\color{blue}fcm}}$(D,c,m,$\varepsilon$); Algoritmo \ref{alg:fcm}\; 
+    Hierarquia $\gets \empty$\;
+    G[l],V[l],U[l] $\gets \textbf{{\color{blue}fcm}}$(D,c,m,$\varepsilon$)\; 
     Hierarquia $\gets Hierarquia + \{U[l],V[l]\}$\;
-    Q[l] $\gets$ calcula desempenho dos grupos com a Equação (\ref{eq:qindex1})\;
+    Q[l] $\gets$ calcula desempenho dos grupos (Equação \ref{eq:qindex1})\;
     $g_{max}$ $\gets$ escolhe o grupo $g_j$ com maior valor de Q\;
-    $D_{max}$ $\gets$ seleciona documentos de $g_{max}$ com Equação (\ref{eq:cfcmfilter})\;
+    $D_{max}$ $\gets$ seleciona documentos de $g_{max}$ (Equação \ref{eq:cfcmfilter})\;
     $l \gets l + 1$\; 
     \Do{ $l \leq lmax$ }{ 
-      Q[l] $\gets$ calcula desempenho dos grupos com a Equação (\ref{eq:qindex2})\;
+      Q[l] $\gets$ calcula desempenho dos grupos (Equação \ref{eq:qindex2})\;
       $g_{max}$ $\gets$ escolhe o grupo $g_j$ com maior valor de Q\;
-      $D_{max}$ $\gets$ seleciona documentos de $g_{max}$ com Equação (\ref{eq:cfcmfilter})\;
-      G[l],V[l],U[l] $\gets \textbf{{\color{blue}cfcm}}$$(D_{max},U[l-1],l,c,m,\varepsilon)$; 
-      Algoritmo \ref{alg:cfcm}\; 
+      $D_{max}$ $\gets$ seleciona documentos de $g_{max}$ (Equação \ref{eq:cfcmfilter})\;
+      G[l],V[l],U[l] $\gets \textbf{{\color{blue}cfcm}}$$(D_{max},U[l-1],l,c,m,\varepsilon)$\;
       Hierarquia $\gets Hierarquia + \{U[l],V[l]\}$\;
       $l \gets l + 1$\; 
     }
