@@ -218,28 +218,27 @@ Figura \ref{fig:flexibleorganization}.
   \label{fig:flexibleorganization} 
 \end{figure}
 
-Para se calcular a quantidade ótima de grupos, para cada base de dados foi utilizado o
-método da silhueta fuzzy (equação \ref{eq:fs}), método bastante utilizado com o propósito de avaliar
+Para se calcular a quantidade ótima de grupos, para cada coleção foi utilizado o
+método da silhueta fuzzy (Equação \ref{eq:fs}), método bastante utilizado com o propósito de avaliar
 o agrupamento de documentos. Assim sendo, o número ideal de grupos é determinado após a execução da
 silhueta fuzzy variando o número de grupos entre 2 e o número de classes de cada coleção.
-Ressalta-se que em coleções que os dados não possuem rótulos, ou seja o número de classes é
+Ressalta-se que em coleções que os documentos não possuem rótulos, ou seja o número de classes é
 desconhecido, ainda é possível usar o método da silhueta fuzzy para definir o número ótimo de
 grupos. No entanto, a quantidade máxima de grupos deve ser definida de modo empírico ou com base em
 alguma informação prévia a respeito dos dados. 
 
 Para permitir uma análise comparativa dos resultados, o experimento foi realizado também com os
-algoritmos FCM e PCM.
-Como resultado do agrupamento das bases, está disposto na tabela \ref{table:pfcmclusters}, a
-comparação do número de grupos obtidos no experimento. Nessa comparação nota-se que os algoritmos
-FCM e PFCM foram os que alcançaram uma quantidade de partições mais próxima da quantidade de classes
-existentes em cada coleção. Enquanto o PCM manteve uma tendência a produzir uma quantidade menor de
-grupos em relação aos demais.
+algoritmos FCM e PCM.  Como resultado do agrupamento das coleções, está disposto na Tabela
+\ref{table:pfcmclusters} a comparação do número de grupos obtidos por cada algoritmo de agrupamento.
+Nessa comparação nota-se que os algoritmos FCM e PFCM foram os que alcançaram uma quantidade de
+partições mais próxima da quantidade de classes existentes em cada coleção. Enquanto o PCM manteve
+uma tendência a produzir uma quantidade menor de grupos em relação aos demais.
 
 \begin{table}[!htp]
   \centering
   \begin{tabular}{ |l|c|c|c|c|}
     \hline
-    {\bf Coleção} & {\bf \# classes} & {\bf FCM} & {\bf PCM} & {\bf PFCM} \\
+    {\bf coleção} & {\bf \# classes} & {\bf FCM} & {\bf PCM} & {\bf PFCM} \\
     \hline
     Opinosis & 3 & 3 & 3 & 3 \\
     \hline
@@ -260,19 +259,19 @@ grupos em relação aos demais.
 \end{table}
 
 Após agrupar os dados utilizando os métodos FCM, PCM e PFCM, foi aplicado o método de extração 
-de descritores SoftO-FDCL. Para nos permitir avaliar os descritores produzidos, foi verificado o
+de descritores SoftO-FDCL. Para avaliar os descritores produzidos, foi verificado o
 potencial preditivo dos mesmos, possibilitando assim quantificar a qualidade dos
 termos selecionados para nomear os grupos. 
 
 A avaliação do potencial preditivo dos descritores foi realizada, realizando se uma defuzificação
-dos grupos produzidos pelo pelo agrupamento, ou seja, se durante o agrupamento foi gerado o conjunto
+dos grupos produzidos pelo agrupamento, ou seja, se durante o agrupamento foi gerado o conjunto
 de grupos $G = \{g_1,g_2,...,g_c\}$, temos então o conjunto de grupos $crisp$ $C' =
 \{crisp_1,crisp_2,...,crisp_c\}$, onde cada $crisp_i$ corresponde ao grupo $g_i$. A função de
 defuzificação adotada para se converter as
 as partições fuzzy e possibilística, as quais permitem que um documento pertença a um ou mais
 grupos, considera o grupo $crisp$ de um documento $d_i$, como sendo o grupo $crisp_j$ do respectivo
-$grupo_j$, no qual $d_i$ possua a maior
-pertinência/tipicidade. Esta definição está formalizada na equação \ref{eq:class}.
+$grupo_j$, no qual $d_i$ possui a maior
+pertinência/tipicidade. Esta definição está formalizada na Equação (\ref{eq:class}).
 
 \begin{equation}
   crisp(d_i) = \begin{cases}
@@ -285,29 +284,29 @@ pertinência/tipicidade. Esta definição está formalizada na equação \ref{eq
 \end{equation}
 
 Após se atribuir os documentos aos grupos $crisp$, é produzida uma outra matriz,
-considerando apenas os termos descritores dos grupos. Logo essa matriz documentos x descritores
+considerando apenas os termos descritores dos grupos. Logo, essa matriz documentos x descritores
 $D'_{n \times m}$, 
-é uma versão condensada da matriz documentos x termos $D_{n \times k}$, onde seja $n$ a 
-quantidade de documentos, $k$ a quantidade de termos e $m$ a quantidade descritores. O conteúdo
-dessa matriz condensada, assim como na matriz original, também é a frequência dos descritores nos 
+é uma versão condensada da matriz documentos x termos $D_{n \times k}$, onde $n$ corresponde a 
+quantidade de documentos, $k$ à quantidade de termos e $m$ à quantidade de descritores. O conteúdo
+dessa matriz condensada, assim como na matriz original, é a frequência dos descritores nos 
 documentos. 
 
-Visando então avaliar a qualidade dos descritores e permitir uma comparação direta dos impactos
+Visando avaliar a qualidade dos descritores e permitir uma comparação direta dos impactos
 dessa abordagem com os resultados publicados em \citeonline{Nogueira2013} e
 \citeonline{Nogueira2015}. Submeteu-se a matriz $D'$ 
 aos algoritmos de classificação 
 SVM, Naive Bayes, Multinomial Naive Bayes, KNN e C4.5, que são bem comuns na avaliação de 
 métodos de aprendizado de máquina, e foram os mesmos utilizados em \citeonline{Nogueira2015}.
 
-Nesse contexto, foi utilizado a implementação dos algoritmos de classificação citados anteriormente
-, presentes na ferramenta WEKA\cite{weka}. Os algoritmos Naive Bayes (NB), Multinomial Naive Bayes
+Nesse contexto, foi utilizada a implementação dos algoritmos de classificação anteriormente citados
+presentes na ferramenta WEKA \cite{weka}. Os algoritmos Naive Bayes (NB), Multinomial Naive Bayes
 (NB-Multinomial) e o J48 (que é a implementação do C4.5 existente no WEKA), foram executados com os
-parâmetros padrão da ferramenta. Por outro lado o SVM foi ajustado para usar o {\it Normalized
+parâmetros padrão da ferramenta. Por outro lado, o SVM foi ajustado para usar o {\it Normalized
 Polynomial Kernel\/} com o parâmetro de complexidade sendo $c = 2.0$. O algoritmo IBk (implementação
 do KNN presente no WEKA) foi executado 7 vezes, variando o parâmetro de vizinhos de 1 até 7, sendo
 escolhido o melhor resultado. Ressalta-se que foi adotada a técnica {\it 10-fold cross validation\/}
-no experimento para melhor capturar a capacidade de generalização do modelo. O resultado dessa
-classificação está apresentado nas figuras \ref{fig:pfcmopinosis},  \ref{fig:pfcm20news},
+no experimento para melhor capturar a capacidade de generalização do modelo. Os resultados dessa
+avaliação estão apresentados nas Figuras \ref{fig:pfcmopinosis},  \ref{fig:pfcm20news},
 \ref{fig:pfcmhitech}, \ref{fig:pfcmnsf}, \ref{fig:pfcmwap} e \ref{fig:pfcmreuters}. 
 
 \begin{figure}[!htp] \centering 
@@ -393,13 +392,13 @@ demais.
 \end{table}
 
 Esses resultados obtidos reforçam a flexibilidade e adaptação do método SoftO-FDCL
-\cite{Nogueira2013}, a novos algoritmos de agrupamento. De modo que o método se demonstra promissor
-na tarefa extrair termos relevantes dos grupos produzidos na etapa de agrupamento, e isso é
-demonstrado através do potencial preditivo evidenciado na Tabela \ref{table:pfcmsummary}, com as
-taxas máximas de classificação de mais de 80\% para quase todas as bases, com exceção da base
-Hitech, a qual obteve a taxa máxima de 58.67\%.  Por outro lado, ressalta-se a importância também de
-avaliar de maneira subjetiva os descritores selecionados dos grupos, pois isso nos permite
-compreender melhor se os termos obtidos fazem sentido. 
+\cite{Nogueira2013}, a novos algoritmos de agrupamento, demonstrando-se promissor na tarefa de
+extrair termos relevantes dos grupos produzidos na etapa de agrupamento. Tal expectativa é
+demonstrada por meio do potencial preditivo evidenciado na Tabela \ref{table:pfcmsummary}, com as
+taxas máximas de classificação de mais de 80\% para quase todas as coleções, com exceção da base
+Hitech, a qual obteve a taxa máxima de 58.67\%.  Adicionalmente, ressalta-se a importância também de
+avaliar de maneira subjetiva os descritores selecionados dos grupos, permitindo  compreender se os
+termos obtidos fazem sentido para a organização de documentos em grupos. 
 
 \begin{table}[!htp]
   \centering
