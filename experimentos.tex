@@ -955,31 +955,31 @@ parâmetros do PFCM.}
 
 \subsection{Resultados}
 
-Para mensurar os impactos das duas estratégias híbridas para extração de descritores apresentadas
+Para mensurar os impactos das duas propostas (PDCL e Mixed-PFDCL) para extração de descritores apresentadas
 aqui nesta seção, foi realizado outro experimento, com os algoritmos PCM e PFCM, com as bases
 apresentadas na seção \ref{section:datasets}. Durante o experimento fora utilizado os métodos de
 extração de descritores SoftO-FDCL, PDCL, Mixed-PFDCL. 
 
-Desde que as propostas aqui apresentadas, pretendem otimizar os resultados apresentados
-anteriormente, foi adotada uma metodologia similar ao experimento anterior. Ou seja, o agrupamento
+Uma vez que as propostas aqui apresentadas têm por objetivo otimizar os resultados apresentados
+anteriormente, foi adotada uma metodologia similar aos experimentos anteriores. Ou seja, o agrupamento
 final obtido para cada base, é resultado dos grupos que obtiveram o maior valor na medida de
 silhueta fuzzy. Onde a quantidade de grupos para cada base, variou entre 2 e o número de classes
 de cada base (Tabela \ref{table:datasets}). Ressalta-se ainda que para minimizar os efeitos da
 aleatoriedade da partição inicial nesse experimento, o agrupamento foi executado 5 vezes para cada
 quantidade de grupos na silhueta fuzzy. 
 
-Os parâmetros $m$ e $n$ que regulam a variação entre fuzzy e $crisp$ das partições resultantes
-conforme ilustrados nas Figuras \ref{fig:cluster_crisp} e \ref{fig:cluster_fuzzy}, foram definidos
-para 1.2 de maneira empírica. De maneira geral, observou-se que as bases de maior dimensionalidade,
+Os parâmetros $m$ e $n$ que regulam a variação entre fuzzy e $crisp$ das partições resultantes,
+conforme ilustrados nas Figuras \ref{fig:cluster_crisp} e \ref{fig:cluster_fuzzy} foram definidos
+para 1,2 de maneira empírica. De maneira geral, observou-se que as bases de maior dimensionalidade,
 estavam produzindo grupos coincidentes mais facilmente, quando os valores de $m$ e $n$ eram maior do
-que $1.5$. Por sua vez os parâmetros $a$ e $b$ do algoritmo PFCM, o qual define a influência das
+que $1.5$. Por sua vez, os parâmetros $a$ e $b$ do algoritmo PFCM, o qual define a influência das
 pertinências fuzzy do FCM e os graus de compatibilidade possibilísticos do PCM respectivamente,
 foram definidos como sendo $a = 1,0$ e $b = 1,2$. Essa escolha deriva das conclusões apresentadas
-em \citeonline{Pal2005}, o qual nos informa que de acordo com a função objetivo (Equação
-\ref{eq:pfcmobj}) do PFCM, se utilizarmos valores de $a$ maiores que $b$, os protótipos dos grupos
+em \citeonline{Pal2005}, o qual sugere que de acordo com a função objetivo (Equação
+\ref{eq:pfcmobj}) do PFCM, se forem utilizados valores de $a$ maiores que $b$, os protótipos dos grupos
 são mais influenciados pelas pertinências. Contudo, como em coleções textuais 
-naturalmente esparsas, é mais comum haver documentos ruidosos, o qual não se encaixe totalmente em
-nenhum grupo. Sendo assim, foi adotado o valor de $b$ maior do que $a$, para reduzir os efeitos
+naturalmente esparsas é mais comum haver documentos ruidosos, o qual não se encaixe totalmente em
+nenhum grupo, foi adotado o valor de $b$ maior do que $a$, para reduzir os efeitos
 indesejados dos ruídos.
 
 As coleções foram então agrupadas com os métodos PCM e PFCM, utilizando a metodologia descrita. A
