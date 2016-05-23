@@ -816,56 +816,59 @@ acordo com a Equação (\ref{eq:tfidf}).
   \label{eq:recall2}
 \end{equation}
 
-Nas próximas duas sessões é caracterizado as duas abordagens que derivam dessa interpretação aqui
-detalhada. A primeira, é uma proposta de extensão do método SoftO-FDCL voltado para a partição
-possibilística do PCM, com a interpretação apresentada nessa sessão. Enquanto a segunda abordagem,
-apresenta uma estratégia de extração de descritores para o algoritmo PFCM, interpretando em conjunto
-as duas partições presentes no algoritmo.
+Nas próximas duas seções as duas abordagens que derivam dessa interpretação são descritas. A
+primeira, é uma proposta de extensão do método SoftO-FDCL voltado para a partição possibilística do
+PCM, com a interpretação apresentada nessa sessão. Enquanto a segunda abordagem, apresenta uma
+estratégia de extração de descritores para o algoritmo PFCM, interpretando em conjunto as duas
+partições presentes no algoritmo.
 
 \subsection{O método PDCL}
 
-A agora que a proposta de interpretação da partição possibilística está concluída, vamos reunir
-todos esses passos em um método para extração de descritores para a partição possibilística, a qual
-será denominado aqui de PDCL ({\it Possibilistic Descriptor Comes Last\/}). Para realizar a extração
-de descritores o método PDCL, considera inicialmente todos os termos como candidatos, em seguida
-para cada grupo $g_j$ é calculado a precisão (Equação \ref{eq:precision2}) e recuperação (Equação
-\ref{eq:recall2}) de todos os termos $t_k$. A partir então destes valores é calculada a
-pontuação de cada termo $t_k$ no grupo $g_j$, com a medida $f1(t_k,g_j)$ (Equação
-\ref{eq:fmeasure}). Obtido então essa pontuação por grupo dos termos candidatos, deve-se selecionar
-os $m$ descritores de maior pontuação em cada grupo. No qual a quantidade $m$ de descritores é
-definida pelo usuário. A síntese do método PDCL está apresentado no Algoritmo \ref{alg:pdcl}.
+A agora que a proposta de interpretação da partição possibilística está concluída, 
+o método para extração de descritores para a partição possibilística, o qual
+será denominado aqui de PDCL ({\it Possibilistic Descriptor Comes Last\/}) é proposto. Para realizar a extração
+de descritores, o método PDCL considera inicialmente todos os termos como candidatos. Em seguida,
+para cada grupo $g_j$ a precisão (Equação \ref{eq:precision2}) e recuperação (Equação
+\ref{eq:recall2}) de todos os termos $t_k$ são calculados. A partir destes valores, a
+pontuação de cada termo $t_k$ no grupo $g_j$ é calculada, utilizando-se a medida $f1(t_k,g_j)$ (Equação
+\ref{eq:fmeasure}). A partir dessa pontuação por grupo dos termos candidatos, deve-se selecionar
+os $m$ descritores de maior pontuação em cada grupo. A quantidade $m$ de descritores é
+definida pelo usuário. Um detalhamento do método PDCL está apresentado no Algoritmo \ref{alg:pdcl}.
 
 \subsection{O método Mixed-PFDCL}
 
-Na discussão do experimento da sessão \ref{sec:exppfcm}, onde é apresentado os resultados do
+Na discussão do experimento da seção \ref{sec:exppfcm}, onde foram apresentados os resultados do
 refinamento com o método PFCM ({\it Possibilistic Fuzzy C Means\/}) na proposta de organização
-flexível de documentos, foi salientado a importância de se montar uma estratégia que conseguisse
+flexível de documentos, foi salientado, a importância de uma estratégia que conseguisse
 capturar a filosofia híbrida do algoritmo PFCM, levando em consideração suas duas partições. 
 
 Uma das características presentes no método PFCM, é a adição dos parâmetros $a$ e $b$ que atuam como
-reguladores da influência do FCM e do PCM no agrupamento obtido. Portanto há de destacar, a
-importância de se considerar tais parâmetros no processo de extração de descritores, objetivando
-assim mais coerência com o algoritmo.
+reguladores da influência do FCM e do PCM no agrupamento obtido. Portanto, é importante destacar a
+relevância de tais parâmetros no processo de extração de descritores, objetivando
+assim mais coerência com o algoritmo e exatidão nos resultados..
 
-Nesse contexto, é apresentado a Equação (\ref{eq:pfcmmix}), a qual combina os valores de pertinência
-e de tipicidade convertidos, em um único grau de compatibilidade. Essa combinação nada mais é do que
-a média ponderada pelos parâmetros $a$ e $b$ dos valores de pertinência e tipicidade convertido
-respectivamente.
+Nesse contexto, é também proposta a combinação dos valores de pertinência e de tipicidade
+convertendo-os em um único grau de compatibilidade conforme Equação (\ref{eq:pfcmmix}). Essa
+combinação refere-se à média ponderada dos valores de pertinência e tipicidade pelos parâmetros $a$
+e $b$ do método PFCM.
 
 \begin{equation}
   \mu'(d_i,g_j) = \frac{a \mu(d_i,g_j) + b \lambda'(d_i,g_j)}{a+b}
   \label{eq:pfcmmix}
 \end{equation}
 
-Como resultado dessa combinação precisamos apenas adaptar as medidas de ganhos, perdas, ruídos e
-rejeitos, para considerarem a relevância de um dado documento $d$ em relação ao limiar $\delta$, a
-partir da pertinência híbrida $\mu'(d_i,g_j)$. Essa adaptação está então disposta nas equações
-(\ref{eq:ganhos2}), (\ref{eq:perdas2}), (\ref{eq:ruidos2}) e (\ref{eq:rejeitos2}). Ressalta-se que
-foi mantido no somatório de ganhos, perdas, ruídos e rejeitos, o valor de tipicidade, devido a
-capacidade do mesmo em expressar melhor a realidade do agrupamento. As demais medidas de precisão,
-recuperação e $f1$, permanecem com a mesma definição apresentada anteriormente. Para uma melhor
-compreensão de como se encaixa todas essas partes, um pseudo código do método Mixed-PFDCL está
-apresentado no Algoritmo \ref{alg:pdcl}.
+Como resultado dessa combinação é preciso adaptar as medidas de ganhos, perdas, ruídos e rejeitos,
+de forma a considerar a relevância de um dado documento $d$ em relação ao limiar $\delta$, a partir
+da pertinência híbrida $\mu'(d_i,g_j)$. 
+
+Essa adaptação está então disposta nas Equações (\ref{eq:ganhos2}), (\ref{eq:perdas2}),
+(\ref{eq:ruidos2}) e (\ref{eq:rejeitos2}). Ressalta-se que foi mantido no somatório de ganhos,
+perdas, ruídos e rejeitos, o valor de tipicidade, devido a capacidade do mesmo em expressar a real
+relação de pertinência de um documento a um grupo, devido a remoção da restrição probabilística
+(Equação \ref{eq:fcmrestri1}) do
+FCM. As demais medidas de precisão, recuperação e $f1$, permanecem com a mesma
+definição apresentada anteriormente. Para uma melhor compreensão do método proposto, um pseudo
+código do método Mixed-PFDCL está apresentado no Algoritmo \ref{alg:pdcl}.
 
 \begin{equation}
   ganhos(t_i,g_j) = 
