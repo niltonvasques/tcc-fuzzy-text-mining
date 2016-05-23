@@ -681,15 +681,15 @@ das partições possibilística.
 
 \subsection{Interpretando os graus de compatibilidade das partições possibilísticas}
 
-A interpretação direta dos graus de compatibilidade possibilísticos gera um série de problemas na
-extração de descritores, conforme ficou demonstrado na sessão anterior. Com isso, podemos formular a
-seguinte pergunta: Como interpretar corretamente os graus de compatibilidade possibilísticos, para
-corretamente identificar os documentos relevantes de um dado grupo? Conforme sabemos, o valor de
+A interpretação direta dos graus de compatibilidade possibilísticos gera uma série de problemas na
+extração de descritores, conforme ficou demonstrado na seção anterior. Com isso, podemos formular a
+seguinte pergunta: Como interpretar corretamente os graus de compatibilidade possibilísticos para
+corretamente identificar os documentos relevantes de um dado grupo? Sabe-se que o valor de
 tipicidade pode variar livremente entre o intervalo $[0,1]$, sem a restrição probabilística
 (Equação \ref{eq:fcmrestri1}) do FCM. Essa é uma
 característica positiva introduzida em \citeonline{Krishnapuram1993}, a qual atribui valores de
 pertinência mais justos aos grupos fuzzy, em consonância com a teoria de conjuntos fuzzy proposta em
-\citeonline{Zadeh1965} e brevemente contextualizada no capítulo 2. Para melhor compreendermos esse
+\citeonline{Zadeh1965} e brevemente contextualizada no Capítulo 2. Para melhor compreendermos esse
 conceito de valores mais justos, podemos analisar o que os autores defenderam na publicação
 original:
 
@@ -700,27 +700,27 @@ more immune to noise. Noise points will have low degrees
 of compatibility in all clusters, which makes their effect on
 the clustering negligible \cite{Krishnapuram1993}.
 \end{citacao}
-Portanto, a vantagem em deixar os graus de compatibilidade independentes, é a de se expressar a
+Portanto, a vantagem em deixar os graus de compatibilidade independentes é a de se expressar a
 relevância/importância real de um elemento em relação a um grupo, o que consequentemente torna o
-método mais robusto e menos suscetível a ruídos. Para então identificar a importância de um
-documento em um grupo, poderíamos por exemplo escolher em qual grupo um documento $d_i$ deveria ser
+método mais robusto e menos suscetível a ruídos. Para identificar a importância de um
+documento em um grupo, pode-se por exemplo escolher em qual grupo um documento $d_i$ deveria ser
 considerado relevante, considerando o grupo em que esse documento $d_i$ possuísse o maior grau de
 compatibilidade. No entanto, essa estratégia resultaria em uma extração de descritores $crisp$,
 perdendo assim toda a flexibilidade proporcionada nas partições $soft$ \cite{Nogueira2013}.
 
-Sendo assim, precisamos de uma estratégia que consiga interpretar bem os graus de compatibilidade,
-de modo a se conservar a flexibilidade inerente a partição fuzzy, sem sacrificar a robustez contra
+Sendo assim, é necessária uma estratégia que consiga interpretar bem os graus de compatibilidade,
+de modo a se conservar a flexibilidade inerente à partição fuzzy, sem sacrificar a robustez contra
 ruídos da tipicidade. 
 
-Nesse contexto, propõe-se realizar essa interpretação em duas etapas. A primeira será constituída de
+Nesse contexto, propõe-se realizar tal interpretação em duas etapas. A primeira será constituída de
 uma conversão da tipicidade oriunda do PCM para a pertinência do FCM, de maneira a se satisfazer a
 restrição probabilística do FCM (Equação \ref{eq:fcmrestri1}). No entanto, ao apenas realizar a
-conversão iremos perder a robustez contra ruídos do PCM. Por isso, vamos adicionar uma penalidade ao
-cálculo da pontuação dos termos.
+conversão perde-se a robustez contra ruídos do PCM. Por isso, é possível contornar essa situação
+adicionando uma penalidade ao cálculo da pontuação dos termos.
 
 A conversão proposta dos valores de tipicidade para pertinência, dar-se a como apresentado na
 Equação (\ref{eq:tip2pert}), a qual satisfaz a condição necessária (Equação
-\ref{eq:tiplinharestri1}) para que o limiar $\delta$ seja aplicado, sem sofrer do problema de se
+\ref{eq:tiplinharestri1}) para que o limiar $\delta$ seja aplicado, sem sofrer o problema de
 considerar um documento como relevante em todos os grupos.
 
 \begin{equation}
@@ -733,12 +733,28 @@ considerar um documento como relevante em todos os grupos.
   \label{eq:tiplinharestri1}
 \end{equation}
 
-Entretanto, só realizar a conversão não atende aos dois requisitos exigidos. Para isso
+Entretanto, apenas realizar a conversão não atende aos dois requisitos exigidos. Para isso
 vamos adaptar a matriz de contingência apresentada na Tabela \ref{table:softmatrix}, adicionando uma
 ponderação as medidas, de modo a adicionar uma gratificação nos termos de documentos com elevada
-tipicidade e penalizar os termos de documentos com baixo valor de tipicidade, uma abordagem similar
-é encontrada no método SoftO-wFDCL({\it Soft Organization - weighted Fuzzy Description Comes Last})
-em \citeonline{Nogueira2013}.
+tipicidade e penalizar os termos de documentos com baixo valor de tipicidade, uma estratégia de
+ponderação similar é encontrada no método SoftO-wFDCL ({\it Soft Organization - weighted Fuzzy
+Description Comes Last}) em \citeonline{Nogueira2013}, porém esse método, assim como o SoftO-FDCL
+não se propõem a interpretar as tipicidades da partição possibilística de maneira diferenciada.
+
+A adaptação sugerida da matriz de contingência está apresentada na Tabela \ref{table:softmatrix2},
+na qual os valores de ganhos, perdas, ruídos e rejeitos foram mapeados para as Equações
+(\ref{eq:ganhos}), (\ref{eq:perdas}),  (\ref{eq:ruidos}) e  (\ref{eq:rejeitos}) respectivamente.
+Portanto ao invés de realizar uma contagem discreta dos ganhos, perdas, ruídos e rejeitos, é
+realizado uma soma contínua das contribuições de cada documento ao grupo, considerando o valor de
+tipicidade. Desse modo, conseguimos reduzir a contribuição de documentos com baixa tipicidade no
+grupo e aumentar a contribuição de documentos com alta tipicidade no grupo. Resultando assim, em uma
+pontuação mais justa e mais coerente dos termos extraídos dos grupos. Os ajustes necessários nas
+medidas de precisão e recuperação estão detalhados nas equações (\ref{eq:precision2}) e
+(\ref{eq:recall2}), enquanto o cálculo da medida $f1(t_k,g_j)$ permanece como definido na Equação
+(\ref{eq:fmeasure}). Destaca-se que nestas equações o limiar $\delta$ passa a ser verificado com os
+valores de tipicidades convertidos, ilustrados pela função $\lambda'(d_i,g_j)$ (Equação
+\ref{eq:tip2pert}) e $\varphi(t_i,d)$ refere-se a frequência do termo $t_i$ no documento $d$, de
+acordo com a Equação (\ref{eq:tfidf}).
 
 \begin{table}[!htp]
   \centering
@@ -749,28 +765,16 @@ em \citeonline{Nogueira2013}.
     Documentos do grupo $g_j$ com grau de compatibilidade menor do que $\delta$ \\
     \hline
     Documentos que possuem o descritor candidato $t_k$ & \parbox[c]{5cm}{\centering
-  $ganhos(t_i,g_j)$} & \parbox[c]{5cm}{\centering \it ruídos\/$(t_i,g_j)$} \\
+  $ganhos(t_k,g_j)$} & \parbox[c]{5cm}{\centering \it ruídos\/$(t_k,g_j)$} \\
     \hline
     Documentos que não possuem o descritor candidato $t_k$ & \parbox[c]{5cm}{\centering
-  $perdas(t_i,g_j)$} & \parbox[c]{5cm}{\centering $rejeitos(t_i,g_j)$} \\
+  $perdas(t_k,g_j)$} & \parbox[c]{5cm}{\centering $rejeitos(t_k,g_j)$} \\
     \hline
   \end{tabular}
   \caption{Matriz de contingência do termo $t_k$ para o grupo $g_j$ adaptada para a partição
   possibilística}
   \label{table:softmatrix2}
 \end{table}
-
-A adaptação sugerida da matriz contingência está apresentada na Tabela \ref{table:softmatrix2}, na
-qual os valores de ganhos, perdas, ruídos e rejeitos foram mapeados para as equações
-(\ref{eq:ganhos}), (\ref{eq:perdas}),  (\ref{eq:ruidos}) e  (\ref{eq:rejeitos}) respectivamente.
-Portanto ao invés de realizar uma contagem discreta dos ganhos, perdas, ruídos e rejeitos, é
-realizado uma soma contínua das contribuições de cada documento ao grupo, considerando o valor de
-tipicidade. Desse modo, conseguimos reduzir a contribuição de documentos com baixa tipicidade no
-grupo e aumentar a contribuição de documentos com alta tipicidade no grupo. Resultando assim, em uma
-pontuação mais justa e mais coerente dos termos extraídos dos grupos. Os ajustes necessários nas
-medidas de precisão e recuperação estão detalhados nas equações (\ref{eq:precision2}) e
-(\ref{eq:recall2}), enquanto o cálculo da medida $f1(t_k,g_j)$ permanece como definido na
-Equação (\ref{eq:fmeasure}).
 
 \begin{equation}
   ganhos(t_i,g_j) = 
