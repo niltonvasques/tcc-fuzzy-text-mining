@@ -730,33 +730,43 @@ interrompe o processo quando desejar \cite{PedryczR2006}.
 \leavevmode\\
 
 Segundo \citeonline{Nogueira2013}, os protótipos dos grupos representam uma versão condensada dos
-documentos agrupados, portanto $d_i$ também pode ser representado pela combinação linear das
-pertinências de $d_i$ com os protótipos, resultando em $d'_i$. Logo é esperado que $d'_i$ seja o
-mais próximo possível do documento original $d_i$. Consequentemente, é utilizado essa noção para
-estimar a qualidade de um grupo através das equações \ref{eq:qindex1} para o nível inicial da
-hierarquia e \ref{eq:qindex2} nos demais níveis, onde $Q$ calcula a soma total das distâncias dos
+documentos agrupados. Portanto, $d_i$ também pode ser representado pela combinação linear das
+pertinências de $d_i$ com os protótipos, resultando em $d'_i$. Logo, é esperado que $d'_i$ seja o
+mais próximo possível do documento original $d_i$. Consequentemente, é utilizado, essa noção para
+estimar a qualidade de um grupo através das Equações (\ref{eq:qindex1}) para o nível inicial da
+hierarquia e (\ref{eq:qindex2}) nos demais níveis, onde $Q$ calcula a soma total das distâncias dos
 documentos $d_i$ de um grupo com $d'_j$.
 
-A atualização dos protótipos no algoritmo CFCM ocorre da mesma maneira que o a Equação
-(\ref{eq:prototipos}) do FCM, contudo a função de pertinência é redefinida como sendo
+A atualização dos protótipos no algoritmo CFCM ocorre da mesma forma definida no algoritmo FCM.
+Contudo, a função de pertinência é redefinida para a Equação (\ref{eq:pertcfcm}), a qual é imposta a
+restrição apresentada na Equação (\ref{eq:cfcmrestri1}). Considere, que o valor de $l$ corresponde
+ao nível da hierarquia e $g_j$ seja o grupo expandido no nível $l-1$.
+
+\leavevmode\\
 \begin{equation}
   \mu(d_i,g_h[l]) = \frac{\mu(d_i,g_j[l-1])}
   {\sum_{k=1}^c \left(\frac{dist(d_i,v_h[l])}{dist(d_i,v_k[l])}\right)^{\frac{1}{m-1}}}, 
   1 < h \leq c,
-  d_i \in D_j[l-1], eq (\ref{eq:cfcmrestri1})
+  d_i \in D_j[l-1]
   \label{eq:pertcfcm}
 \end{equation}
-, cujo o valor de $l$ corresponde ao nível da hierarquia e $g_j$ seja o grupo 
-expandido no nível $l-1$.
-Portanto percebe-se que a pertinência
-de um documento $d_i$ em um grupo $g_h[l]$, será no máximo a pertinência do documento ao grupo que
-foi expandido. Com isso temos a restrição \ref{eq:fcmrestri2} do FCM adaptada no CFCM para
+\leavevmode\\
+
+Ao observar-se o numerador da Equação (\ref{eq:pertcfcm}), percebe-se que a pertinência
+de um documento $d_i$ em um grupo $g_h[l]$, será no máximo a pertinência de $d_i$ ao grupo
+imediatamente superior na hierarquia. Essa, noção está explicitamente definida na Equação
+(\ref{eq:cfcmrestri1}), a qual é uma adaptação da restrição probabilística do FCM (Equação
+\ref{eq:fcmrestri2}).
+
+\leavevmode\\
 \begin{equation}
   \sum_{h=1}^c \mu(d_i,g_h[l]) = \mu(d_i,g_j[l-1]), d_i \in D_j[l]
   \label{eq:cfcmrestri1}
 \end{equation}
-. Logo a soma das pertinências de um documento $d_i$ no nível $l$ da hierarquia terá que ser igual 
-a pertinência desse documento no grupo $g_j[l-1]$ que foi expandido no nível anterior($l-1$).
+\leavevmode\\
+
+De modo que, a soma das pertinências de um documento $d_i$ no nível $l$ da hierarquia terá que ser
+igual a pertinência desse documento no grupo $g_j[l-1]$ que foi expandido no nível anterior($l-1$).
 
 O pseudo código do método CFCM é apresentado no Algoritmo \ref{alg:cfcm}, de modo a deixar uma
 representação mais objetiva de como estruturar esses elementos. Enquanto no 
