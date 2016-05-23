@@ -11,20 +11,19 @@
 O avanço da computação pessoal, em particular a computação móvel, tem proporcionado um gigantesco
 aumento da quantidade de dados armazenados pela humanidade ao longo dos anos. A critério de exemplo,
 a popular plataforma de rede social Facebook\footnotemark, produz diariamente mais de 25 $terabytes$
-de informação \cite{Havens2012}. \citeonline{Huang2015} informa que a tendência com o avanço das
-tecnologias, é que tudo seja integrado a internet, de tal modo, que os pesquisadores já chegam a
-dizer que os dados são o novo recurso natural do planeta. Ainda segundo \citeonline{Huang2015},
+de informação \cite{Havens2012}. De acordo com \citeonline{Huang2015}, a tendência com o avanço das
+tecnologias, é que tudo seja integrado a internet, de tal modo que os pesquisadores já chegam a
+dizer que os dados são o novo recurso natural do planeta. Ainda segundo os autores,
 entre as maiores fontes de geração de dados estão os sistemas governamentais, plataformas de mídias
 sociais, assim como arquivos armazenados pelas corporações, como por exemplo, formulários médicos,
 opiniões de consumidores, relatórios e etc.. Entretanto, \citeonline{Muggleton2006} ressalta que 
-todos esses dados excedem os limites humanos para o uso e compreensão.
+todos esses dados excedem os limites humanos para o uso e compreensão destes.
 \footnotetext{\url{https://facebook.com/}}
 
 Diante desse cenário, instituições públicas e privadas estão sobrecarregadas com a tarefa de
 processar essa imensa quantidade de informação em bases de dados com documentos não estruturados e
 em diversos formatos \cite{Kobayashi2008}. Estes documentos usualmente são de diversos tipos,
-como por exemplo, textos, áudios, imagens, vídeos, documentos HTML, assim como também podem estar 
-em diferentes idiomas. 
+como por exemplo, textos, áudios, imagens, vídeos, documentos HTML, podendo estar, inclusive, em diferentes idiomas. 
 
 Nesse contexto, diversas pesquisas tem objetivado a proposição ou refinamento de técnicas para
 automatização do processo de análise e aquisição de conhecimento útil desse montante de informações
@@ -32,7 +31,7 @@ armazenadas. Porém, devido a multi disciplinaridade inerente desse campo de est
 sido estudado pelas comunidades de mineração de dados, aprendizado de máquina e recuperação de
 informação.
 
-A mineração de dados é um campo de estudo que vem obtendo rápidos avanços nos últimos anos, e
+A Mineração de Dados (MD) é um campo de estudo que vem obtendo rápidos avanços nos últimos anos, e
 segundo \citeonline{Aggarwal2012}, isto se deve aos avanços das tecnologias de $hardware$ e
 $software$, o qual possibilitou o massivo armazenamento de diferentes tipos de dados, inclusive os
 dados textuais. Portanto, como resultado desse aumento na quantidade de documentos disponíveis na
@@ -44,98 +43,95 @@ Por outro lado, enquanto os dados estruturados já possuem mecanismos bem eficie
 e recuperação, os dados textuais são geralmente gerenciados através de mecanismos de buscas para
 suprir essa falta de estruturação. Esses mecanismos de busca possibilitam aos usuários uma
 conveniente maneira para recuperar informações em coleções textuais através de consultas com palavras
-chaves. Desse modo, compete ao campos de estudo da Recuperação de Informação (RI) a tarefa de
+chaves. Desse modo, compete ao campo de estudo da Recuperação de Informação (RI) a tarefa de
 explorar, investigar e propor métodos para otimização da eficiência e efetividade de
 sistemas de buscas \cite{Baeza2011}. 
 
 Mas segundo \citeonline{Baeza2011}, as pesquisas de recuperação de informação tem focado
-tradicionalmente, mais em facilitar o acesso a informação, do que realizar a descoberta de novos
+tradicionalmente, em formas de facilitar o acesso à informação, do que realizar a descoberta de novos
 padrões em documentos textuais, o qual se destaca como sendo o objetivo principal da mineração de
-textos. A mineração de textos por sua vez, é uma especialização da mineração de dados, que busca
+textos. A mineração de textos, por sua vez, é uma especialização da mineração de dados, que busca
 incorporar atividades de estruturação dos documentos em formatos apropriados, facilitando a
 aplicação dos tradicionais métodos de extração de padrões da MD, minimizando as perdas durante a
 conversão do formato original não estruturado \cite{Nogueira2013}.
 
 Contudo, uma série de características diferenciam os documentos textuais de outras formas de dados.
 O que por sua vez, afeta o desempenho das clássicas técnicas da MD.  Dentre essas características
-peculiares, destaca-se como as mais importantes o fato de que os dados são esparsos, e possuem alta
-dimensionalidade. Por exemplo, um corpus pode conter 100.000 termos, enquanto um texto que pertença
-a esse corpus contenha somente algumas centenas de palavras \cite{Aggarwal2012}.  Essa discrepância,
+peculiares, destacam-se como mais importantes os fatos de que os dados são esparsos e possuem alta
+dimensionalidade. Por exemplo, uma coleção de documentos (corpus) pode conter 100.000 palavras (termos), enquanto um único documento desse corpus pode conter somente algumas centenas de palavras \cite{Aggarwal2012}.  Essa discrepância,
 tem implicações diretas em várias técnicas de identificação de padrões, e especialmente no
 agrupamento textual, que deriva de clássicas técnicas de agrupamento da mineração de dados,
-aplicados a conjuntos de baixa dimensionalidade. 
+aplicados à conjuntos de baixa dimensionalidade. 
 %estruturados. Com isso é notória a importância, de organizar de maneira automatizada, esses
 %documentos pelos assuntos ao qual se tratam.
 
 Para cumprir a tarefa de extrair informações relevantes de documentos textuais e identificar as
-estruturas inerentes aos dados. A mineração de textos emprega uma variedade de técnicas, as quais se
-destacam as tarefas de coleta, pré-processamento, agrupamento textual e seleção de termos
-descritores para o agrupamento. 
+estruturas inerentes aos mesmos. A mineração de textos emprega uma variedade de técnicas, as quais se
+destacam aquelas usualmente desenvolvidas para efetuar tarefas de coleta, pré-processamento, agrupamento textual e seleção de termos descritores para o agrupamento. 
 
-O agrupamento pode de maneira geral, ser definido como a tarefa de agrupar uma coleção de objetos,
-de acordo algum critério de similaridade. É possível também, distinguir os tipos de agrupamento, em
-função da lógica empregada por eles. Com isso temos os algoritmos que derivam da lógica clássica ou
-da lógica fuzzy. Na lógica clássica, após a conclusão do agrupamento, cada elemento só pertence a
+O agrupamento pode, de maneira geral, ser definido como a tarefa de agrupar uma coleção de objetos,
+de acordo algum critério de similaridade. É possível distinguir os tipos de agrupamento em
+função da lógica empregada por eles. Com isso, tem-se os algoritmos que derivam da lógica clássica ou
+da lógica fuzzy. Na lógica clássica, após a conclusão do agrupamento, cada elemento só pertence à
 apenas um grupo, enquanto que na lógica fuzzy, a pertinência do elemento será distribuída entre os
 grupos. 
 
 Ao se analisar a diversidade de conteúdo em dados textuais, é trivial notar que frequentemente
-um texto aborda um ou mais temas. O que implica, que o agrupamento clássico, ao atribuir um objeto a
+um texto aborda um ou mais temas. O que implica que o agrupamento clássico, ao atribuir um objeto a
 apenas um grupo, não irá representar bem a imprecisão e incerteza natural dos documentos. 
 
-Deste modo, os métodos de agrupamento derivados da lógica fuzzy, se mostram mais capacitados para
+Deste modo, os métodos de agrupamento derivados da lógica fuzzy se mostram mais capacitados para
 lidar com essa imprecisão e incerteza da realidade multi temática dos documentos textuais. Assim
-sendo, uma organização flexível de documentos, pode ser definida como o processo que compreende a
+sendo, uma organização flexível de documentos pode ser definida como o processo que compreende a
 estruturação dos dados, a adição de flexibilidade proporcionada pelo agrupamento fuzzy, a extração
-de descritores dos grupos de maneira flexível e a recuperação de informação através de um SRI.
+de descritores dos grupos de maneira flexível e a recuperação de informação através de um Sistema de Recuperação de Informação (SRI).
 
 Ao se observar o processo de organização flexível de documentos, percebe-se que o mesmo abrange
 várias etapas, cada uma delas com suas particularidades. No entanto, apesar da importância
-desempenhada por cada etapa do processo, o agrupamento em si, pode ser visto como uma das peças
+desempenhada por cada etapa do processo, o agrupamento em si pode ser visto como uma das peças
 chaves, pois ele é diretamente responsável por organizar os documentos de acordo com as suas
-similaridades. E adicionalmente esse processo precisa desconsiderar ou reduzir a influência de
+similaridades. Adicionalmente, é preciso desconsiderar ou reduzir a influência de
 documentos ruidosos, que destoam do restante da coleção nos grupos finais.
 
-O algoritmos Fuzzy C-Means (FCM) \cite{Bezdek1984} que deriva do clássico K-Means
-\cite{Macqueen1967} e o Possibilistic C-Means (PCM)
+Os algoritmos Fuzzy C-Means (FCM) \cite{Bezdek1984}, que deriva do clássico K-Means
+\cite{Macqueen1967}, e o Possibilistic C-Means (PCM)
 \cite{Krishnapuram1993}, são exemplos de métodos de agrupamento capazes de organizar de maneira
 automatizada uma coleção de documentos em um conjunto de grupos
 \cite{Mei2014,Tjhi2009,Prade2008,Saracoglu2008}. Ambos distribuem os documentos de uma coleção
 textual em um conjunto de grupos, de modo que cada documento possa pertencer a diferentes grupos com
-diferentes graus de pertinência, considerando assim a flexibilidade necessária para o tratar a
+diferentes graus de pertinência, considerando assim a flexibilidade necessária para tratar a
 imprecisão e incerteza do processo.
 
-No entanto o FCM apresenta alguns resultados indesejados, diante da presença de dados ruidosos na
-coleção, ou seja em se tratando de coleções textuais um dado ruidoso pode ser considerado como um
+No entanto, o FCM apresenta alguns resultados indesejados, diante da presença de dados ruidosos na
+coleção. Em se tratando de coleções textuais, um dado ruidoso pode ser considerado como um
 documento que possua uma temática bastante diferente dos demais documentos da coleção. Com o
 objetivo de atribuir valores de pertinências mais realísticos aos elementos a serem agrupados e
 penalizar com baixas pertinências os elementos ruidosos, o algoritmo PCM foi proposto. Porém, o PCM
-é muito sensível a inicialização, o que pode resultar em grupos coincidentes, onde não há uma
+é muito sensível à inicialização, o que pode resultar em grupos coincidentes, onde não há uma
 separação muito bem definida dos elementos.
 
-Visando contemplar os benefícios de ambos os métodos, foi proposto o método de agrupamento PFCM
-(Possibilistic Fuzzy C-Means) \cite{Pal2005}, como uma versão híbrida dos algoritmos FCM e o PCM,
-objetivando assim adicionar robustez a tarefa de agrupamento.
+Visando contemplar os benefícios de ambos os métodos, foi proposto o método de agrupamento Possibilistic Fuzzy C-Means
+(PFCM) \cite{Pal2005}, como uma versão híbrida dos algoritmos FCM e o PCM,
+objetivando adicionar robustez à tarefa de agrupamento.
 
 Após o agrupamento dos documentos, é necessário realizar a extração dos termos que melhor descrevem
 os grupos. Para realização dessa tarefa, tem-se alguns métodos na literatura do tipo DCF ({\it
 Description Comes First}), que realizam a extração de maneira embutida no processo de agrupamento.
-Porém essa abordagem, torna o processo de extração de descritores dependente do algoritmo de
+Porém, essa abordagem torna o processo de extração de descritores dependente do algoritmo de
 agrupamento. Com o propósito de contornar esse cenário, foi proposto em \citeonline{Nogueira2013} o
-método SoftO-FDCL, o qual extrai os termos descritores após a etapa de agrupamento, de maneira
-independente. Permitindo avaliarmos diretamente os impactos dos métodos de agrupamento, na
+método {\it Soft Organization - Fuzzy Description Comes Last} (SoftO-FDCL) \cite{Nogueira2013}, o qual extrai os termos descritores após a etapa de agrupamento de maneira independente do algoritmo de agrupamento utilizado. Permitindo avaliar diretamente os impactos dos métodos de agrupamento, na
 extração de descritores e por consequência na qualidade da organização flexível de documentos.
 
 Entretanto, o método SoftO-FDCL foi pensado inicialmente para interpretar as pertinências produzidas
 na partição do FCM, que difere da partição resultante produzida pelo PCM. A principal contribuição
 do PCM foi uma alteração no modo de atribuição da pertinência de uma elemento a um grupo, o que
-impacta diretamente na partição de grupos resultante. 
+impacta diretamente na partição dos grupos resultantes. 
 
-Considerando então, o crescente aumento de informações produzidas além da capacidade humana de
-analisar, com a demanda crescente no desenvolvimento e aprimoramento das técnicas de extração e
-identificação de conhecimento útil em dados textuais, a necessidade de se organizar esses dados de
+Diante deste contexto, e tendo em vista o crescente aumento de informações produzidas além da capacidade humana de
+analisar. Com a demanda crescente no desenvolvimento e aprimoramento das técnicas de extração e
+identificação de conhecimento útil em dados textuais, bem como a necessidade de se organizar esses dados de
 maneira flexível, tratando a imprecisão e incerteza natural desses dados e considerando as
-particularidades existentes nos métodos de agrupamento, foi formulada a seguinte hípotese:
+particularidades existentes nos métodos de agrupamento, foi formulada a seguinte hipótese para o desenvolvimento desse trabalho:
 
 \begin{quote}
 \textit{A utilização de uma estratégia híbrida de agrupamento e extração de descritores, entre os 
@@ -149,39 +145,33 @@ na literatura para o aprimoramento do processo de organização flexível de doc
 
 \begin{quote}
 \textit{Conduzir uma investigação em torno dos métodos de agrupamento FCM, PCM e PFCM, para
-se compreender e interpretar corretamente as peculiaridades de se extrair descritores em um
+compreender e interpretar corretamente as peculiaridades de se extrair descritores a partir de um
 agrupamento híbrido.}
 \end{quote}
 
-A fim de atender a esse objetivo, foi realizado nesta monografia um estudo dos fundamentos
-necessários para a organização flexível de documentos, uma revisão das estratégias recentes
-utilizadas por pesquisadores para aprimorar a organização flexível de documentos, assim como também
-condução de experimentos para analisar os impactos da aplicação do algoritmo PFCM no processo e na
-extração de descritores. Considerando-se os resultados dos experimentos conduzidos nessa monografia,
-foi descoberto que as alterações existentes no PCM, impactam diretamente na qualidade dos
-descritores extraídos pelo método SoftO-FDCL. Essa descoberta motivou a proposição de dois novos
-métodos de extração de descritores: PDCL e Mixed-PFDCL. Os quais apresentaram resultados que
+A fim de atender a esse objetivo, foram realizadas as seguinte tarefas ao longo do desenvolvimento desta monografia: estudo dos fundamentos teóricos necessários para a organização flexível de documentos, revisão das estratégias recentes
+utilizadas por pesquisadores para aprimorar a organização flexível de documentos, condução de diversos experimentos para analisar os impactos da aplicação do algoritmo PFCM no processo de agrupamento e na extração de descritores.
+
+Considerando-se os resultados dos experimentos realizados, foi descoberto que as alterações existentes no PCM, impactam diretamente na qualidade dos descritores extraídos pelo método SoftO-FDCL. Essa descoberta motivou a proposição de dois novos métodos de extração de descritores: {\it Possibilistic Descriptor Comes Last\/} (PDCL) e {\it Mixed - Possibilistic Fuzzy Descriptor Comes Last\/} (Mixed-PFDCL). Os quais apresentaram resultados que
 contribuem de maneira significativa para o estado da arte da extração de descritores dos grupos
 fuzzy e para o aprimoramento da organização flexível de documentos.
 
-O restante dessa monografia está organizado como segue:
+Detalhes de cada tarefa realizada, bem como a comprovação da hipótese levantada, são apresentados ao longo deste trabalho como segue:
 
-{\bf Capítulo \ref{ch:theory}\/}: Neste capítulo, está apresentado os fundamentos necessários para para
-se compreender o processo de organização flexível de documentos, o qual contempla a descrição da
-etapa de pré-processamento e estruturação dos dados, a definição dos principais algoritmos de
-agrupamento capazes de proporcionar flexibilidade ao processo, e a descrição da extração de
+{\bf Capítulo \ref{ch:theory}\/}: Neste capítulo, os fundamentos teóricos necessários para compreender o processo de organização flexível de documentos são apresentados, os quais contemplam a descrição da
+etapa de pré-processamento e estruturação dos dados; a definição dos principais algoritmos de
+agrupamento, capazes de proporcionar flexibilidade ao processo de organização de documentos; e a descrição da extração de
 descritores.
 
-{\bf Capítulo \ref{ch:related}\/}: Este capítulo aborda, uma breve revisão do estado da arte encontrado
-na literatura, referente as diversas estratégias propostas pelos pesquisadores com o objetivo de
+{\bf Capítulo \ref{ch:related}\/}: Este capítulo aborda uma breve revisão do estado da arte encontrado
+na literatura, referente às diversas estratégias propostas pelos pesquisadores. com o objetivo de
 aprimorar todas as etapas da organização flexível de documentos. 
 
-{\bf Capítulo \ref{ch:proposed}\/}: Neste capítulo, são apresentados um estudo dos impactos da
-utilização do método de agrupamento híbrido na organização flexível de documentos, demonstrados
-através de experimentos práticos. Aqui também é demonstrado as influências das tipicidades presentes
-na partição de pertinências do PCM. E em consequência a proposição dos métodos PDCL e Mixed-PFDCL. 
+{\bf Capítulo \ref{ch:proposed}\/}: Neste capítulo, um estudo dos impactos da
+utilização do método de agrupamento híbrido na organização flexível de documentos é apresentado por meio da realização de análises experimentais. Neste capítulo, as influências das tipicidades presentes
+na partição de pertinências do PCM também são apresentadas. Seguidas pela proposta dos métodos PDCL e Mixed-PFDCL. 
 
-{\bf Capítulo \ref{ch:conclusion}\/}: Por fim, este capítulo contempla as conclusões obtidas de todo
-realizado nessa monografia, assim como as conclusões a respeito dos resultados obtidos nos
-experimentos. Aqui também está apontado uma série de possibilidades de extensões que derivam desta
+{\bf Capítulo \ref{ch:conclusion}\/}: Por fim, este capítulo contempla as conclusões obtidas de todo o estudo
+realizado nesta monografia, assim como discussões a respeito dos resultados obtidos nos
+experimentos. Aqui também está apontada uma série de possibilidades de extensões que derivam desta
 pesquisa. 
