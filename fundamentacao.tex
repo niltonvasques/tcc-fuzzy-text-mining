@@ -1,10 +1,11 @@
 \section{Considerações iniciais}
-A lógica fuzzy foi introduzida por Lofti Zadeh em \cite{Zadeh1965}, onde o autor inicia a discussão
-definindo os conjuntos fuzzy, as quais constituem classes de objetos com valores contínuos de
-pertinência. Cada conjunto é caracterizado por uma função de pertinência, a qual atribui a cada
-objeto do conjunto um grau de pertinência que varia entre zero e um. As operações matemáticas da
-teoria dos conjuntos, como inclusão, união, intersecção, complemento, relação, etc., também são
-estendidas aos conjuntos fuzzy, assim como várias propriedades dessas notações são definidas.
+A lógica fuzzy foi introduzida por Lofti \citeauthoronline{Zadeh1965} em \citeyear{Zadeh1965}, onde
+o autor inicia a discussão definindo os conjuntos fuzzy, as quais constituem classes de objetos com
+valores contínuos de pertinência. Cada conjunto é caracterizado por uma função de pertinência, a
+qual atribui a cada objeto do conjunto um grau de pertinência que varia entre zero e um. As
+operações matemáticas da teoria dos conjuntos, como inclusão, união, intersecção, complemento,
+relação, etc., também são estendidas aos conjuntos fuzzy, assim como várias propriedades dessas
+notações são definidas.
 
 Uma das motivações para o uso da lógica fuzzy, vem da maneira como nosso cérebro classifica e rotula
 o mundo real. Por exemplo, ao rotularmos uma pessoa como alta, estamos atribuindo ela ao grupo de
@@ -12,7 +13,7 @@ pessoas altas. Assim como quando nos expressamos sobre o quanto um determinado d
 calor ou frio. O conjunto de pessoas altas ou dias frios, não se enquadra na sua totalidade na
 lógica clássica, pois essa forma imprecisa de descrever o mundo a nossa volta desempenha um papel
 fundamental na forma de pensar humana, assim como também nas áreas de reconhecimento de padrões,
-comunicação e abstração\cite{Zadeh1965}.  Neste sentido, esta seção tem como propósito
+comunicação e abstração \cite{Zadeh1965}.  Neste sentido, esta seção tem como propósito
 contextualizar os principais aspectos da lógica fuzzy que a torna tão importante no contexto da
 organização flexível de documentos. Ressalta-se, portanto, que definições mais aprofundadas sobre a
 lógica fuzzy fogem do escopo desse texto.  Adicionalmente, além dos principais fundamentos
@@ -38,23 +39,27 @@ representação do grau de pertinência de $x$ em $A$.
 A lógica fuzzy é uma lógica multi valorada, onde os valores das variáveis pertencem ao intervalo de
 $[0,1]$, enquanto na lógica clássica os valores verdades só possuem os estados 0 ou 1 (também
 conhecido como valores {\it crisp\/}). Uma da mais importantes aplicações está no tratamento de
-precisão e incerteza. O que nos permite modelar soluções mais adequadas para ambientes imprecisos
-e incertos.  Antes da lógica fuzzy ser introduzida em \cite{Zadeh1965}, em 1930
-Lukasiewics\cite{Chen2000} desenvolveu a lógica n-valorada para $3 < n < \infty$, utilizando apenas
-os operadores lógicos de negação $-$ e implicação $\Rightarrow$. Dado então um inteiro positivo, $n
-> 3$, a lógica n-valorada assume valores verdade pertencente ao intervalo $[0,1]$, definidos pela
+precisão e incerteza. O que nos permite modelar soluções mais adequadas para ambientes imprecisos e
+incertos.  Antes da lógica fuzzy ser introduzida por \citeonline{Zadeh1965}, em 1930 Lukasiewics
+\cite{Chen2000} desenvolveu a lógica n-valorada para $3 < n < \infty$, utilizando apenas os
+operadores lógicos de negação $-$ e implicação $\Rightarrow$. Dado então um inteiro positivo, $n >
+3$, a lógica n-valorada assume valores verdade pertencente ao intervalo $[0,1]$, definidos pela
 seguinte partição igualmente espaçada: $$0 =  \frac{0}{n-1},
 \frac{1}{n-1},\frac{2}{n-1},...,\frac{n-2}{n-1},\frac{n-1}{n-1} = 1$$ Para estender a lógica
-n-valorada para uma lógica com infinitos valores $2 \leq n \leq \infty$, \cite{Zadeh1965} modificou
-a lógica de Lukasiewics definindo os seguintes operadores lógicos: $$\bar{a} = 1 -a$$ $$a \wedge b =
-min\{a,b\}$$ $$a \vee b = max\{a,b\}$$ $$a \Rightarrow b = min\{1, 1+b-a\}$$ $$a \Leftrightarrow  b
-= 1 - |a-b|$$
+n-valorada para uma lógica com infinitos valores $2 \leq n \leq \infty$, \citeonline{Zadeh1965}
+modificou a lógica de Lukasiewics definindo os seguintes operadores lógicos: 
+
+$$\bar{a} = 1 -a$$ 
+$$a \wedge b = min\{a,b\}$$ 
+$$a \vee b = max\{a,b\}$$ 
+$$a \Rightarrow b = min\{1, 1+b-a\}$$ 
+$$a \Leftrightarrow  b = 1 - |a-b|$$
 
 O objetivo da lógica fuzzy é prover mecanismos para tratar imprecisão e incerteza, se baseando na
 teoria de conjuntos fuzzy e usando proposições imprecisas, de modo similar a lógica clássica usando
-proposições precisas baseadas na teoria dos conjuntos.  Para entender essa noção, observe
-a seguir um mesmo exemplo pela ótica do raciocínio clássico e pela ótica das ferramentas usadas para descrever
-imprecisão da lógica fuzzy.  
+proposições precisas baseadas na teoria dos conjuntos.  Para entender essa noção, observe a seguir
+um mesmo exemplo pela ótica do raciocínio clássico e pela ótica das ferramentas usadas para
+descrever imprecisão da lógica fuzzy.  
 
 \begin{enumerate}[label=\alph*)] 
 \item Todo texto com 100 palavras ou mais da área jurídica, tem como assunto o direito. 
@@ -63,8 +68,11 @@ imprecisão da lógica fuzzy.
 \item O texto A tem como assunto o direito e o texto B não tem como assunto o direito.  
 \end{enumerate} 
 
-Essa série de proposições ilustra o raciocínio empregado na lógica clássica e, seguindo as regras de inferência, conseguimos verificar que as sentenças estão corretas. No entanto, é fácil notar que a sentença d) não expressa muito bem o
-nosso entendimento sobre a temática dos textos.  Seria comum alguém substituir a sentença d), por: O texto B fala um pouco sobre direito.  Sendo assim é possível adicionar a imprecisão comum no mundo real às sentenças anteriores, conforme reescrito a seguir.
+Essa série de proposições ilustra o raciocínio empregado na lógica clássica e, seguindo as regras de
+inferência, conseguimos verificar que as sentenças estão corretas. No entanto, é fácil notar que a
+sentença d) não expressa muito bem o nosso entendimento sobre a temática dos textos.  Seria comum
+alguém substituir a sentença d), por: O texto B fala um pouco sobre direito.  Sendo assim é possível
+adicionar a imprecisão comum no mundo real às sentenças anteriores, conforme reescrito a seguir.
 
 \begin{enumerate}[label=\alph*)] 
 \item Todo texto que tem entre 50 e 100 palavras da área jurídica fala um pouco sobre direito.  Enquanto todo texto que contenha 100 ou mais palavras da área jurídica fala bastante sobre direito.  
@@ -82,38 +90,28 @@ lógica fuzzy, a qual permite o uso de alguns termos linguísticos imprecisos co
 \item Graus de verdade fuzzy: totalmente verdadeiro, verdadeiro, parcialmente falso, falso, definitivamente falso 
 \end{itemize}
 
-%\section{Organização Flexível de Documentos}
-%
-%A organização de documentos tem sido uma área de fundamental importância no campo da mineração de
-            %dados. Pois na era da informação, onde temos mídias sociais, internet das coisas e
-            %computação móvel, produzindo diariamente uma elevada quantidade de dados estruturados e
-            %não estruturados. 
-%
-%Se nos concentrarmos nos dados não estruturados, temos os dados textuais, que por sua vez pertencem
-            %a uma ampla gama de tópicos que é constantemente atualizada, de maneira que a
-            %organização deles em categorias não pode ser predefinida \cite{Carvalho2016}.  Diante
-            %deste contexto, esse capítulo visa fundamentar as bases da organização flexível de
-            %documentos seguindo o modelo defendido em \cite{Nogueira2013},
-
-
 \section{Pré-Processamento} Pré-processamento dos dados é o processo de limpeza e preparação dos
-dados para extração de padrões.  Para este trabalho, especificamente, considera-se dado como sendo um documento textual e a tarefa de extração de padrões a ser considerada é o agrupamento.
+dados para extração de padrões.  Para este trabalho, especificamente, considera-se dado como sendo
+um documento textual e a tarefa de extração de padrões a ser considerada é o agrupamento.
 
-Essa etapa é importante porque algumas palavras em um documento podem causar pouco ou nenhum impacto no significado geral do documento\cite{Haddi2013}.  Soma-se a isso o enorme custo computacional do
-processo de mineração de textos, devido à grande quantidade de atributoss presente em dados textuais, visto que quanto maior for a coleção de textos, maior será a quantidade de palavras distintas. Tal dimensionalidade eleva bastante o custo computacional de qualquer tarefa de extração de padrões.  Por isso, vários pesquisadores propuseram
-métodos para tentar simplificar, sintetizar e eliminar redundâncias desnecessárias nas coleções de
-textos.  
+Essa etapa é importante porque algumas palavras em um documento podem causar pouco ou nenhum impacto
+no significado geral do documento \cite{Haddi2013}.  Soma-se a isso o enorme custo computacional do
+processo de mineração de textos, devido à grande quantidade de atributos presente em dados
+textuais, visto que quanto maior for a coleção de textos, maior será a quantidade de palavras
+distintas. Tal dimensionalidade eleva bastante o custo computacional de qualquer tarefa de extração
+de padrões.  Por isso, vários pesquisadores propuseram métodos para tentar simplificar, sintetizar e
+eliminar redundâncias desnecessárias nas coleções de textos.  
 
-A fase de pré-processamento voltada para a mineração de textos, as quais visam preparar dados estruturados para
-as clássicas operações de mineração de dados, requer técnicas muito específicas para o
-preparo dos dados não estruturados \cite{Feldman2007}.
+A fase de pré-processamento voltada para a mineração de textos, as quais visam preparar dados
+estruturados para as clássicas operações de mineração de dados, requer técnicas muito específicas
+para o preparo dos dados não estruturados \cite{Feldman2007}.
 
-Segundo \cite{Feldman2007}, é possível categorizar de maneira clara as técnicas de pré-processamento
-de textos em duas categorias, de acordo com as tarefas realizadas pela técnica e através dos
-algoritmos e frameworks que a mesma utiliza. Por sua vez, as técnicas categorizadas pelas suas
-tarefas, geralmente visam realizar a estruturação do documento através de tarefas e sub tarefas.
-Como por exemplo, realizar a extração de título e sub título de documentos no formato PDF.  No
-entanto, as demais técnicas de pré-processamento são derivadas de métodos formais, e incluem
+Segundo \citeonline{Feldman2007}, é possível categorizar de maneira clara as técnicas de
+pré-processamento de textos em duas categorias, de acordo com as tarefas realizadas pela técnica e
+através dos algoritmos e frameworks que a mesma utiliza. Por sua vez, as técnicas categorizadas
+pelas suas tarefas, geralmente visam realizar a estruturação do documento através de tarefas e sub
+tarefas.  Como por exemplo, realizar a extração de título e sub título de documentos no formato PDF.
+No entanto, as demais técnicas de pré-processamento são derivadas de métodos formais, e incluem
 esquemas de classificação, modelos probabilísticos e sistemas baseado em regras.
 
 O processo de pré-processamento de dados textuais, inicia com um documento parcialmente estruturado
@@ -128,15 +126,18 @@ significado geral do texto e geralmente são compostas por proposições, pronom
 interjeições dentre outras\cite{Nogueira2013}. Assim como também o processo de $stemming$ ou
 lematização, onde se busca encontrar o radical da palavra, visando assim remover palavras que
 possuam significados similares. Ainda é possível usar as técnicas de NLP ($Natural Language
-Processing$) para eliminar sinônimos. Por fim, é realizada a seleção de termos mais característicos para toda a coleção \cite{Haddi2013}. 
+Processing$) para eliminar sinônimos. Por fim, é realizada a seleção de termos mais característicos
+para toda a coleção \cite{Haddi2013}. 
 
-Diversos métodos foram propostos visando capturar a importância dos termos em coleções
-textuais. Sendo o método { \it Term Frequency Inverse Document Frequency\/ }(TF-IDF) um dos mais
-importantes e frequentemente utilizado na literatura \cite{Haddi2013}. A definição da TF-IDF está na
-equação (\ref{eq:tfidf}), onde $n$ é o número de documentos da coleção, $DF$ o total de documentos
-que possuem este termo e $FF$ ({\it frequency feature}) a frequência do termo no documento.
+Diversos métodos foram propostos visando capturar a importância dos termos em coleções textuais.
+Sendo o método { \it Term Frequency Inverse Document Frequency\/ }(TF-IDF) um dos mais importantes e
+frequentemente utilizado na literatura \cite{Haddi2013}. A definição da TF-IDF está na Equação
+(\ref{eq:tfidf}), onde $n$ é o número de documentos da coleção, $DF$ o total de documentos que
+possuem este termo e $FF$ ({\it frequency feature}) a frequência do termo no documento.
 
-\begin{equation} \varphi(t,d) = FF * log(\frac{N}{DF}) \label{eq:tfidf} \end{equation}
+\begin{equation} 
+  \varphi(t,d) = FF * log(\frac{N}{DF}) \label{eq:tfidf} 
+\end{equation}
 
 Como resultado final de todo o processo de pré-processamento, obtém-se a matrix $D$. Onde $D$
 representa os $n$ documentos da coleção, sendo cada documento $d_{i}$, com $1 \leq i \leq n$, uma
@@ -146,10 +147,12 @@ $t_{j}$ é um termo presente na coleção, com $1 \leq j \leq k$.
 
 \section{Agrupamento Fuzzy} 
 
-O agrupamento é um processo não supervisionado cujo o objetivo é organizar os objetos similares no mesmo grupo e os objetos com grau de
-dissimilaridade elevado em grupos distintos\cite{Nogueira2013}. Este processo é de
-grande utilidade para diversos campos de estudo da inteligência computacional, como a mineração de
-dados, recuperação de informação, segmentação de imagens e classificação de padrões. Neste trabalho, os objetos a serem agrupados são os documentos textuais.
+O agrupamento é um processo não supervisionado cujo o objetivo é organizar os objetos similares no
+mesmo grupo e os objetos com grau de dissimilaridade elevado em grupos distintos
+\cite{Nogueira2013}. Este processo é de grande utilidade para diversos campos de estudo da
+inteligência computacional, como a mineração de dados, recuperação de informação, segmentação de
+imagens e classificação de padrões. Neste trabalho, os objetos a serem agrupados são os documentos
+textuais.
 
 O problema de organizar os documentos de maneira a maximizar a similaridade entre os membros de um
 mesmo grupo, e minimizar a similaridade entre documentos de grupos distintos, é essencialmente um
@@ -179,7 +182,7 @@ distância euclidiana (Equação \ref{eq:euclidiana}) \cite{Nogueira2013}.
 A medida de similaridade mais comum para coleções textuais é o coeficiente de similaridade de cosseno
 \cite{Feldman2007}.  Por sua vez o coeficiente de similaridade de cosseno,
 desconsidera os diversos zeros presentes nos vetores de termos dos documentos, levando em conta
-apenas o ângulo formado entre eles\cite{Nogueira2013}.  Na equação (\ref{eq:simcos}) temos a
+apenas o ângulo formado entre eles\cite{Nogueira2013}.  Na Equação (\ref{eq:simcos}) temos a
 definição do coeficiente de similaridade de cosseno, onde $d_1$ e $d_2$, são dois documentos
 quaisquer da coleção de documentos, e $1 \leq t \leq k$, onde $k$ é a quantidade total de termos da
 coleção, e $d_{ik}$ a frequência do termo $t$ no documento $d_i$.
@@ -190,61 +193,68 @@ coleção, e $d_{ik}$ a frequência do termo $t$ no documento $d_i$.
   \label{eq:simcos}
 \end{equation}
 
-Os grupos resultantes de um  processo de agrupamento, podem possuir algumas características que estão diretamente
-relacionadas com o método de agrupamento empregado. Estes podem ser $hard$ ou $crisp$, caso o método
-de agrupamento seja baseado na lógica clássica, assim como podem ser $soft$, caso o método seja
-baseado na lógica fuzzy. No agrupamento $hard$, cada documento $d_{i}$ só poderá pertencer a um
-único grupo $g_{j}$ \cite{Bezdek1984}. Enquanto em grupos $soft$, cada documento $d_{i}$ pode
-pertencer a um ou mais grupos $g$, com grau de pertinência variados.  Além destes, os grupos
-ainda podem ser $flat$ ou hierárquicos, onde no agrupamento $flat$ todos os grupos estão no mesmo
-nível, enquanto no modelo hierárquico os grupos podem estar dispostos em uma hierarquia, de modo que
-uma relação de parentesco é definida entre eles.
+Os grupos resultantes de um  processo de agrupamento, podem possuir algumas características que
+estão diretamente relacionadas com o método de agrupamento empregado. Estes podem ser $hard$ ou
+$crisp$, caso o método de agrupamento seja baseado na lógica clássica, assim como podem ser $soft$,
+caso o método seja baseado na lógica fuzzy. No agrupamento $hard$, cada documento $d_{i}$ só poderá
+pertencer a um único grupo $g_{j}$ \cite{Bezdek1984}. Enquanto em grupos $soft$, cada documento
+$d_{i}$ pode pertencer a um ou mais grupos $g$, com grau de pertinência variados.  Além destes, os
+grupos ainda podem ser $flat$ ou hierárquicos, onde no agrupamento $flat$ todos os grupos estão no
+mesmo nível, enquanto no modelo hierárquico os grupos podem estar dispostos em uma hierarquia, de
+modo que uma relação de parentesco é definida entre eles.
 
-Para o agrupamento $hard$, considere $G = \{g_{1},g_{2},g_{3},...,g_{c}\}$ os grupos resultantes do agrupamento, sendo $c$
-o total de grupos, e a pertinência de cada documento $d_{i}$ à um grupo $g_{l}$, $1 \leq l \leq c$, pode ser representada pela função característica $\kappa(d_{i}, g_{j}) \in \{0,1\}$.  Um dos mais populares algoritmos a implementar essa abordagem é o K-Means.  Em \cite{Bezdek1984}\cite{Nogueira2013}\cite{Feldman2007}, é apontada uma falha inerente
-dessa abordagem, pois quando um documento só pode pertencer a um único grupo, fica evidenciado que o
-mesmo não compartilha nenhuma similaridade com os documentos dos demais grupos, o que não expressa a
+Para o agrupamento $hard$, considere $G = \{g_{1},g_{2},g_{3},...,g_{c}\}$ os grupos resultantes do
+agrupamento, sendo $c$ o total de grupos, e a pertinência de cada documento $d_{i}$ à um grupo
+$g_{l}$, $1 \leq l \leq c$, pode ser representada pela função característica $\kappa(d_{i}, g_{j})
+\in \{0,1\}$.  Um dos mais populares algoritmos a implementar essa abordagem é o K-Means. Nos
+trabalhos de \citeonline{Bezdek1984,Nogueira2013,Feldman2007}, é apontada uma falha inerente dessa
+abordagem, pois quando um documento só pode pertencer a um único grupo, fica evidenciado que o mesmo
+não compartilha nenhuma similaridade com os documentos dos demais grupos, o que não expressa a
 imprecisão intrínseca da sobreposição dos assuntos em documentos de texto.
 
 Com o objetivo de tratar essa falha da abordagem $hard$ e adicionar o tratamento de imprecisão e
-incerteza no agrupamento, \cite{Bezdek1984} utilizou o modelo de partições fuzzy definido em
-\cite{Zadeh1965}, para permitir pertinências parciais de um elemento a um grupo, propondo assim o
-algoritmo Fuzzy C Means (FCM).  Sendo assim, a função característica passa a ser considerada como uma função de pertinência de um documento $d_{i}$ em um grupo $g_{l}$, a qual é definida por $\mu(d_{i}, g_{l}) \in [0,1]$, tal que $\sum_{l=1}^c
-\mu(d_{i}, g_{j}) = 1$.
+incerteza no agrupamento, \citeonline{Bezdek1984} utilizou o modelo de partições fuzzy definido em
+\citeonline{Zadeh1965}, para permitir pertinências parciais de um elemento a um grupo, propondo
+assim o algoritmo Fuzzy C Means (FCM).  Sendo assim, a função característica passa a ser considerada
+como uma função de pertinência de um documento $d_{i}$ em um grupo $g_{l}$, a qual é definida por
+$\mu(d_{i}, g_{l}) \in [0,1]$, tal que $\sum_{l=1}^c \mu(d_{i}, g_{j}) = 1$.
 
-Um desafio sempre presente em métodos de agrupamento é a descoberta do número ideal de grupos em
-uma coleção. O método de organização flexível proposto em \cite{Nogueira2013} utiliza a  $Fuzzy\
+Um desafio sempre presente em métodos de agrupamento é a descoberta do número ideal de grupos em uma
+coleção. O método de organização flexível proposto em \citeonline{Nogueira2013}, utiliza a  $Fuzzy\
 Silhouette$ (FS) para realizar a validação do agrupamento fuzzy, e por conseguinte encontrar o
 número de grupos ideal. A função FS é uma adaptação do método de critério de largura média
-($Average\ Silhuette\ Width\ Criterion$ - ASWC), desenvolvido para o agrupamento $crisp$. A definição da silhueta fuzzy está nas equações (\ref{eq:silhuette}) e
-(\ref{eq:fs}), onde $\alpha(d_i, g_l)$ é a distância média entre o documento $d_i$ e todos os
-documentos presentes no grupo $g_l$, enquanto $\beta(d_i,g_l) = min\{\alpha(d_i,g_h) | 1 \leq h \leq
-c; h \neq l\}$, é a medida de dissimilaridade de $d_i$ ao grupo vizinho mais próximo de $g_l$, tal
-que $c$ é a quantidade de grupos.  
+($Average\ Silhuette\ Width\ Criterion$ - ASWC), desenvolvido para o agrupamento $crisp$. A
+definição da silhueta fuzzy está nas Equações (\ref{eq:silhuette}) e (\ref{eq:fs}), onde
+$\alpha(d_i, g_l)$ é a distância média entre o documento $d_i$ e todos os documentos presentes no
+grupo $g_l$, enquanto $\beta(d_i,g_l) = min\{\alpha(d_i,g_h) | 1 \leq h \leq c; h \neq l\}$, é a
+medida de dissimilaridade de $d_i$ ao grupo vizinho mais próximo de $g_l$, tal que $c$ é a
+quantidade de grupos.  
 
 
 \begin{equation} 
-S(d_i) = \frac{\beta(d_i, g_l) - \alpha(d_i,g_l)}{max\{\alpha(d_i,g_l), \beta(d_i,g_l)\}} \label{eq:silhuette}
+  S(d_i) = \frac{\beta(d_i, g_l) - \alpha(d_i,g_l)}{max\{\alpha(d_i,g_l), \beta(d_i,g_l)\}} 
+  \label{eq:silhuette}
 \end{equation}
 
 
 \begin{equation} 
-FS = \frac{\sum_{i=1}^n{(\mu_1(d_i) - \mu_2(d_i))}S(d_i)}{\sum_{i=1}^n{(\mu_1(d_i) - \mu_2(d_i))}}
-\label{eq:fs}
+  FS = \frac{\sum_{i=1}^n{(\mu_1(d_i) - \mu_2(d_i))}S(d_i)}{\sum_{i=1}^n{(\mu_1(d_i) - \mu_2(d_i))}}
+  \label{eq:fs}
 \end{equation} 
 
-Na equação (\ref{eq:fs}), $\mu_1(d_i)$ é a maior
-  pertinência do documento $d_i$ em um grupo, enquanto $\mu_2(d_i)$ é a segunda maior. Quanto maior
-  então for o valor da função FS, melhor será o agrupamento. Deste modo, para encontrar o número de
-  grupos ideal, basta executar a função FS variando o número de grupos, e selecionar o agrupamento
-  que tiver o valor máximo de FS.
+Na Equação (\ref{eq:fs}), $\mu_1(d_i)$ é a maior pertinência do documento $d_i$ em um grupo,
+enquanto $\mu_2(d_i)$ é a segunda maior. Quanto maior então for o valor da função FS, melhor será o
+agrupamento. Deste modo, para encontrar o número de grupos ideal, basta executar a função FS
+variando o número de grupos, e selecionar o agrupamento que tiver o valor máximo de FS.
 
 Toda investigação realizada neste trabalho tomou como base os métodos de agrupamento que derivam do
-algoritmo FCM\cite{Bezdek1984}, descrito a seguir, para se beneficiar da capacidade de tratar imprecisão e incerteza da
-lógica fuzzy, e por conseguinte permitir que um mesmo documento seja categorizado em mais de um
-tópico (grupo), refletindo a realidade dos documentos textuais. 
+algoritmo FCM\cite{Bezdek1984}, descrito a seguir, para se beneficiar da capacidade de tratar
+imprecisão e incerteza da lógica fuzzy, e por conseguinte permitir que um mesmo documento seja
+categorizado em mais de um tópico (grupo), refletindo a realidade dos documentos textuais. 
 
-Em todos os experimentos a medida de similaridade de cosseno (Equação \ref{eq:simcos}) foi utilizada, e a quantidade de grupos ideal foi escolhida utilizando o método da silhueta fuzzy ( Equação \ref{eq:fs}).
+Em todos os experimentos a medida de similaridade de cosseno (Equação \ref{eq:simcos}) foi
+utilizada, e a quantidade de grupos ideal foi escolhida utilizando o método da silhueta fuzzy (
+Equação \ref{eq:fs}).
 
 \subsection{Algoritmo Fuzzy C Means (FCM)} 
 
@@ -255,16 +265,16 @@ diversas extensões, sendo considerado um dos mais amplamente utilizados método
 agrupamento fuzzy da literatura\cite{Pal2005}. A maioria dos métodos de agrupamento fuzzy são
 derivações do FCM\cite{Krishnapuram1993}.
 
-Para compreensão do algoritmo, considere $V = \{v_1,v_2,v_3,...,v_c\}$ os protótipos dos grupos $G = \{g_1,g_2,g_3,...g_c\}$
-definidos por 
+Para compreensão do algoritmo, considere $V = \{v_1,v_2,v_3,...,v_c\}$ os protótipos dos grupos $G =
+\{g_1,g_2,g_3,...g_c\}$ definidos por 
 
 \begin{equation} 
   V = \left\{ v_j | v_j = \frac{\sum_{i=1}^n[\mu(d_i,g_j)]^m d_i}{\sum_{i=1}^n[\mu(d_i,g_j)]^m}, 
   1 < j \leq c \right\}, 
   \label{eq:prototipos} 
 \end{equation}
-tal que $v_j$ seja o protótipo de $g_j$, $c$ o número de grupos gerados no agrupamento e $n$ o número de
-documentos presentes na coleção. 
+tal que $v_j$ seja o protótipo de $g_j$, $c$ o número de grupos gerados no agrupamento e $n$ o
+número de documentos presentes na coleção. 
 
 Seja $U_{c \times n}$ uma partição fuzzy conforme a Equação:
 
@@ -326,7 +336,7 @@ c$. Nesse contexto, a pertinência de $d_2$ e $d_1$, não expressa a distância 
 documentos aos grupos. Esse problema está ilustrado na Figura (\ref{fig:fcm_problem}).
 
 \begin{figure}[!htp] \centering
-  \includegraphics[width=0.4\columnwidth]{assets/clusters_fcm_problem.pdf} 
+  \includegraphics[width=0.4\columnwidth]{assets/fcm_problem.pdf} 
   \caption{Problema dos
     elementos equidistantes do algoritmo FCM. Na imagem $g_1$ e $g_2$ são grupos, com os seus
     respectivos protótipos $v_1$ e $v_2$. Enquanto $d_1$ e $d_2$ são documentos equidistantes aos
@@ -335,33 +345,41 @@ documentos aos grupos. Esse problema está ilustrado na Figura (\ref{fig:fcm_pro
   \label{fig:fcm_problem} 
 \end{figure}
 
-Segundo \citeonline{Bezdek1984} várias funções de otimização das partições fuzzy produzidas no agrupamento
-foram propostas. Sendo a minimização da função objetivo $J(U_{c \times n},G,V,D)$, que visa
-minimizar a distância entre os documentos e os protótipos dos grupos\cite{Nogueira2013}, definida na
-equação (\ref{eq:fcm_obj}) a mais popular.  \begin{equation} min\{(J(U_{c \times n},G,V,D) =
-\sum_{i=1}^n \sum_{j=1}^c [\mu(d_i, g_j)]^m dist(d_i, v_j)\} \label{eq:fcm_obj} \end{equation} O
-mais utilizado algoritmo para soluções aproximadas da minimização (\ref{eq:fcm_obj}), é a iteração
-de Picard\footnote{Método iterativo para construção de soluções aproximadas, atribuído ao matemático
+Segundo \citeonline{Bezdek1984} várias funções de otimização da partição fuzzy produzida no
+agrupamento foram propostas, sendo a minimização da função objetivo $J(U_{c \times n},G,V,D)$, 
+definida na Equação (\ref{eq:fcm_obj}) a mais popular. Onde considere $U_{c \times n}$ como os graus
+de pertinência fuzzy, $V$ os protótipos dos grupos $G$ e $D$ o conjunto de documentos.  
+
+\begin{equation} min\{(J(U_{c \times
+n},G,V,D) = \sum_{i=1}^n \sum_{j=1}^c [\mu(d_i, g_j)]^m dist(d_i, v_j)\} 
+\label{eq:fcm_obj}
+\end{equation} 
+
+O algoritmo mais comumente utilizado para prover soluções aproximadas dessa minimização
+(\ref{eq:fcm_obj}), é a através da iteração de Picard\footnotemark \cite{Pal2005} entre as equações
+(\ref{eq:prototipos}) e (\ref{eq:part_fuzzy}). 
+\footnotetext{Método iterativo para construção de soluções aproximadas, atribuído ao matemático
 francês Charles Emile Picard (1856-1941).
-\url{http://mathfaculty.fullerton.edu/mathews/n2003/PicardIterationMod.html}}\cite{Pal2005} através
-das equações (\ref{eq:prototipos})(\ref{eq:part_fuzzy}). Sendo assim  o ciclo de aproximações se dá
-por $V_{t-1} \Rightarrow  U_t \Rightarrow  V_t$, onde ao final de cada iteração é verificado se
+\url{http://mathfaculty.fullerton.edu/mathews/n2003/PicardIterationMod.html}}
+O ciclo de aproximações se dá por
+$V_{t-1} \Rightarrow  U_t \Rightarrow  V_t$, onde, ao final de cada iteração, é verificado se
 $\parallel V_{t-1} - V_t\parallel < \varepsilon$.  A literatura também expressa que os ciclos podem
-começar pela partição fuzzy, fazendo então $U_{t-1} \Rightarrow  V_t \Rightarrow  U_t$, e ao final
-do ciclo checando o erro mínimo com $\parallel U_{t-1} - U_t\parallel < \varepsilon$, sendo $t$ o
-contador de iterações.  Contudo existem benefícios em termos de processamento e memória ao utilizar
-a iteração iniciando e finalizando com $V$\cite{Pal2005}.  \cite{Bezdek1984} e \cite{Pal2005}
-afirmam que a convergência desse modelo iterativo ocorre em ambos os tipos de ciclo.  A partição
-fuzzy inicial $U_0$ é comumente inicializada com valores aleatórios\cite{Nogueira2013} ou com o
-resultado de um agrupamento previamente executado\cite{Pal2005}\cite{Krishnapuram1993}. Nas demais
-iterações a atualização dos protótipos é realizada a partir da equação (\ref{eq:prototipos}). O
-pseudo código utilizando essa abordagem iterativa está listado no algoritmo (\ref{alg:fcm}), no qual
-$\textbf{{\color{blue}inicializa-particao-fuzzy}(D,G)}$, pode ser uma das duas formas de
-inicialização descritas anteriormente.
+começar pela partição fuzzy, fazendo então $U_{t-1} \Rightarrow  V_t \Rightarrow  U_t$, e, ao final
+do ciclo, checando o erro mínimo com $\parallel U_{t-1} - U_t\parallel < \varepsilon$, sendo $t$ o
+contador de iterações.  Contudo, existem benefícios em termos de processamento e memória ao utilizar
+a iteração iniciando e finalizando com $V$\cite{Pal2005}. Por outro lado, \citeonline{Bezdek1984} e
+\citeonline{Pal2005} afirmam que a convergência desse modelo iterativo ocorre em ambos os tipos de
+ciclo. Geralmente, a partição fuzzy inicial $U_0$ é comumente inicializada com valores aleatórios ou
+com o resultado de um agrupamento previamente executado \cite{Pal2005,Krishnapuram1993}. Nas demais
+iterações a atualização dos protótipos é realizada a partir da Equação (\ref{eq:prototipos}).  
+
+O pseudo código utilizando a abordagem iterativa descrita a cima, está listado no Algoritmo
+\ref{alg:fcm}, no qual a função $\textbf{{\color{blue}inicializa-particao-fuzzy}(D,G)}$, pode ser
+uma das duas formas de inicialização descritas anteriormente. \\
 
 \begin{algorithm}[H] 
-  \SetAlgoLined \KwData{D, c, m, $\varepsilon$} 
-  \KwResult{V, U} 
+  \SetAlgoLined 
+  \textbf{{\color{blue}fcm}(D, c, m, $\varepsilon$)}\\
   G $\gets$ $[g_1,g_2,...,g_c]$\; 
   $U_0$ $\gets$ \textbf{{\color{blue}inicializa-particao-fuzzy}(D,G)}\; 
   $t \gets 0$\; 
@@ -372,10 +390,11 @@ inicialização descritas anteriormente.
   }
   $\textbf{retorne} (U_t, V_t)$\; 
   \caption{Pseudo código da implementação iterativa do método FCM}
-\label{alg:fcm} \end{algorithm}
+\label{alg:fcm} 
+\end{algorithm} 
 
-Por fim está ilustrado na figura (\ref{fig:samples_fcm}), os resultados produzido pelo algoritmo
-FCM, em dois conjuntos de coordenadas no $R^2$. Na figura os pontos foram pintados com a cor
+Por fim, está ilustrado na Figura \ref{fig:samples_fcm}, os resultados produzidos pelo algoritmo
+FCM, em dois conjuntos de coordenadas no $R^2$. Na figura, os pontos foram pintados com a cor
 correspondente ao grupo em que o mesmo obteve o maior valor de pertinência.
 
 \begin{figure}[!htp] 
@@ -388,28 +407,30 @@ correspondente ao grupo em que o mesmo obteve o maior valor de pertinência.
 
 \subsection{Algoritmo Possibilistic C Means (PCM)}
 
-A restrição probabilística (\ref{eq:fcmrestri2}) do FCM que obriga a soma das pertinências de
-um elemento ser igual a um, nem sempre resulta em pertinências que representam bem a realidade dos
-dados, conforme exemplificado na figura (\ref{fig:fcm_problem}).  Esse problema se agrava ainda
-mais, em bases com muitos dados ruidosos ($outliers$).  Visando então contornar esses problemas do
-FCM, foi proposto em \cite{Krishnapuram1993} o algoritmo $Possiblistic\ C\ Means$ (PCM). 
+A restrição probabilística do FCM, apresentada na Equação (\ref{eq:fcmrestri2}), que obriga a soma
+das pertinências de um elemento ser igual a um, nem sempre resulta em pertinências que representam
+bem a realidade dos dados, conforme exemplificado na Figura \ref{fig:fcm_problem}.  Esse problema se
+agrava ainda mais, em bases com muitos dados ruidosos ($outliers$).  Visando contornar esses
+problemas do FCM, foi proposto em \citeonline{Krishnapuram1993} o algoritmo $Possiblistic\ C\ Means$
+(PCM). 
 
-Ao contrário do FCM, o PCM não atribui pertinências dos documentos aos grupos, e sim tipicidades. 
-Que podem ser interpretadas como graus de possibilidade de um elemento pertencer ao grupo. Como
-consequência a partição resultante é possibilística. Para se adequar a essa abordagem
-possibilística, a função objetivo do PCM deriva da equação (\ref{eq:fcm_obj}) do FCM. Tendo também 
-as funções de atualização de prótotipos e atribuição de pertinências modificadas.
+Ao contrário do FCM, o PCM não atribui pertinências dos documentos aos grupos, mas sim tipicidades,
+as quais podem ser interpretadas como graus de possibilidade de um elemento pertencer a um
+determinado grupo. Como consequência, a partição resultante é possibilística. Para se adequar a essa
+abordagem possibilística, a função objetivo do PCM deriva da Equação (\ref{eq:fcm_obj}) do FCM.
+Tendo também as funções de atualização de protótipos e atribuição de pertinências modificadas.
 
 Na teoria de conjuntos fuzzy, a pertinência de um elemento a um grupo fuzzy não depende da
-pertinência desse mesmo elemento em outro grupo. No entanto no modelo FCM, a restrição
-(\ref{eq:fcmrestri2}) torna dependente a pertinência dos elementos aos grupos. De maneira que
-se um elemento obtiver um grau elevado de pertinência em um dado grupo, ele não poderá ter uma
-pertinência também elevada em outro grupo, ou seja $\mu(d_1, g_1) = 1-\mu(d_1,g_2)$, supondo um
-agrupamento com dois grupos. Portanto \cite{Krishnapuram1993} relaxa a restrição
-(\ref{eq:fcmrestri2}), fazendo com que a pertinência dependa unicamente da distância do
-elemento ao grupo. Logo as restrições (\ref{eq:fcmrestri1}) e (\ref{eq:fcmrestri2}), são 
-redefinidas nas equações (\ref{eq:pcmrestri1})(\ref{eq:pcmrestri2}), onde $\lambda(d_i,g_j)$
-representa a tipicidade do documento $d_i$ em relação ao grupo $g_j$.
+pertinência desse mesmo elemento em outro grupo. No entanto, no modelo FCM, a restrição apresentada
+pela Equação (\ref{eq:fcmrestri2}) torna dependente a pertinência dos elementos aos grupos. De
+maneira que se um elemento obtiver um grau elevado de pertinência em um dado grupo, ele não poderá
+ter uma pertinência também elevada em outro grupo. Ou seja $\mu(d_1, g_1) = 1-\mu(d_1,g_2)$, supondo
+um agrupamento com dois grupos. Nesse contexto \citeonline{Krishnapuram1993} sugere relaxamento da
+restrição, permitindo assim, que a pertinência dependa unicamente da distância do elemento ao grupo.
+Logo, as restrições apresentadas nas Equações (\ref{eq:fcmrestri1}) e (\ref{eq:fcmrestri2}), são
+redefinidas nas Equações (\ref{eq:pcmrestri1}) e (\ref{eq:pcmrestri2}), nas quais $\lambda(d_i,g_j)$
+representa a tipicidade do documento $d_i$ em relação ao grupo $g_j$. \\
+
 \begin{equation}
   \lambda(d_i, g_j) \in [0,1], \forall i,j
   \label{eq:pcmrestri1}
@@ -419,29 +440,35 @@ representa a tipicidade do documento $d_i$ em relação ao grupo $g_j$.
   0 < \sum_{j=1}^n \lambda(d_i, g_j) \leq n, \forall j
   \label{eq:pcmrestri2}
 \end{equation}
-Após relaxar a restrição (\ref{eq:fcmrestri2}) se mantivermos a função objetivo do FCM 
-(equação \ref{eq:fcm_obj}), teríamos uma solução trivial, bastando atribuir $0$ a todas as
-pertinências para minimizar $J(U_{c \times n},G,V,D)$\cite{Krishnapuram1993}\cite{Nogueira2013}. 
-Portanto buscando evitar essa solução trivial, e 
-manter a característica de atribuir aos elementos representativos pertinências elevadas aos grupos e 
-penalizar os elementos não representativos, a função objetivo é reformulada como sendo 
+
+Com isso, se mantiver-se a função objetivo do FCM (Equação \ref{eq:fcm_obj}), seria possível obter
+uma solução trivial, bastando atribuir $0$ à todas as pertinências para minimizar $J(U_{c \times
+n},G,V,D)$ \cite{Krishnapuram1993}.  Portanto, buscando evitar essa solução trivial, e manter a
+característica de se atribuir pertinências elevadas aos elementos representativos e penalizar os
+elementos não representativos, a função objetivo do FCM é reformulada na Equação \ref{eq:pcmobj}, no
+qual os parâmetros $\gamma_j$ definem o limiar da distância, que resulta na tipicidade média de 0,5,
+de um elemento ao grupo.  \\
+
 \begin{equation}
   K_m(P_{c \times n},G,V,D) = \sum_{j=1}^c \sum_{i=1}^n [\lambda(d_i, g_j)]^m dist(d_i, v_j) +
   \sum_{j=1}^c \gamma_j \sum_{i=1}^n [1 - \lambda(d_i, g_j)]^m
   \label{eq:pcmobj}
 \end{equation}
-, onde $\gamma_j > 0$ são parâmetros que determinam a distância a qual o valor de pertinência
-(tipicidade) se torna $0.5$. \cite{Krishnapuram1993} explica que $\gamma_j$ seja escolhido
-a depender da faixa de possibilidades (pertinência) desejada para um grupo. Por exemplo, 
-$\gamma_j$ pode ser igual para todos os grupos, quando se deseja que a forma dos grupos seja similar.
-Contudo na maioria dos casos se espera que $\gamma_j$ reflita o formato e tamanho particular de cada
-grupo. Assim sendo, o autor indica que a definição (\ref{eq:pcmgamma}) se mostra adequada para maior
-parte dos dados, onde $L$ é usualmente 1.
+
+De acordo com \citeonline{Krishnapuram1993}, o valor de $\gamma_j$ deve ser escolhido a depender da
+faixa de possibilidades (tipicidades) desejada para um grupo. Por exemplo, $\gamma_j$ pode ser igual
+para todos os grupos, quando se deseja que o formato dos grupos seja similar.  Contudo, na maioria
+dos casos, se espera que $\gamma_j$ reflita o formato e tamanho particular de cada grupo. Assim
+sendo, os autores indicam que a definição apresentada na Equação (\ref{eq:pcmgamma}) tem se mostrado
+adequada para maior parte dos dados, onde $L$ é usualmente 1.
+
 \begin{equation}
   \gamma_j = L \frac{\sum_{i=1}^n \lambda(d_i,g_j)^m dist(d_i,v_j)}{\sum_{i=1}^n \lambda(d_i,g_j)^m}
   \label{eq:pcmgamma}
 \end{equation}
+
 A partição de pertinências possibilísticas produzidas pelo PCM é então definida como sendo
+
 \begin{equation} 
   P_{c \times n} = \{\lambda(d_i, g_k) |\lambda(d_i, g_k) \in [0,1], 1 < i \leq n, 1 < k \leq c, eqs
   (\ref{eq:pcmrestri1})(\ref{eq:pcmrestri2})\}
@@ -451,7 +478,7 @@ A partição de pertinências possibilísticas produzidas pelo PCM é então def
   \lambda(d_i,g_j) = \frac{1}{1+\left(\frac{dist(d_i,g_j)}{\gamma_j}\right)^{\frac{1}{m-1}}}
   \label{eq:lambda}
 \end{equation}
-, enquanto a atualização de protótipos ocorre de maneira similar a equação (\ref{eq:prototipos}) do
+, enquanto a atualização de protótipos ocorre de maneira similar a Equação (\ref{eq:prototipos}) do
 FCM, apenas alterando a pertinência $\mu(d_i,g_j)$ por $\lambda(d_i,g_j)$. A síntese do 
 algoritmo PCM está apresentada em forma de pseudo código no algoritmo (\ref{alg:pcm}). 
 
@@ -473,7 +500,7 @@ algoritmo PCM está apresentada em forma de pseudo código no algoritmo (\ref{al
   \caption{Pseudo código da implementação iterativa do método PCM}
   \label{alg:pcm} 
 \end{algorithm}
-Por fim está ilustrado na figura (\ref{fig:samples_pcm_fcm}) (a), o resultado do agrupamento
+Por fim está ilustrado na Figura (\ref{fig:samples_pcm_fcm}) (a), o resultado do agrupamento
 obtido pelo método FCM, e em (b) o agrupamento gerado pelo algoritmo PCM em um conjunto de 
 coordenadas no $R^2$. Na figura os pontos foram pintados com a cor correspondente ao grupo em que o 
 mesmo obteve o maior valor de pertinência. Observa-se nessa comparação simplificada que o algoritmo 
@@ -532,10 +559,10 @@ De maneira a reduzir os efeitos dos dados ruidosos, minimizar o problema dos pro
 e evitar a singularidade do FCM. O pseudo código do PFCM é apresentado no Algoritmo \ref{alg:pfcm}, 
 onde a
 função $\textbf{\color{blue}inicializa-prototipos}(D,G)$ gera os protótipos iniciais da partição
-$V_0$. Como resultado demonstrativo desse algoritmo está ilustrado na figura
+$V_0$. Como resultado demonstrativo desse algoritmo está ilustrado na Figura
 (\ref{fig:samples_pfcm}), onde é possível observar que os grupos produzidos são em certa perspectiva
 um intermédio entre o agrupamento produzido pelo FCM e PCM no mesmo conjunto de dados, apresentados
-na figura (\ref{fig:samples_pcm_fcm}).
+na Figura (\ref{fig:samples_pcm_fcm}).
 \begin{equation}
   V = \left\{ v_j | v_j = \frac{\sum_{i=1}^n[a\mu(d_i,g_j)^n + b\lambda(d_i, g_j)^m] d_i}
     {\sum_{i=1}^n[a\mu(d_i,g_j)^n + b\lambda(d_i, g_j)^m]}, 
@@ -576,7 +603,7 @@ E os métodos de agrupamento $soft$, como FCM e PCM, quando aplicados a coleçõ
 encontrar semelhanças entre os documentos e agrupar por tópicos. Porém acontece, que um
 tópico pode se dividir em sub temas, como por exemplo esporte, que pode se dividir em futebol,
 vôlei, tênis e etc. Deste modo os temas presentes em uma coleção textual podem ser organizados 
-em uma hierarquia de tópicos conforme a figura \ref{fig:hierarquia}. Portanto construir hierarquias
+em uma hierarquia de tópicos conforme a Figura \ref{fig:hierarquia}. Portanto construir hierarquias
 utilizando métodos de agrupamento fuzzy é o propósito principal do algoritmo HFCM proposto em
 \cite{PedryczR2006}.
 
@@ -650,7 +677,7 @@ através das equações \ref{eq:qindex1} para o nível inicial da hierarquia e \
 demais níveis, onde $Q$ calcula a soma total das distâncias dos documentos $d_i$ de um grupo com
 $d'_j$.
 
-A atualização dos protótipos no algoritmo CFCM ocorre da mesma maneira que o a equação
+A atualização dos protótipos no algoritmo CFCM ocorre da mesma maneira que o a Equação
 (\ref{eq:prototipos}) do FCM, contudo a função de pertinência é redefinida como sendo
 \begin{equation}
   \mu(d_i,g_h[l]) = \frac{\mu(d_i,g_j[l-1])}
@@ -701,14 +728,14 @@ representado com o parâmetro $lmax$.
   Hierarquia $\gets \empty$
   G[l],V[l],U[l] $\gets \textbf{{\color{blue}fcm}}$(D,c,m,$\varepsilon$); Algoritmo \ref{alg:fcm}\; 
   Hierarquia $\gets Hierarquia + \{U[l],V[l]\}$\;
-  Q[l] $\gets$ calcula desempenho dos grupos com a equação (\ref{eq:qindex1})\;
+  Q[l] $\gets$ calcula desempenho dos grupos com a Equação (\ref{eq:qindex1})\;
   $g_{max}$ $\gets$ escolhe o grupo $g_j$ com maior valor de Q\;
-  $D_{max}$ $\gets$ seleciona documentos de $g_{max}$ com equação (\ref{eq:cfcmfilter})\;
+  $D_{max}$ $\gets$ seleciona documentos de $g_{max}$ com Equação (\ref{eq:cfcmfilter})\;
   $l \gets l + 1$\; 
   \Do{ $l \leq lmax$ }{ 
-    Q[l] $\gets$ calcula desempenho dos grupos com a equação (\ref{eq:qindex2})\;
+    Q[l] $\gets$ calcula desempenho dos grupos com a Equação (\ref{eq:qindex2})\;
     $g_{max}$ $\gets$ escolhe o grupo $g_j$ com maior valor de Q\;
-    $D_{max}$ $\gets$ seleciona documentos de $g_{max}$ com equação (\ref{eq:cfcmfilter})\;
+    $D_{max}$ $\gets$ seleciona documentos de $g_{max}$ com Equação (\ref{eq:cfcmfilter})\;
     G[l],V[l],U[l] $\gets \textbf{{\color{blue}cfcm}}$$(D_{max},U[l-1],l,c,m,\varepsilon)$; 
     Algoritmo \ref{alg:cfcm}\; 
     Hierarquia $\gets Hierarquia + \{U[l],V[l]\}$\;
