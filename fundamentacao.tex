@@ -834,28 +834,64 @@ extrair descritores para todos os grupos encontrados durante o agrupamento, pode
 exaustiva para o usuário.
 
 Dentre os métodos automatizados, é encontrado na literatura dois tipos de abordagens, uma baseada em
-conhecimento interno e a outra baseada em conhecimento externo\cite{Nogueira2013}.  A primeira se
-utiliza somente de informações que podem ser obtidas na coleção de documentos, como por exemplo a
-frequência do termo, localização do termo na estrutura do documento.  Enquanto a abordagem de
-conhecimento externo, levam em considerações também fontes de informação externas, para auxiliar a
-escolha dos termos mais representativos. 
+conhecimento interno e a outra baseada em conhecimento externo.  A primeira se utiliza somente de
+informações que podem ser obtidas na coleção de documentos, como por exemplo a frequência do termo,
+localização do termo na estrutura do documento.  Enquanto a abordagem de conhecimento externo, leva
+em consideração fontes de informação externas, como por exemplo a consulta a extensa base
+de termos na língua inglesa WordNet\footnotemark, para auxiliar a escolha dos termos mais
+representativos. 
+\footnotetext{http://wordnet.princeton.edu/}
 
-Em ambas abordagens a literatura fornece uma ampla gama de métodos, com o objetivo de obter bons
-descritores dos grupos. Os descritores podem ser extraídos com os termos mais frequentes no grupo, ,
-no entanto o resultado pode ser genérico demais\cite{Pucktada2006}, ou os descritores podem ser
-extraídos dos grupos que estão mais próximos do centroide do grupo.
+Em ambas abordagens, a literatura fornece uma ampla gama de métodos, com o objetivo de obter bons
+descritores dos grupos. Os descritores podem ser extraídos com os termos mais frequentes dos
+documentos no grupo. No entanto, o resultado pode ser genérico demais \cite{Pucktada2006}. Dessa
+maneira uma outra estratégia mais adequada pode ser a extração dos descritores dos documentos que
+estão mais próximos do centróide do grupo.
 
-Contudo \cite{Nogueira2013} destaca que grande parte dos métodos de extração de descritores
-encontrados na literatura, são embutidos na fase de agrupamento. O que justifica a avaliação dos
-mesmos em função do desempenho do agrupamento. No entanto essa junção da extração de rótulos na fase
-de agrupamento, dificulta a combinação de diferentes técnicas de agrupamento e consequentemente a
-escolha de bons descritores. Logo os métodos onde a extração é realizada após a fase de agrupamento,
-de maneira independente, permitem uma melhor adaptação da proposta de organização flexível de
-documentos para diferentes contextos. Essa flexibilidade possibilitou que a investigação misturasse
-diferentes técnicas, permitindo obter melhores resultados.
+\citeonline{Nogueira2013} destaca que grande parte dos métodos de extração de descritores
+encontrados na literatura são embutidos na fase de agrupamento. O que justifica a avaliação dos
+mesmos em função do desempenho do agrupamento. No entanto, essa junção da extração de descritores na
+fase de agrupamento, dificulta a combinação de diferentes técnicas de agrupamento e consequentemente
+a escolha de bons descritores. Logo, os métodos onde a extração é realizada após a fase de
+agrupamento, de maneira independente, permitem uma melhor adaptação da proposta de organização
+flexível de documentos para diferentes contextos. 
+
+Nesse contexto, percebe-se à existência de algumas estratégias para extração de descritores,
+utilizando ou não conhecimento externo, e embutida ou independente do processo de agrupamento. A
+partir da avaliação dessas abordagens, e de acordo com o objetivo definido nesta monografia,
+considerou-se que a abordagem independente do algoritmo de agrupamento é mais pertinente ao presente
+estudo, pois ela viabiliza a condução de experimentos com vários métodos de agrupamento. Nesse
+sentido, foi escolhido o método {\it Soft Organization - Fuzzy Description Comes last\/}
+(SoftO-FDCL) proposto por \citeonline{Nogueira2013}, devido o mesmo possuir essas características
+necessárias para a investigação dos impactos do agrupamento na qualidade dos descritores e da
+organização flexível. Optou-se então para descrever este método no Capítulo \ref{ch:proposed}, pois,
+as motivações para os métodos propostos nesta monografia se baseiam nas descobertas de propriedades
+do método SoftO-FDCL.
+
+Na seção a seguir, está apresentada as considerações extraídas desse capítulo e a conexão dos temas
+aqui apresentados com a pesquisa realizada nesta monografia.
 
 \section{Considerações finais}
 
+Neste capítulo foi apresentado e fundamentado a teoria necessária para se compreender os temas
+dissecados nesta monografia. De maneira geral, foi visto que a proposição da lógica fuzzy,
+proporcionou a capacidade no tratamento de imprecisão e incerteza inerentes do mundo real. E em
+particular, esses benefícios permitiram o surgimento de mecanismos para organizar de maneira
+flexível os documentos textuais. 
 
+Foi visto que a organização flexível possui uma série de etapas no seu processo, tendo
+cada uma suas peculiaridades e teoria relacionada. Sendo que a etapa de pré-processamento,
+desempenha o fundamental papel de coletar e estruturar os dados textuais, preparando-os para a etapa
+de agrupamento. O agrupamento por sua vez, é realizado com métodos clássicos já existentes na
+Mineração de Dados (MD), porém ligeiramente adaptados para compreender a alta dimensionalidade dos
+das coleções textuais. Ao final desse processo, a extração dos descritores desempenha a tarefa de
+atribuir significado relevante à grupos, finalizando a organização flexível de documentos. 
+A partir então dessa organização produzida, é possível um Sistema de Recuperação de Informação
+(SRI), utilizar essa organização para indexar e recuperar informações.
 
+Considerando o objetivo definido nessa monografia, será investigado no Capítulo \ref{ch:proposed},
+os impactos dos algoritmos de agrupamento FCM, PCM e PFCM na qualidade da organização flexível de
+documentos.
 
+No próximo capítulo, será apresentado uma breve revisão das estratégias recentes adotadas por
+pesquisadores para otimizar as etapas da organização flexível de documentos.
