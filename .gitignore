@@ -11,3 +11,4 @@ ufba-eps-converted-to.pdf
 paper.tex
 *.out
 results/
+*.loa
