@@ -1,40 +1,31 @@
-A pesquisa desenvolvida nesta monografia investiga e elabora uma solução voltada para organização de
-uma coleção de documentos textuais de maneira flexível. O processo de organização em si, conforme
-discutido ao longo dos capítulos, envolve uma gama de desafios para ser executado com eficiência,
-como, por exemplo, os impactos negativos da elevada dimensionalidade da matriz documentos x termos,
-que é comumente muito esparsa em coleções textuais. Por conta disso, a tarefa de se calcular a
-similaridade entre dois documentos quaisquer, a partir daquela mesma matriz, apresenta alto grau de
-dificuldade.  Outra problemática fundamental está no processo de agrupamento, através do qual se
-espera que os grupos resultantes consigam capturar a estrutura natural das coleções e que esses
-grupos possuam relevância para os usuários finais.  Atendendo a esses princípios, o agrupamento
-consegue cumprir o papel de aquisição e descoberta de conhecimento. Coleções textuais podem também
-conter documentos ruidosos, que destoam do restante da coleção, sendo que é esperado o emprego de
-técnicas no processo de organização flexível para que ele não seja prejudicado pela presença desses
-documentos. Com o aumento massivo da quantidade de dados produzidos pela humanidade, se faz também
-necessário que todo o processo seja capaz de se adequar a coleções com grande volumes de dados.
-Assim, a organização flexível de documentos proposta fundamenta-se em um conhecimento bastante
-intensivo, por meio do qual se aplica um conjunto de diversas técnicas os desafios apontados acima
-bem como outros associados a esse processamento de textos. 
+A pesquisa desenvolvida nesta monografia investigou e elaborou uma solução voltada para organização de uma coleção de documentos textuais de maneira flexível. O processo de organização em si, conforme
+discutido ao longo dos capítulos, envolve uma gama de desafios para que possa ser executado com eficiência: ,
+a elevada dimensionalidade da matriz documentos x termos, bem como o fato das coleções textuais serem, no geral muito esparsas, impactam negativamente na execução da maioria dos algoritmos para extração de conhecimento; o processo de agrupamento, através do qual se espera que os grupos resultantes consigam capturar a estrutura natural das coleções e que esses
+grupos possuam relevância para os usuários finais, desafios intrínsecos à sua execução que devem ser considerados; coleções textuais podem conter documentos ruidosos, que destoam do restante da coleção; e etc.
 
-Todo esse contexto apresentado se mostra inviável de ser abordado de maneira aprofundada em uma
-única pesquisa. Por isso, as investigações conduzidas nessa monografia foram focadas no aumento da
+Adicionalmente, todos os desafios citados anteriormente, tornam-se ainda maiores com o aumento massivo da quantidade de dados produzidos pela humanidade. Portanto, é necessário que todo o processo de organização seja ainda capaz de se adequar a coleções com grande volumes de dados.
+
+Sendo assim, a organização flexível de documentos como um todo fundamenta-se em um estudo bastante
+abrangente, por meio do qual se aplica um conjunto de diversas técnicas na tentativa de gerenciar os desafios apontados acima.
+As investigações conduzidas nessa monografia, especificamente, tiveram como foco o aumento da
 robustez do processo, reduzindo-se os impactos dos dados ruidosos ao se utilizar uma estratégia
-híbrida com o algoritmo PFCM. Portanto, a hipótese formulada e verificada nesta monografia foi:
+híbrida para agrupamento sobreposto de documentos.
+
+Diversos experimentos foram realizados, permitindo comprovar a hipótese de que:
 
 \begin{quote}
 \textit{A utilização de uma estratégia híbrida de agrupamento e extração de descritores, entre os 
-  graus de pertinência e tipicidade providos pelo método de agrupamento PFCM, permitem o aumento da
+  graus de pertinência e tipicidade providos pelo método de agrupamento {\it Possibilistic Fuzzy C-Means} (PFCM), permitem o aumento da
     robustez e resiliência contra ruídos na organização flexível de documentos, aumentando assim a
     relevância dos grupos obtidos.}
 \end{quote}
 
-Portanto, com base na exploração das estratégias existentes na literatura para aprimoramento do
-processo de organização flexível de documentos e da avaliação da hipótese formulada, o objetivo
-desta monografia é definido como segue:
+Com base na exploração das estratégias existentes na literatura para aprimoramento do
+processo de organização flexível de documentos e da comprovação da hipótese formulada, foi alcançado o objetivo
+de:
 
 \begin{quote}
-\textit{Conduzir uma investigação em torno dos métodos de agrupamento FCM, PCM e PFCM, para
-se compreender e interpretar corretamente as peculiaridades de se extrair descritores em um
+\textit{Conduzir uma investigação em torno dos métodos de agrupamento Fuzzy C-Means (FCM), Possibilistic C-Means (PCM) e PFCM, para compreender e interpretar corretamente as peculiaridades de se extrair descritores a partir de um
 agrupamento híbrido.}
 \end{quote}
 
