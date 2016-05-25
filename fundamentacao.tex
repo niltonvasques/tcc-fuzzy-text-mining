@@ -247,13 +247,13 @@ agrupamento. Deste modo, para encontrar o número de grupos ideal, basta executa
 variando o número de grupos, e selecionar o agrupamento que tiver o valor máximo de FS.
 
 Toda investigação realizada neste trabalho tomou como base os métodos de agrupamento que derivam do
-algoritmo FCM\cite{Bezdek1984}, descrito a seguir, para se beneficiar da capacidade de tratar
+algoritmo FCM \cite{Bezdek1984}, descrito a seguir, para se beneficiar da capacidade de tratar
 imprecisão e incerteza da lógica fuzzy, e por conseguinte permitir que um mesmo documento seja
 categorizado em mais de um tópico (grupo), refletindo a realidade dos documentos textuais. 
 
 Em todos os experimentos a medida de similaridade de cosseno (Equação \ref{eq:simcos}) foi
-utilizada, e a quantidade de grupos ideal foi escolhida utilizando o método da silhueta fuzzy (
-Equação \ref{eq:fs}).
+utilizada, e a quantidade de grupos ideal foi escolhida utilizando o método da silhueta fuzzy 
+(Equação \ref{eq:fs}).
 
 \subsection{Algoritmo Fuzzy C Means (FCM)} 
 
@@ -261,8 +261,8 @@ Equação \ref{eq:fs}).
 que produz como saída partições fuzzy e protótipos dos grupos. Esse algoritmo desempenha um papel
 importante no contexto do agrupamento fuzzy, devido ao seu pioneirismo no campo de estudo, possuindo
 diversas extensões, sendo considerado um dos mais amplamente utilizados métodos de
-agrupamento fuzzy da literatura\cite{Pal2005}. A maioria dos métodos de agrupamento fuzzy são
-derivações do FCM\cite{Krishnapuram1993}.
+agrupamento fuzzy da literatura \cite{Pal2005}. A maioria dos métodos de agrupamento fuzzy são
+derivações do FCM \cite{Krishnapuram1993}.
 
 Para compreensão do algoritmo, considere $V = \{v_1,v_2,v_3,...,v_c\}$ os protótipos dos grupos $G =
 \{g_1,g_2,g_3,...g_c\}$ definidos por 
@@ -377,7 +377,7 @@ também expressa que os ciclos podem começar pela partição fuzzy, fazendo ent
 V_t \Rightarrow U_t$, e, ao final do ciclo, checando o erro mínimo com $\parallel U_{t-1} -
 U_t\parallel < \varepsilon$, sendo $t$ o contador de iterações.  Contudo, existem benefícios em
 termos de processamento e memória ao utilizar a iteração iniciando e finalizando com
-$V$\cite{Pal2005}. Por outro lado, \citeonline{Bezdek1984} e \citeonline{Pal2005} afirmam que a
+$V$ \cite{Pal2005}. Por outro lado, \citeonline{Bezdek1984} e \citeonline{Pal2005} afirmam que a
 convergência desse modelo iterativo ocorre em ambos os tipos de ciclo. Geralmente, a partição fuzzy
 inicial $U_0$ é comumente inicializada com valores aleatórios ou com o resultado de um agrupamento
 previamente executado \cite{Pal2005,Krishnapuram1993}. Nas demais iterações a atualização dos
@@ -824,7 +824,7 @@ assim a interpretação dos seus significados.
 
 A tarefa de atribuir significados à grupos é um dos problemas chave do agrupamento de textos, pois
 ao final do processo de agrupamento, os grupos precisam apresentar alguma relevância para o
-usuário\cite{Zhang2008}. Portanto, é imprescindível que sejam extraídos descritores significativos
+usuário \cite{Zhang2008}. Portanto, é imprescindível que sejam extraídos descritores significativos
 para representar os documentos que compõem os grupos.
 
 A etapa de extração de descritores etapa pode ser realizada manualmente, com o usuário guiando o
