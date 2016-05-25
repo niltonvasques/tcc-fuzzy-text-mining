@@ -291,7 +291,7 @@ pertinência $\mu(d_i,g_k)$ de cada documento na coleção, é definida por
 \end{equation}
 e está sujeita as restrições definidas nas equações (\ref{eq:fcmrestri1}) e (\ref{eq:fcmrestri2}).
 
-Considera-se $m$ o fator de fuzificação, que regula o quão fuzzy será as partições finais. De modo
+Considera-se $m$ o fator de fuzificação, que regula o quão fuzzy serão as partições finais. De modo
 que para $m = 1$ a partição resultante é totalmente $crisp$ (Figura \ref{fig:cluster_crisp}) e para
 $m \rightarrow \infty$ a interseção entre os grupos tende a aumentar (Figura
 \ref{fig:cluster_fuzzy})\cite{Pal2005}. 
@@ -319,7 +319,7 @@ grupos $g_1,g_2,g_3$ organizados sem sobreposição, para $m = 1$.}
    \end{minipage} 
 \end{figure}
 
-Onde usualmente no contexto do agrupamento de coleções textuais $dist(d_i,g_k) = scos(d_i,g_k)$.
+Usualmente, no contexto do agrupamento de coleções textuais, $dist(d_i,g_k) = scos(d_i,g_k)$.
 Adicionalmente, o algoritmo FCM estabelece algumas restrições: deve-se evitar que o FCM produza
 grupos vazios (Equação (\ref{eq:fcmrestri1})) e deve-se impor que a soma das pertinências seja
 sempre igual a um (Equação (\ref{eq:fcmrestri2})).
@@ -833,7 +833,7 @@ organização flexível de documentos, visto que, para grandes bases de dados te
 extrair descritores para todos os grupos encontrados durante o agrupamento, pode ser bastante
 exaustiva para o usuário.
 
-Dentre os métodos automatizados, é encontrado na literatura dois tipos de abordagens, uma baseada em
+Dentre os métodos automatizados, dois tipos de abordagens são encontrados na literatura, uma baseada em
 conhecimento interno e a outra baseada em conhecimento externo.  A primeira se utiliza somente de
 informações que podem ser obtidas na coleção de documentos, como por exemplo a frequência do termo,
 localização do termo na estrutura do documento.  Enquanto a abordagem de conhecimento externo, leva
