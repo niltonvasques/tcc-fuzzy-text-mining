@@ -117,13 +117,13 @@ esquemas de classificação, modelos probabilísticos e sistemas baseado em regr
 O processo de pré-processamento de dados textuais, inicia com um documento parcialmente estruturado
 e avança incrementando a estrutura através do refinamento das características do documento e
 adicionando novas \cite{Feldman2007}.  No contexto da mineração de textos, as características dos
-documentos são as suas palavras\cite{Haddi2013}. Ao final do processo, as palavras mais relevantes
+documentos são as suas palavras \cite{Haddi2013}. Ao final do processo, as palavras mais relevantes
 são utilizadas, e as demais são descartadas.
 
 O processo como um todo envolve várias etapas, as quais pode-se elencar a remoção de espaços,
 expansão de abreviações, remoção de $stopwords$, que são palavras que não possuem relevância no
 significado geral do texto e geralmente são compostas por proposições, pronomes, artigos,
-interjeições dentre outras\cite{Nogueira2013}. Assim como também o processo de $stemming$ ou
+interjeições dentre outras \cite{Nogueira2013}. Assim como também o processo de $stemming$ ou
 lematização, onde se busca encontrar o radical da palavra, visando assim remover palavras que
 possuam significados similares. Ainda é possível usar as técnicas de NLP ($Natural Language
 Processing$) para eliminar sinônimos. Por fim, é realizada a seleção de termos mais característicos
@@ -159,7 +159,7 @@ mesmo grupo, e minimizar a similaridade entre documentos de grupos distintos, é
 problema de otimização.  Sendo assim, pretende-se otimizar a escolha dos grupos, entre
 todas as possibilidades de agrupamento, dada uma função objetivo que captura a qualidade dos grupos.
 Esta função é responsável por atribuir ao conjunto de possíveis grupos um número real, de maneira
-que quanto melhor for os grupos, maior será o seu valor\cite{Feldman2007}.
+que quanto melhor for os grupos, maior será o seu valor \cite{Feldman2007}.
 
 A medida de similaridade desempenha um papel fundamental no agrupamento, uma vez que ela precisa
 expressar o quão distante está um elemento do outro na coleção. Assim sendo, para obtermos bons
@@ -182,7 +182,7 @@ distância euclidiana (Equação \ref{eq:euclidiana}) \cite{Nogueira2013}.
 A medida de similaridade mais comum para coleções textuais é o coeficiente de similaridade de cosseno
 \cite{Feldman2007}.  Por sua vez o coeficiente de similaridade de cosseno,
 desconsidera os diversos zeros presentes nos vetores de termos dos documentos, levando em conta
-apenas o ângulo formado entre eles\cite{Nogueira2013}.  Na Equação (\ref{eq:simcos}) temos a
+apenas o ângulo formado entre eles \cite{Nogueira2013}.  Na Equação (\ref{eq:simcos}) temos a
 definição do coeficiente de similaridade de cosseno, onde $d_1$ e $d_2$, são dois documentos
 quaisquer da coleção de documentos, e $1 \leq t \leq k$, onde $k$ é a quantidade total de termos da
 coleção, e $d_{ik}$ a frequência do termo $t$ no documento $d_i$.
